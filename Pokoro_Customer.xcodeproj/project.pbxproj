@@ -33,7 +33,7 @@
 		B655882923A7DF650056FD38 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B655882C23A7E0160056FD38 /* PKUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKUserManager.swift; sourceTree = "<group>"; };
 		B655882F23A7E0920056FD38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		B68FA4C123A7D10200672E00 /* Pokoro_Customer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro_Customer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B68FA4C123A7D10200672E00 /* Pokoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68FA4C423A7D10200672E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C623A7D10200672E00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C823A7D10200672E00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		B68FA4C223A7D10200672E00 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B68FA4C123A7D10200672E00 /* Pokoro_Customer.app */,
+				B68FA4C123A7D10200672E00 /* Pokoro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 			);
 			name = Pokoro_Customer;
 			productName = Pokoro_Customer;
-			productReference = B68FA4C123A7D10200672E00 /* Pokoro_Customer.app */;
+			productReference = B68FA4C123A7D10200672E00 /* Pokoro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -456,8 +456,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pokoro.app.Pokoro-Customer";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
+				PRODUCT_NAME = Pokoro;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -475,8 +475,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pokoro.app.Pokoro-Customer";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
+				PRODUCT_NAME = Pokoro;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
