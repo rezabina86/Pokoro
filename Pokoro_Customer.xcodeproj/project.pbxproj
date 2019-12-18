@@ -15,6 +15,13 @@
 		B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882923A7DF650056FD38 /* AuthenticationCoordinator.swift */; };
 		B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882C23A7E0160056FD38 /* PKUserManager.swift */; };
 		B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882F23A7E0920056FD38 /* LoginViewController.swift */; };
+		B66A3CF823AA982300916C95 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CF623AA982300916C95 /* Logger.swift */; };
+		B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CF723AA982300916C95 /* LogEvent.swift */; };
+		B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CFA23AA987A00916C95 /* Date+toString.swift */; };
+		B66A3CFE23AA9ACA00916C95 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CFD23AA9ACA00916C95 /* Theme.swift */; };
+		B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CFF23AA9B1A00916C95 /* ThemeManager.swift */; };
+		B66A3D0223AA9E1900916C95 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3D0123AA9E1900916C95 /* Colors.swift */; };
+		B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3D0323AA9EDD00916C95 /* LightTheme.swift */; };
 		B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C423A7D10200672E00 /* AppDelegate.swift */; };
 		B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C623A7D10200672E00 /* SceneDelegate.swift */; };
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
@@ -33,6 +40,13 @@
 		B655882923A7DF650056FD38 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B655882C23A7E0160056FD38 /* PKUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKUserManager.swift; sourceTree = "<group>"; };
 		B655882F23A7E0920056FD38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B66A3CF623AA982300916C95 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B66A3CF723AA982300916C95 /* LogEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogEvent.swift; sourceTree = "<group>"; };
+		B66A3CFA23AA987A00916C95 /* Date+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+toString.swift"; sourceTree = "<group>"; };
+		B66A3CFD23AA9ACA00916C95 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		B66A3CFF23AA9B1A00916C95 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		B66A3D0123AA9E1900916C95 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B66A3D0323AA9EDD00916C95 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		B68FA4C123A7D10200672E00 /* Pokoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68FA4C423A7D10200672E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C623A7D10200672E00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,9 +127,32 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		B66A3CF523AA982300916C95 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				B66A3CF623AA982300916C95 /* Logger.swift */,
+				B66A3CF723AA982300916C95 /* LogEvent.swift */,
+				B66A3CFA23AA987A00916C95 /* Date+toString.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		B66A3CFC23AA9AAB00916C95 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				B66A3CFD23AA9ACA00916C95 /* Theme.swift */,
+				B66A3CFF23AA9B1A00916C95 /* ThemeManager.swift */,
+				B66A3D0123AA9E1900916C95 /* Colors.swift */,
+				B66A3D0323AA9EDD00916C95 /* LightTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B66A3CFC23AA9AAB00916C95 /* Theme */,
+				B66A3CF523AA982300916C95 /* Logger */,
 				B655882B23A7E0010056FD38 /* Managers */,
 				B655882623A7DC010056FD38 /* Extensions */,
 				B68FA4C423A7D10200672E00 /* AppDelegate.swift */,
@@ -304,15 +341,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
+				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
+				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
+				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
+				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
 				B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */,
+				B66A3D0223AA9E1900916C95 /* Colors.swift in Sources */,
 				B655882523A7DA680056FD38 /* Coordinator.swift in Sources */,
 				B655882323A7D7230056FD38 /* Router.swift in Sources */,
 				B655882123A7D6A00056FD38 /* SceneDelegateRouter.swift in Sources */,
 				B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */,
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */,
+				B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
 				B655882823A7DC780056FD38 /* UIApplication+SwitchRoot.swift in Sources */,
+				B66A3CFE23AA9ACA00916C95 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

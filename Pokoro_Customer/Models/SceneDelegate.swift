@@ -16,18 +16,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        makeAuthenticationCoordinator(windowScene)
+        window = UIWindow(windowScene: windowScene)
+        setTheme()
+        makeAuthenticationCoordinator()
         presentAuthenticationCoordinator()
     }
     
-    private func makeAuthenticationCoordinator(_ windowScene: UIWindowScene) {
-        window = UIWindow(windowScene: windowScene)
+    private func makeAuthenticationCoordinator() {
         router = SceneDelegateRouter(window: window!)
         coordinator = AuthenticationCoordinator(router: router!)
     }
     
     public func presentAuthenticationCoordinator() {
         coordinator?.present(animated: true, onDismissed: nil)
+    }
+    
+    private func setTheme() {
+        guard let style = window?.traitCollection.userInterfaceStyle else { return }
+        ThemeManager.shared.set(theme: style == .light ? LightTheme() : LightTheme())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
