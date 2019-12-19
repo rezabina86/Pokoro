@@ -27,6 +27,10 @@
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
 		B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CD23A7D10400672E00 /* Assets.xcassets */; };
 		B68FA4D123A7D10400672E00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CF23A7D10400672E00 /* LaunchScreen.storyboard */; };
+		B6CF148F23ABD34300D330FD /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148C23ABD34300D330FD /* SF-Pro-Display-Light.otf */; };
+		B6CF149023ABD34300D330FD /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148D23ABD34300D330FD /* SF-Pro-Display-Regular.otf */; };
+		B6CF149123ABD34300D330FD /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148E23ABD34300D330FD /* SF-Pro-Display-Semibold.otf */; };
+		B6CF149423ABD36000D330FD /* PKFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF149323ABD36000D330FD /* PKFonts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,10 @@
 		B68FA4CD23A7D10400672E00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B68FA4D023A7D10400672E00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B68FA4D223A7D10400672E00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6CF148C23ABD34300D330FD /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
+		B6CF148D23ABD34300D330FD /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		B6CF148E23ABD34300D330FD /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		B6CF149323ABD36000D330FD /* PKFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKFonts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +159,7 @@
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B6CF149223ABD36000D330FD /* Fonts */,
 				B66A3CFC23AA9AAB00916C95 /* Theme */,
 				B66A3CF523AA982300916C95 /* Logger */,
 				B655882B23A7E0010056FD38 /* Managers */,
@@ -181,6 +190,7 @@
 		B68E592B23A7D48D000C04DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B6CF148B23ABD34300D330FD /* Fonts */,
 				B68FA4CD23A7D10400672E00 /* Assets.xcassets */,
 				B68FA4D223A7D10400672E00 /* Info.plist */,
 			);
@@ -216,6 +226,24 @@
 				B68E592B23A7D48D000C04DF /* Supporting Files */,
 			);
 			path = Pokoro_Customer;
+			sourceTree = "<group>";
+		};
+		B6CF148B23ABD34300D330FD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B6CF148C23ABD34300D330FD /* SF-Pro-Display-Light.otf */,
+				B6CF148D23ABD34300D330FD /* SF-Pro-Display-Regular.otf */,
+				B6CF148E23ABD34300D330FD /* SF-Pro-Display-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B6CF149223ABD36000D330FD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B6CF149323ABD36000D330FD /* PKFonts.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		D28EF1079F83EEAFD99C5AE2 /* Frameworks */ = {
@@ -287,6 +315,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B68FA4D123A7D10400672E00 /* LaunchScreen.storyboard in Resources */,
+				B6CF148F23ABD34300D330FD /* SF-Pro-Display-Light.otf in Resources */,
+				B6CF149123ABD34300D330FD /* SF-Pro-Display-Semibold.otf in Resources */,
+				B6CF149023ABD34300D330FD /* SF-Pro-Display-Regular.otf in Resources */,
 				B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
+				B6CF149423ABD36000D330FD /* PKFonts.swift in Sources */,
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
