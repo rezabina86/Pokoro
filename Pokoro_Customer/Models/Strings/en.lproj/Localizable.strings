@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  POKORO
+
+  Created by Reza Bina on 2019-11-24.
+  Copyright © 2019 Reza Bina. All rights reserved.
+*/
+
+
+//Login
+"loginWelcome" = "Welcome to Pokoro\n Simple, fast, and anonymous short message service";
+
+

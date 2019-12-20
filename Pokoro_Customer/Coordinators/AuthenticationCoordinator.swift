@@ -11,9 +11,9 @@ import UIKit
 class AuthenticationCoordinator: Coordinator {
     
     var children: [Coordinator] = []
-    var router: Router
+    var router: Routers
     
-    init(router: Router) {
+    init(router: Routers) {
         self.router = router
     }
     

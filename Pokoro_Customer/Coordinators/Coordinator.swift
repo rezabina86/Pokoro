@@ -10,7 +10,7 @@ import UIKit
 
 public protocol Coordinator: class {
     var children: [Coordinator] { get set }
-    var router: Router { get }
+    var router: Routers { get }
 
     func present(animated: Bool, onDismissed: (() -> Void)?)
     func dismiss(animated: Bool)

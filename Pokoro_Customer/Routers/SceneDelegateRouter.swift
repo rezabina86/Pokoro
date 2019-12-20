@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SceneDelegateRouter: Router {
+class SceneDelegateRouter: Routers {
     public let window: UIWindow
     
     init(window: UIWindow) {
