@@ -59,6 +59,7 @@
 		B6CF14C123ACCDC800D330FD /* Text+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF14BE23ACCDC800D330FD /* Text+Localize.swift */; };
 		B6CF14C223ACCDC800D330FD /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF14BF23ACCDC800D330FD /* String+Regex.swift */; };
 		B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF14C023ACCDC800D330FD /* Formatter+ios8601.swift */; };
+		B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		B6CF14BE23ACCDC800D330FD /* Text+Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Text+Localize.swift"; sourceTree = "<group>"; };
 		B6CF14BF23ACCDC800D330FD /* String+Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		B6CF14C023ACCDC800D330FD /* Formatter+ios8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ios8601.swift"; sourceTree = "<group>"; };
+		B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 		B655882623A7DC010056FD38 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */,
 				B6CF14C023ACCDC800D330FD /* Formatter+ios8601.swift */,
 				B6CF14BF23ACCDC800D330FD /* String+Regex.swift */,
 				B6CF14BE23ACCDC800D330FD /* Text+Localize.swift */,
@@ -554,6 +557,7 @@
 				B6CF14B523ABD59300D330FD /* NetworkRouter.swift in Sources */,
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
 				B6500BC223AE220000D20BAB /* MediumSB.swift in Sources */,
+				B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
 				B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */,
 				B6CF14B223ABD59300D330FD /* NetworkError.swift in Sources */,

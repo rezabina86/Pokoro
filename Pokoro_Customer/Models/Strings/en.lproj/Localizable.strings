@@ -6,8 +6,13 @@
   Copyright © 2019 Reza Bina. All rights reserved.
 */
 
+//General
+"and" = " and ";
 
 //Login
+"noticeWelcome" = "By continiung, you are indicating that you accept our ";
+"terms" = "Terms of Service";
+"policy" = "Privacy Policy";
 "loginWelcome" = "Welcome to Pokoro\n Simple, fast, and anonymous short message service";
 
 
