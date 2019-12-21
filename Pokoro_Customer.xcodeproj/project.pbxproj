@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		8420BF2C11DAAAF3895CEA29 /* Pods_Pokoro_Customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F78620F4A4FDE8E3D7F46E /* Pods_Pokoro_Customer.framework */; };
+		B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB223AE220000D20BAB /* LargeRegular.swift */; };
+		B6500BBD23AE220000D20BAB /* H2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB323AE220000D20BAB /* H2.swift */; };
+		B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB423AE220000D20BAB /* MediumRegular.swift */; };
+		B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB523AE220000D20BAB /* SmallSB.swift */; };
+		B6500BC023AE220000D20BAB /* H1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB623AE220000D20BAB /* H1.swift */; };
+		B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB723AE220000D20BAB /* SmallRegular.swift */; };
+		B6500BC223AE220000D20BAB /* MediumSB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB823AE220000D20BAB /* MediumSB.swift */; };
+		B6500BC323AE220000D20BAB /* LargeLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB923AE220000D20BAB /* LargeLight.swift */; };
+		B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BBA23AE220000D20BAB /* MediumLight.swift */; };
+		B6500BC523AE220000D20BAB /* LargeSB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BBB23AE220000D20BAB /* LargeSB.swift */; };
 		B655882123A7D6A00056FD38 /* SceneDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882023A7D6A00056FD38 /* SceneDelegateRouter.swift */; };
 		B655882323A7D7230056FD38 /* Routers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882223A7D7230056FD38 /* Routers.swift */; };
 		B655882523A7DA680056FD38 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882423A7DA680056FD38 /* Coordinator.swift */; };
@@ -55,6 +65,16 @@
 		01F78620F4A4FDE8E3D7F46E /* Pods_Pokoro_Customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokoro_Customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4DE833D26DD341D674456F /* Pods-Pokoro_Customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.debug.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.debug.xcconfig"; sourceTree = "<group>"; };
 		90C0B15D1D4EC7026B2236F8 /* Pods-Pokoro_Customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.release.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.release.xcconfig"; sourceTree = "<group>"; };
+		B6500BB223AE220000D20BAB /* LargeRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeRegular.swift; sourceTree = "<group>"; };
+		B6500BB323AE220000D20BAB /* H2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H2.swift; sourceTree = "<group>"; };
+		B6500BB423AE220000D20BAB /* MediumRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumRegular.swift; sourceTree = "<group>"; };
+		B6500BB523AE220000D20BAB /* SmallSB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallSB.swift; sourceTree = "<group>"; };
+		B6500BB623AE220000D20BAB /* H1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H1.swift; sourceTree = "<group>"; };
+		B6500BB723AE220000D20BAB /* SmallRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallRegular.swift; sourceTree = "<group>"; };
+		B6500BB823AE220000D20BAB /* MediumSB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumSB.swift; sourceTree = "<group>"; };
+		B6500BB923AE220000D20BAB /* LargeLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeLight.swift; sourceTree = "<group>"; };
+		B6500BBA23AE220000D20BAB /* MediumLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumLight.swift; sourceTree = "<group>"; };
+		B6500BBB23AE220000D20BAB /* LargeSB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeSB.swift; sourceTree = "<group>"; };
 		B655882023A7D6A00056FD38 /* SceneDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateRouter.swift; sourceTree = "<group>"; };
 		B655882223A7D7230056FD38 /* Routers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routers.swift; sourceTree = "<group>"; };
 		B655882423A7DA680056FD38 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -120,6 +140,23 @@
 				90C0B15D1D4EC7026B2236F8 /* Pods-Pokoro_Customer.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B6500BB123AE220000D20BAB /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				B6500BB623AE220000D20BAB /* H1.swift */,
+				B6500BB323AE220000D20BAB /* H2.swift */,
+				B6500BB223AE220000D20BAB /* LargeRegular.swift */,
+				B6500BB423AE220000D20BAB /* MediumRegular.swift */,
+				B6500BB523AE220000D20BAB /* SmallSB.swift */,
+				B6500BB723AE220000D20BAB /* SmallRegular.swift */,
+				B6500BB823AE220000D20BAB /* MediumSB.swift */,
+				B6500BB923AE220000D20BAB /* LargeLight.swift */,
+				B6500BBA23AE220000D20BAB /* MediumLight.swift */,
+				B6500BBB23AE220000D20BAB /* LargeSB.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 		B655881D23A7D5CE0056FD38 /* LaunchScreen */ = {
@@ -216,6 +253,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B6500BB123AE220000D20BAB /* Labels */,
 				B655881D23A7D5CE0056FD38 /* LaunchScreen */,
 			);
 			path = Views;
@@ -501,17 +539,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6CF14B323ABD59300D330FD /* NetworkManager.swift in Sources */,
+				B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
 				B6CF149423ABD36000D330FD /* PKFonts.swift in Sources */,
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
+				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
 				B6CF14B923ABD59300D330FD /* NetworkLogger.swift in Sources */,
 				B6CF14BA23ABD59300D330FD /* EndPointType.swift in Sources */,
 				B6CF14BC23ABD59300D330FD /* LoginBusinessModel.swift in Sources */,
+				B6500BC323AE220000D20BAB /* LargeLight.swift in Sources */,
 				B6CF14B523ABD59300D330FD /* NetworkRouter.swift in Sources */,
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
+				B6500BC223AE220000D20BAB /* MediumSB.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
 				B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */,
 				B6CF14B223ABD59300D330FD /* NetworkError.swift in Sources */,
@@ -520,18 +562,24 @@
 				B655882323A7D7230056FD38 /* Routers.swift in Sources */,
 				B6CF14C223ACCDC800D330FD /* String+Regex.swift in Sources */,
 				B655882123A7D6A00056FD38 /* SceneDelegateRouter.swift in Sources */,
+				B6500BC523AE220000D20BAB /* LargeSB.swift in Sources */,
 				B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */,
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B6CF14B623ABD59300D330FD /* HTTPTask.swift in Sources */,
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
+				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
 				B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */,
 				B6CF14BB23ABD59300D330FD /* ErrorBusinessModel.swift in Sources */,
 				B6CF14AF23ABD59300D330FD /* ParameterEncoding.swift in Sources */,
+				B6500BC023AE220000D20BAB /* H1.swift in Sources */,
 				B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */,
 				B6CF14B723ABD59300D330FD /* HTTPMethod.swift in Sources */,
 				B6CF14B823ABD59300D330FD /* Router.swift in Sources */,
+				B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */,
+				B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */,
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
+				B6500BBD23AE220000D20BAB /* H2.swift in Sources */,
 				B6CF14C123ACCDC800D330FD /* Text+Localize.swift in Sources */,
 				B655882823A7DC780056FD38 /* UIApplication+SwitchRoot.swift in Sources */,
 				B66A3CFE23AA9ACA00916C95 /* Theme.swift in Sources */,

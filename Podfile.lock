@@ -19,14 +19,14 @@ PODS:
   - SDWebImage (5.4.0):
     - SDWebImage/Core (= 5.4.0)
   - SDWebImage/Core (5.4.0)
-  - SteviaLayout (4.6.1)
+  - SteviaLayout (4.7.3)
   - SwiftMessages (7.0.1):
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
   - SwiftOverlays (5.0.1)
-  - YPImagePicker (4.1.2):
+  - YPImagePicker (4.1.3):
     - PryntTrimmerView (~> 4.0.0)
-    - SteviaLayout (~> 4.6.0)
+    - SteviaLayout (~> 4.7.3)
 
 DEPENDENCIES:
   - Alamofire
@@ -74,10 +74,10 @@ SPEC CHECKSUMS:
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
-  SteviaLayout: 0c83442390c8a369c21f975ffbd812d11532645b
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
-  YPImagePicker: bdaa46782668e260fdd9709f19043a9f469fd2ad
+  YPImagePicker: 7a34eabd0ef544ae8fbf9785c3df9ec5bbf242e3
 
 PODFILE CHECKSUM: 1c4491cac63d5f1dccc66fa6249f435668c27fbe
 
