@@ -21,15 +21,15 @@ extension UIFont {
         }
         
         static var LargeSB : UIFont {
-            return UIFont(name: "SFProDisplay-Semibold", size: 15) ?? UIFont.systemFont(ofSize: 15, weight: .semibold)
+            return UIFont(name: "SFProDisplay-Semibold", size: 15) ?? UIFont.systemFont(ofSize: 14, weight: .semibold)
         }
         
         static var LargeRegular : UIFont {
-            return UIFont(name: "SFProDisplay-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15, weight: .regular)
+            return UIFont(name: "SFProDisplay-Regular", size: 15) ?? UIFont.systemFont(ofSize: 14, weight: .regular)
         }
         
         static var LargeLight : UIFont {
-            return UIFont(name: "SFProDisplay-Light", size: 15) ?? UIFont.systemFont(ofSize: 15, weight: .light)
+            return UIFont(name: "SFProDisplay-Light", size: 15) ?? UIFont.systemFont(ofSize: 14, weight: .light)
         }
         
         static var MediumSB : UIFont {

@@ -1,0 +1,52 @@
+//
+//  MainTabBarViewController.swift
+//  Pokoro_Customer
+//
+//  Created by Reza Bina on 2019-12-24.
+//  Copyright © 2019 Reza Bina. All rights reserved.
+//
+
+import UIKit
+
+class MainTabBarViewController: UITabBarController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTabBar()
+    }
+    
+    private func setupTabBar() {
+        
+        let tab1 = ViewController()
+        let tab2 = ViewController()
+        let tab3 = ViewController()
+        
+        self.viewControllers = [tab1, tab2, tab3]
+        tab1.tabBarItem = UITabBarItem(title: "inbox".localized, image: UIImage(named: "inbox"), tag: 0)
+        tab2.tabBarItem = UITabBarItem(title: "scan".localized, image: UIImage(named: "scan"), tag: 1)
+        tab3.tabBarItem = UITabBarItem(title: "profile".localized, image: UIImage(named: "profile"), tag: 2)
+        
+        tabBar.unselectedItemTintColor = ThemeManager.shared.theme?.tabBarUnselectedItemTintColor
+        tabBar.tintColor = ThemeManager.shared.theme?.tabBarTintColor
+        //UITabBar.appearance().barTintColor = UIColor.white
+        //tabBar.barTintColor = UIColor.white
+        
+        let appearance = UITabBarItem.appearance()
+        let attributes = [NSAttributedString.Key.font : UIFont.PKFonts.SmallRegular]
+        appearance.setTitleTextAttributes(attributes, for: .normal)
+        
+        //self.delegate = self
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        let userInterfaceStyle = self.traitCollection.userInterfaceStyle
+        switch userInterfaceStyle {
+        case .dark:
+            ThemeManager.shared.set(theme: DarkTheme())
+        default:
+            ThemeManager.shared.set(theme: LightTheme())
+        }
+        setupTabBar()
+    }
+
+}

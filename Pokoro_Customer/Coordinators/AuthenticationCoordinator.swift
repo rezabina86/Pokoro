@@ -19,9 +19,10 @@ class AuthenticationCoordinator: Coordinator {
     
     func present(animated: Bool, onDismissed: (() -> Void)?) {
         if PKUserManager.shared.isUserLoggedIn {
-            router.present(ViewController(), animated: true, onDismissed: nil)
+            router.present(MainTabBarViewController(), animated: true, onDismissed: nil)
         } else {
             router.present(LoginViewController(), animated: true, onDismissed: nil)
         }
     }
+    
 }

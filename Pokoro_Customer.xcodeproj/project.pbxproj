@@ -59,6 +59,9 @@
 		B6CF14C123ACCDC800D330FD /* Text+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF14BE23ACCDC800D330FD /* Text+Localize.swift */; };
 		B6CF14C223ACCDC800D330FD /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF14BF23ACCDC800D330FD /* String+Regex.swift */; };
 		B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF14C023ACCDC800D330FD /* Formatter+ios8601.swift */; };
+		B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E20BE323AE56F2003CD0E7 /* KeychainItem.swift */; };
+		B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EAC3C423B242BC0073D55F /* MainTabBarViewController.swift */; };
+		B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EAC3CB23B250430073D55F /* DarkTheme.swift */; };
 		B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +123,10 @@
 		B6CF14BE23ACCDC800D330FD /* Text+Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Text+Localize.swift"; sourceTree = "<group>"; };
 		B6CF14BF23ACCDC800D330FD /* String+Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		B6CF14C023ACCDC800D330FD /* Formatter+ios8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ios8601.swift"; sourceTree = "<group>"; };
+		B6E20BE123AE4E77003CD0E7 /* Pokoro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pokoro.entitlements; sourceTree = "<group>"; };
+		B6E20BE323AE56F2003CD0E7 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		B6EAC3C423B242BC0073D55F /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		B6EAC3CB23B250430073D55F /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,6 +239,7 @@
 				B66A3CFF23AA9B1A00916C95 /* ThemeManager.swift */,
 				B66A3D0123AA9E1900916C95 /* Colors.swift */,
 				B66A3D0323AA9EDD00916C95 /* LightTheme.swift */,
+				B6EAC3CB23B250430073D55F /* DarkTheme.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B6E20BE223AE56E7003CD0E7 /* KeyChain */,
 				B6CF149523ABD59300D330FD /* Network Layer */,
 				B6CF14A623ABD59300D330FD /* Rest Models */,
 				B6CF14AB23ABD59300D330FD /* Strings */,
@@ -265,6 +274,7 @@
 		B68E592A23A7D477000C04DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B6EAC3C323B242520073D55F /* Tab Bar */,
 				B655882E23A7E07C0056FD38 /* Login */,
 				B68FA4C823A7D10200672E00 /* ViewController.swift */,
 			);
@@ -302,6 +312,7 @@
 		B68FA4C323A7D10200672E00 /* Pokoro_Customer */ = {
 			isa = PBXGroup;
 			children = (
+				B6E20BE123AE4E77003CD0E7 /* Pokoro.entitlements */,
 				B655881E23A7D6720056FD38 /* Coordinators */,
 				B655881F23A7D6840056FD38 /* Routers */,
 				B68E592A23A7D477000C04DF /* Controllers */,
@@ -412,6 +423,22 @@
 				B6CF14AC23ABD59300D330FD /* Localizable.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		B6E20BE223AE56E7003CD0E7 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				B6E20BE323AE56F2003CD0E7 /* KeychainItem.swift */,
+			);
+			path = KeyChain;
+			sourceTree = "<group>";
+		};
+		B6EAC3C323B242520073D55F /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				B6EAC3C423B242BC0073D55F /* MainTabBarViewController.swift */,
+			);
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		D28EF1079F83EEAFD99C5AE2 /* Frameworks */ = {
@@ -550,14 +577,17 @@
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
+				B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */,
 				B6CF14B923ABD59300D330FD /* NetworkLogger.swift in Sources */,
 				B6CF14BA23ABD59300D330FD /* EndPointType.swift in Sources */,
 				B6CF14BC23ABD59300D330FD /* LoginBusinessModel.swift in Sources */,
 				B6500BC323AE220000D20BAB /* LargeLight.swift in Sources */,
+				B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */,
 				B6CF14B523ABD59300D330FD /* NetworkRouter.swift in Sources */,
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
 				B6500BC223AE220000D20BAB /* MediumSB.swift in Sources */,
 				B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */,
+				B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
 				B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */,
 				B6CF14B223ABD59300D330FD /* NetworkError.swift in Sources */,
@@ -732,6 +762,7 @@
 			baseConfigurationReference = 1D4DE833D26DD341D674456F /* Pods-Pokoro_Customer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
@@ -751,6 +782,7 @@
 			baseConfigurationReference = 90C0B15D1D4EC7026B2236F8 /* Pods-Pokoro_Customer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";

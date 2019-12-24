@@ -15,4 +15,9 @@
 "policy" = "Privacy Policy";
 "loginWelcome" = "Welcome to Pokoro\n Simple, fast, and anonymous short message service";
 
+//Tab Bar
+"inbox" = "Inbox";
+"scan" = "Scan";
+"profile" = "Profile";
+
 
