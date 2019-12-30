@@ -16,5 +16,7 @@ struct LightTheme: Theme {
     var textColor: UIColor { return UIColor.PKColors.navy }
     var tabBarUnselectedItemTintColor: UIColor { return UIColor.PKColors.ashGrey }
     var tabBarTintColor: UIColor { return UIColor.PKColors.navy }
-    var navBarBackgroundColor: UIColor { return UIColor.PKColors.green }
+    var navBarBackgroundColor: UIColor { return UIColor.PKColors.navy }
+    var tableViewSeparatorInset: UIEdgeInsets { return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0) }
+    var tableViewSeparatorColor: UIColor? { return nil }
 }

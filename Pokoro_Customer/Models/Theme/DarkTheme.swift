@@ -13,8 +13,10 @@ class DarkTheme: Theme {
     var secondaryColor: UIColor { return UIColor.PKColors.navy }
     var backgroundColor: UIColor { return .black }
     var sepratorColor: UIColor { return UIColor.systemGray }
-    var textColor: UIColor { return UIColor.PKColors.navy }
+    var textColor: UIColor { return UIColor.white }
     var tabBarUnselectedItemTintColor: UIColor { return UIColor.PKColors.ashGrey }
     var tabBarTintColor: UIColor { return UIColor.white }
-    var navBarBackgroundColor: UIColor { return UIColor.PKColors.navy }
+    var navBarBackgroundColor: UIColor { return UIColor.PKColors.green }
+    var tableViewSeparatorInset: UIEdgeInsets { return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0) }
+    var tableViewSeparatorColor: UIColor? { return UIColor.PKColors.lightGrey }
 }

@@ -17,4 +17,6 @@ public protocol Theme: Codable {
     var tabBarUnselectedItemTintColor: UIColor { get }
     var tabBarTintColor: UIColor { get }
     var navBarBackgroundColor: UIColor { get }
+    var tableViewSeparatorInset: UIEdgeInsets { get }
+    var tableViewSeparatorColor: UIColor? { get }
 }

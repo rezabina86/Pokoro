@@ -10,6 +10,7 @@
 		8420BF2C11DAAAF3895CEA29 /* Pods_Pokoro_Customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F78620F4A4FDE8E3D7F46E /* Pods_Pokoro_Customer.framework */; };
 		B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */; };
 		B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B323BA1E48001516D7 /* InboxViewController.swift */; };
+		B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */; };
 		B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB223AE220000D20BAB /* LargeRegular.swift */; };
 		B6500BBD23AE220000D20BAB /* H2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB323AE220000D20BAB /* H2.swift */; };
 		B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB423AE220000D20BAB /* MediumRegular.swift */; };
@@ -73,6 +74,7 @@
 		90C0B15D1D4EC7026B2236F8 /* Pods-Pokoro_Customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.release.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.release.xcconfig"; sourceTree = "<group>"; };
 		B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKNavBarView.swift; sourceTree = "<group>"; };
 		B61EA9B323BA1E48001516D7 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
+		B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		B6500BB223AE220000D20BAB /* LargeRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeRegular.swift; sourceTree = "<group>"; };
 		B6500BB323AE220000D20BAB /* H2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H2.swift; sourceTree = "<group>"; };
 		B6500BB423AE220000D20BAB /* MediumRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumRegular.swift; sourceTree = "<group>"; };
@@ -169,6 +171,22 @@
 				B61EA9B323BA1E48001516D7 /* InboxViewController.swift */,
 			);
 			path = Inbox;
+			sourceTree = "<group>";
+		};
+		B61EA9B523BA2254001516D7 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				B61EA9B623BA2259001516D7 /* Cells */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		B61EA9B623BA2259001516D7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B6500BB123AE220000D20BAB /* Labels */ = {
@@ -285,6 +303,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B61EA9B523BA2254001516D7 /* Inbox */,
 				B61EA9AF23BA1A3B001516D7 /* NavBars */,
 				B6500BB123AE220000D20BAB /* Labels */,
 				B655881D23A7D5CE0056FD38 /* LaunchScreen */,
@@ -623,6 +642,7 @@
 				B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */,
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B6CF14B623ABD59300D330FD /* HTTPTask.swift in Sources */,
+				B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */,
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
 				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
 				B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */,
