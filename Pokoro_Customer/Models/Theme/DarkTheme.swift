@@ -16,4 +16,5 @@ class DarkTheme: Theme {
     var textColor: UIColor { return UIColor.PKColors.navy }
     var tabBarUnselectedItemTintColor: UIColor { return UIColor.PKColors.ashGrey }
     var tabBarTintColor: UIColor { return UIColor.white }
+    var navBarBackgroundColor: UIColor { return UIColor.PKColors.navy }
 }

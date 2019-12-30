@@ -16,5 +16,5 @@ public protocol Theme: Codable {
     var textColor: UIColor { get }
     var tabBarUnselectedItemTintColor: UIColor { get }
     var tabBarTintColor: UIColor { get }
-    
+    var navBarBackgroundColor: UIColor { get }
 }

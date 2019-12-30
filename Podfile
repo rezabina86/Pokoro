@@ -12,9 +12,6 @@ target 'Pokoro_Customer' do
   pod 'SwiftOverlays'
   pod 'M13ProgressSuite'
   pod 'Alamofire'
-  pod 'YPImagePicker'
-  pod 'Hero'
-  pod 'Cosmos'
   pod 'RxSwift'
   pod 'RxCocoa'
 

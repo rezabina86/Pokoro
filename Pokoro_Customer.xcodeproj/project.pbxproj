@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8420BF2C11DAAAF3895CEA29 /* Pods_Pokoro_Customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F78620F4A4FDE8E3D7F46E /* Pods_Pokoro_Customer.framework */; };
+		B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */; };
+		B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B323BA1E48001516D7 /* InboxViewController.swift */; };
 		B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB223AE220000D20BAB /* LargeRegular.swift */; };
 		B6500BBD23AE220000D20BAB /* H2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB323AE220000D20BAB /* H2.swift */; };
 		B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB423AE220000D20BAB /* MediumRegular.swift */; };
@@ -69,6 +71,8 @@
 		01F78620F4A4FDE8E3D7F46E /* Pods_Pokoro_Customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokoro_Customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4DE833D26DD341D674456F /* Pods-Pokoro_Customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.debug.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.debug.xcconfig"; sourceTree = "<group>"; };
 		90C0B15D1D4EC7026B2236F8 /* Pods-Pokoro_Customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.release.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.release.xcconfig"; sourceTree = "<group>"; };
+		B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKNavBarView.swift; sourceTree = "<group>"; };
+		B61EA9B323BA1E48001516D7 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		B6500BB223AE220000D20BAB /* LargeRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeRegular.swift; sourceTree = "<group>"; };
 		B6500BB323AE220000D20BAB /* H2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H2.swift; sourceTree = "<group>"; };
 		B6500BB423AE220000D20BAB /* MediumRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumRegular.swift; sourceTree = "<group>"; };
@@ -149,6 +153,22 @@
 				90C0B15D1D4EC7026B2236F8 /* Pods-Pokoro_Customer.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B61EA9AF23BA1A3B001516D7 /* NavBars */ = {
+			isa = PBXGroup;
+			children = (
+				B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */,
+			);
+			path = NavBars;
+			sourceTree = "<group>";
+		};
+		B61EA9B223BA1E34001516D7 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				B61EA9B323BA1E48001516D7 /* InboxViewController.swift */,
+			);
+			path = Inbox;
 			sourceTree = "<group>";
 		};
 		B6500BB123AE220000D20BAB /* Labels */ = {
@@ -265,6 +285,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B61EA9AF23BA1A3B001516D7 /* NavBars */,
 				B6500BB123AE220000D20BAB /* Labels */,
 				B655881D23A7D5CE0056FD38 /* LaunchScreen */,
 			);
@@ -274,6 +295,7 @@
 		B68E592A23A7D477000C04DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B61EA9B223BA1E34001516D7 /* Inbox */,
 				B6EAC3C323B242520073D55F /* Tab Bar */,
 				B655882E23A7E07C0056FD38 /* Login */,
 				B68FA4C823A7D10200672E00 /* ViewController.swift */,
@@ -587,6 +609,7 @@
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
 				B6500BC223AE220000D20BAB /* MediumSB.swift in Sources */,
 				B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */,
+				B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */,
 				B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
 				B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */,
@@ -613,6 +636,7 @@
 				B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */,
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
+				B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */,
 				B6500BBD23AE220000D20BAB /* H2.swift in Sources */,
 				B6CF14C123ACCDC800D330FD /* Text+Localize.swift in Sources */,
 				B655882823A7DC780056FD38 /* UIApplication+SwitchRoot.swift in Sources */,
