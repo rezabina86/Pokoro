@@ -65,12 +65,14 @@ class MessageTableViewCell: UITableViewCell {
         addSubview(barcodeTypeLabel)
         barcodeTypeLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 12).isActive = true
         barcodeTypeLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16).isActive = true
+        //barcodeTypeLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
         addSubview(dateLabel)
-        dateLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 12).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 16).isActive = true
         dateLabel.leadingAnchor.constraint(equalTo: barcodeTypeLabel.trailingAnchor, constant: 12).isActive = true
         dateLabel.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -12).isActive = true
-        dateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        dateLabel.setContentHuggingPriority(.required, for: .horizontal)
+        dateLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         addSubview(bodyLabel)
         bodyLabel.topAnchor.constraint(equalTo: barcodeTypeLabel.bottomAnchor, constant: 4).isActive = true

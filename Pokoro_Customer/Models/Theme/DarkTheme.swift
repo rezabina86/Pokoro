@@ -16,7 +16,7 @@ class DarkTheme: Theme {
     var textColor: UIColor { return UIColor.white }
     var tabBarUnselectedItemTintColor: UIColor { return UIColor.PKColors.ashGrey }
     var tabBarTintColor: UIColor { return UIColor.white }
-    var navBarBackgroundColor: UIColor { return UIColor.PKColors.green }
+    var navBarBackgroundColor: UIColor { return UIColor.black }
     var tableViewSeparatorInset: UIEdgeInsets { return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0) }
-    var tableViewSeparatorColor: UIColor? { return UIColor.PKColors.lightGrey }
+    var tableViewSeparatorColor: UIColor? { return UIColor.systemGray3 }
 }

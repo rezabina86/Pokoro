@@ -23,6 +23,13 @@ class PKNavBarView: UIView {
         return view
     }()
     
+    private var separator: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.systemGray3
+        return view
+    }()
+    
     public var title: String? {
         willSet {
             titleLabel.text = newValue
@@ -43,10 +50,17 @@ class PKNavBarView: UIView {
     private func setupViews() {
         backgroundColor = ThemeManager.shared.theme?.navBarBackgroundColor
         
+        addSubview(separator)
+        separator.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: 0).isActive = true
+        separator.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 0).isActive = true
+        separator.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: 0).isActive = true
+        separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
         addSubview(logoView)
         logoView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 22).isActive = true
         logoView.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -12).isActive = true
         logoView.centerXAnchor.constraint(equalTo: safeCenterXAnchor, constant: 0).isActive = true
+        
     }
 
 }

@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func setTheme() {
         guard let style = window?.traitCollection.userInterfaceStyle else { return }
-        ThemeManager.shared.set(theme: style == .light ? LightTheme() : LightTheme())
+        ThemeManager.shared.set(theme: style == .light ? LightTheme() : DarkTheme())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -11,7 +11,7 @@ import UIKit
 class InboxViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return traitCollection.userInterfaceStyle == .light ? .lightContent : .darkContent
+        return .lightContent
     }
     
     private let navBar: PKNavBarView = {
@@ -32,6 +32,8 @@ class InboxViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        
+        Logger.log(message: ThemeManager.shared.theme, event: .info)
     }
     
     private func setupViews() {
