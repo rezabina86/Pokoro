@@ -8,26 +8,38 @@
 
 import UIKit
 
+protocol PKNavBarViewDelegate: class {
+    func pkNavBarViewBackButtonDidTapped(_ navBar: PKNavBarView)
+}
+
 class PKNavBarView: UIView {
     
-    private var titleLabel: MediumSB = {
-        let label = MediumSB()
+    private let titleLabel: H2 = {
+        let label = H2()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
         return label
     }()
     
-    private var logoView: UIImageView = {
+    private let logoView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "logo_white")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private var separator: UIView = {
+    private let separator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.systemGray3
         return view
+    }()
+    
+    private let backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "ArrowRight"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     public var title: String? {
@@ -36,6 +48,12 @@ class PKNavBarView: UIView {
             logoView.alpha = newValue?.count == 0 ? 1.0 : 0.0
         }
     }
+    
+    public var isBackButtonHidden: Bool = false {
+        willSet { backButton.isHidden = newValue }
+    }
+    
+    weak var delegate: PKNavBarViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,10 +75,26 @@ class PKNavBarView: UIView {
         separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         addSubview(logoView)
-        logoView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 22).isActive = true
-        logoView.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -12).isActive = true
+        logoView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 18).isActive = true
+        logoView.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -14).isActive = true
         logoView.centerXAnchor.constraint(equalTo: safeCenterXAnchor, constant: 0).isActive = true
         
+        addSubview(titleLabel)
+        titleLabel.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -14).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: safeCenterXAnchor, constant: 0).isActive = true
+        
+        backButton.addTarget(self, action: #selector(backButtonDidTapped(_:)), for: .touchUpInside)
+        addSubview(backButton)
+        backButton.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 8).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: separator.safeTopAnchor, constant: 0).isActive = true
+        //backButton.topAnchor.constraint(equalTo: safeTopAnchor, constant: 0).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: 46).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    }
+    
+    @objc
+    private func backButtonDidTapped(_ sender: UIButton) {
+        delegate?.pkNavBarViewBackButtonDidTapped(self)
     }
 
 }

@@ -28,6 +28,8 @@
 		B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882923A7DF650056FD38 /* AuthenticationCoordinator.swift */; };
 		B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882C23A7E0160056FD38 /* PKUserManager.swift */; };
 		B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882F23A7E0920056FD38 /* LoginViewController.swift */; };
+		B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */; };
+		B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */; };
 		B66A3CF823AA982300916C95 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CF623AA982300916C95 /* Logger.swift */; };
 		B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CF723AA982300916C95 /* LogEvent.swift */; };
 		B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CFA23AA987A00916C95 /* Date+toString.swift */; };
@@ -92,6 +94,8 @@
 		B655882923A7DF650056FD38 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B655882C23A7E0160056FD38 /* PKUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKUserManager.swift; sourceTree = "<group>"; };
 		B655882F23A7E0920056FD38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationViewController.swift; sourceTree = "<group>"; };
 		B66A3CF623AA982300916C95 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B66A3CF723AA982300916C95 /* LogEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogEvent.swift; sourceTree = "<group>"; };
 		B66A3CFA23AA987A00916C95 /* Date+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+toString.swift"; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				B61EA9B323BA1E48001516D7 /* InboxViewController.swift */,
+				B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -260,6 +265,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		B6659E0B23BF9398006E66E5 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		B66A3CF523AA982300916C95 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +327,7 @@
 		B68E592A23A7D477000C04DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B6659E0B23BF9398006E66E5 /* Messages */,
 				B61EA9B223BA1E34001516D7 /* Inbox */,
 				B6EAC3C323B242520073D55F /* Tab Bar */,
 				B655882E23A7E07C0056FD38 /* Login */,
@@ -614,6 +628,7 @@
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
 				B6CF149423ABD36000D330FD /* PKFonts.swift in Sources */,
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
+				B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
@@ -636,6 +651,7 @@
 				B66A3D0223AA9E1900916C95 /* Colors.swift in Sources */,
 				B655882523A7DA680056FD38 /* Coordinator.swift in Sources */,
 				B655882323A7D7230056FD38 /* Routers.swift in Sources */,
+				B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */,
 				B6CF14C223ACCDC800D330FD /* String+Regex.swift in Sources */,
 				B655882123A7D6A00056FD38 /* SceneDelegateRouter.swift in Sources */,
 				B6500BC523AE220000D20BAB /* LargeSB.swift in Sources */,

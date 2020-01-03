@@ -17,6 +17,7 @@ class InboxViewController: UIViewController {
     private let navBar: PKNavBarView = {
         let view = PKNavBarView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isBackButtonHidden = true
         return view
     }()
     
@@ -61,6 +62,14 @@ extension InboxViewController: UITableViewDelegate {
         return 96
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let messageController = MessageViewController()
+        messageController.delegate = self
+        messageController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(messageController, animated: true)
+    }
+    
 }
 
 extension InboxViewController: UITableViewDataSource {
@@ -72,6 +81,14 @@ extension InboxViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = MessageTableViewCell()
         return cell
+    }
+    
+}
+
+extension InboxViewController: MessageViewControllerDelegate {
+    
+    func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
+        controller.navigationController?.popViewController(animated: true)
     }
     
 }

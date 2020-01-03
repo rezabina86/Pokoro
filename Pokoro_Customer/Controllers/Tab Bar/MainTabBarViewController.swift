@@ -17,7 +17,7 @@ class MainTabBarViewController: UITabBarController {
     
     private func setupTabBar() {
         
-        let tab1 = InboxViewController()
+        let tab1 = InboxNavigationViewController()
         let tab2 = ViewController()
         let tab3 = ViewController()
         
