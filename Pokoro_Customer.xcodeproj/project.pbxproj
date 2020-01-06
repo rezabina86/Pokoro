@@ -41,6 +41,9 @@
 		B66DE2B323C37B5400BF6639 /* IncomingMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2B223C37B5400BF6639 /* IncomingMessageTableViewCell.swift */; };
 		B66DE2B523C37C5D00BF6639 /* PKChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2B423C37C5D00BF6639 /* PKChatBubble.swift */; };
 		B66DE2B823C3868100BF6639 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2B723C3868100BF6639 /* ScannerViewController.swift */; };
+		B66DE2BB23C38D7900BF6639 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */; };
+		B66DE2C023C38ED000BF6639 /* ProfileActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */; };
+		B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */; };
 		B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C423A7D10200672E00 /* AppDelegate.swift */; };
 		B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C623A7D10200672E00 /* SceneDelegate.swift */; };
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
@@ -112,6 +115,9 @@
 		B66DE2B223C37B5400BF6639 /* IncomingMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageTableViewCell.swift; sourceTree = "<group>"; };
 		B66DE2B423C37C5D00BF6639 /* PKChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKChatBubble.swift; sourceTree = "<group>"; };
 		B66DE2B723C3868100BF6639 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileActionTableViewCell.swift; sourceTree = "<group>"; };
+		B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		B68FA4C123A7D10200672E00 /* Pokoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68FA4C423A7D10200672E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C623A7D10200672E00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -322,6 +328,31 @@
 			path = Scanner;
 			sourceTree = "<group>";
 		};
+		B66DE2B923C38D6A00BF6639 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B66DE2BC23C38EB600BF6639 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B66DE2BD23C38EBC00BF6639 /* Cells */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B66DE2BD23C38EBC00BF6639 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */,
+				B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +374,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B66DE2BC23C38EB600BF6639 /* Profile */,
 				B6A445F023C34C5100E64029 /* Message */,
 				B61EA9B523BA2254001516D7 /* Inbox */,
 				B61EA9AF23BA1A3B001516D7 /* NavBars */,
@@ -355,6 +387,7 @@
 		B68E592A23A7D477000C04DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B66DE2B923C38D6A00BF6639 /* Profile */,
 				B66DE2B623C3867200BF6639 /* Scanner */,
 				B6659E0B23BF9398006E66E5 /* Messages */,
 				B61EA9B223BA1E34001516D7 /* Inbox */,
@@ -670,6 +703,7 @@
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
 				B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
+				B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */,
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
@@ -698,12 +732,14 @@
 				B6500BC523AE220000D20BAB /* LargeSB.swift in Sources */,
 				B66DE2B323C37B5400BF6639 /* IncomingMessageTableViewCell.swift in Sources */,
 				B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */,
+				B66DE2C023C38ED000BF6639 /* ProfileActionTableViewCell.swift in Sources */,
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B6CF14B623ABD59300D330FD /* HTTPTask.swift in Sources */,
 				B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */,
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
 				B66DE2B023C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift in Sources */,
 				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
+				B66DE2BB23C38D7900BF6639 /* ProfileViewController.swift in Sources */,
 				B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */,
 				B6CF14BB23ABD59300D330FD /* ErrorBusinessModel.swift in Sources */,
 				B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */,

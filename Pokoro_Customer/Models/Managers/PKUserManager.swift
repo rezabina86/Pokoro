@@ -21,4 +21,8 @@ class PKUserManager: NSObject {
         get { return token != nil }
     }
     
+    public func clearDataOnLogout() {
+        token = nil
+    }
+    
 }

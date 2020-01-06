@@ -19,7 +19,7 @@ class MainTabBarViewController: UITabBarController {
         
         let tab1 = InboxNavigationViewController()
         let tab2 = ScannerViewController()
-        let tab3 = ViewController()
+        let tab3 = ProfileViewController()
         
         self.viewControllers = [tab1, tab2, tab3]
         tab1.tabBarItem = UITabBarItem(title: "inbox".localized, image: UIImage(named: "inbox"), tag: 0)
@@ -28,8 +28,6 @@ class MainTabBarViewController: UITabBarController {
         
         tabBar.unselectedItemTintColor = ThemeManager.shared.theme?.tabBarUnselectedItemTintColor
         tabBar.tintColor = ThemeManager.shared.theme?.tabBarTintColor
-        //UITabBar.appearance().barTintColor = UIColor.white
-        //tabBar.barTintColor = UIColor.white
         
         let appearance = UITabBarItem.appearance()
         let attributes = [NSAttributedString.Key.font : UIFont.PKFonts.SmallRegular]
@@ -69,7 +67,17 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
     
     func scannerViewController(_ controller: ScannerViewController, didScan code: String) {
         controller.dismiss(animated: true)
-        
+        let messageController = MessageViewController()
+        messageController.delegate = self
+        present(messageController, animated: true)
+    }
+    
+}
+
+extension MainTabBarViewController: MessageViewControllerDelegate {
+    
+    func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
+        controller.dismiss(animated: true)
     }
     
 }
