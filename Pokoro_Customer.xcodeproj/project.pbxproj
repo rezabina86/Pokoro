@@ -42,6 +42,7 @@
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
 		B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CD23A7D10400672E00 /* Assets.xcassets */; };
 		B68FA4D123A7D10400672E00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CF23A7D10400672E00 /* LaunchScreen.storyboard */; };
+		B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */; };
 		B6CF148F23ABD34300D330FD /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148C23ABD34300D330FD /* SF-Pro-Display-Light.otf */; };
 		B6CF149023ABD34300D330FD /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148D23ABD34300D330FD /* SF-Pro-Display-Regular.otf */; };
 		B6CF149123ABD34300D330FD /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148E23ABD34300D330FD /* SF-Pro-Display-Semibold.otf */; };
@@ -110,6 +111,7 @@
 		B68FA4CD23A7D10400672E00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B68FA4D023A7D10400672E00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B68FA4D223A7D10400672E00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKChatTextFieldView.swift; sourceTree = "<group>"; };
 		B6CF148C23ABD34300D330FD /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
 		B6CF148D23ABD34300D330FD /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		B6CF148E23ABD34300D330FD /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B6A445F023C34C5100E64029 /* Message */,
 				B61EA9B523BA2254001516D7 /* Inbox */,
 				B61EA9AF23BA1A3B001516D7 /* NavBars */,
 				B6500BB123AE220000D20BAB /* Labels */,
@@ -376,6 +379,14 @@
 				B68E592B23A7D48D000C04DF /* Supporting Files */,
 			);
 			path = Pokoro_Customer;
+			sourceTree = "<group>";
+		};
+		B6A445F023C34C5100E64029 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		B6CF148B23ABD34300D330FD /* Fonts */ = {
@@ -663,6 +674,7 @@
 				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
 				B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */,
 				B6CF14BB23ABD59300D330FD /* ErrorBusinessModel.swift in Sources */,
+				B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */,
 				B6CF14AF23ABD59300D330FD /* ParameterEncoding.swift in Sources */,
 				B6500BC023AE220000D20BAB /* H1.swift in Sources */,
 				B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */,
