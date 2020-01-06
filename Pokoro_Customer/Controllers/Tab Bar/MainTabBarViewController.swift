@@ -18,7 +18,7 @@ class MainTabBarViewController: UITabBarController {
     private func setupTabBar() {
         
         let tab1 = InboxNavigationViewController()
-        let tab2 = ViewController()
+        let tab2 = ScannerViewController()
         let tab3 = ViewController()
         
         self.viewControllers = [tab1, tab2, tab3]
@@ -35,7 +35,7 @@ class MainTabBarViewController: UITabBarController {
         let attributes = [NSAttributedString.Key.font : UIFont.PKFonts.SmallRegular]
         appearance.setTitleTextAttributes(attributes, for: .normal)
         
-        //self.delegate = self
+        self.delegate = self
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -49,4 +49,27 @@ class MainTabBarViewController: UITabBarController {
         setupTabBar()
     }
 
+}
+
+extension MainTabBarViewController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController.isKind(of: ScannerViewController.self) {
+            let scannerController = ScannerViewController()
+            scannerController.delegate = self
+            present(scannerController, animated: true)
+            return false
+        }
+        return true
+    }
+    
+}
+
+extension MainTabBarViewController: ScannerViewControllerDelegate {
+    
+    func scannerViewController(_ controller: ScannerViewController, didScan code: String) {
+        controller.dismiss(animated: true)
+        
+    }
+    
 }

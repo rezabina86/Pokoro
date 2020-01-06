@@ -25,6 +25,14 @@ class MessageViewController: UIViewController {
         return view
     }()
     
+    private let tableView: UITableView = {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.separatorStyle = .none
+        view.tableFooterView = UIView(frame: CGRect.zero)
+        return view
+    }()
+    
     private let chatBoxView: PKChatTextFieldView = {
         let view = PKChatTextFieldView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,8 +66,16 @@ class MessageViewController: UIViewController {
         navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
+        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
+        
         chatBoxView.delegate = self
         view.addSubview(chatBoxView)
+        chatBoxView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 0).isActive = true
         bottomConst = chatBoxView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         bottomConst.isActive = true
         chatBoxView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
@@ -76,22 +92,24 @@ class MessageViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc
+    func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.bottomConst.constant = -keyboardSize.height
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: { [weak self] (finished) in
-                //self?.scrollToBottom()
-            })
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: nil)
         }
     }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc
+    func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.bottomConst.constant = 0
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: { [weak self] (finished) in
-                //self?.scrollToBottom()
-            })
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: nil)
         }
+    }
+    
+    private func ecco(_ message: String) {
+        
     }
 
 }
@@ -106,6 +124,45 @@ extension MessageViewController: PKChatTextFieldViewDelegate {
     
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String?) {
         Logger.log(message: text, event: .debug)
+    }
+    
+}
+
+extension MessageViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+}
+
+extension MessageViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            let cell = IncomingMessageTableViewCell()
+            cell.message = "Hi"
+            return cell
+        case 1:
+            let cell = OutgoingMessageTableViewCell()
+            cell.message = "Hi, How Are you?"
+            return cell
+        case 2:
+            let cell = IncomingMessageTableViewCell()
+            cell.message = "Good\nDo you have any plan this evening?\nIf no, let me know"
+            return cell
+        default:
+            fatalError()
+        }
     }
     
 }

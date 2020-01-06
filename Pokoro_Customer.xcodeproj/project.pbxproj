@@ -37,6 +37,10 @@
 		B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CFF23AA9B1A00916C95 /* ThemeManager.swift */; };
 		B66A3D0223AA9E1900916C95 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3D0123AA9E1900916C95 /* Colors.swift */; };
 		B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3D0323AA9EDD00916C95 /* LightTheme.swift */; };
+		B66DE2B023C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2AF23C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift */; };
+		B66DE2B323C37B5400BF6639 /* IncomingMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2B223C37B5400BF6639 /* IncomingMessageTableViewCell.swift */; };
+		B66DE2B523C37C5D00BF6639 /* PKChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2B423C37C5D00BF6639 /* PKChatBubble.swift */; };
+		B66DE2B823C3868100BF6639 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2B723C3868100BF6639 /* ScannerViewController.swift */; };
 		B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C423A7D10200672E00 /* AppDelegate.swift */; };
 		B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C623A7D10200672E00 /* SceneDelegate.swift */; };
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
@@ -104,6 +108,10 @@
 		B66A3CFF23AA9B1A00916C95 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		B66A3D0123AA9E1900916C95 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B66A3D0323AA9EDD00916C95 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
+		B66DE2AF23C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageTableViewCell.swift; sourceTree = "<group>"; };
+		B66DE2B223C37B5400BF6639 /* IncomingMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageTableViewCell.swift; sourceTree = "<group>"; };
+		B66DE2B423C37C5D00BF6639 /* PKChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKChatBubble.swift; sourceTree = "<group>"; };
+		B66DE2B723C3868100BF6639 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		B68FA4C123A7D10200672E00 /* Pokoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68FA4C423A7D10200672E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C623A7D10200672E00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -297,6 +305,23 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		B66DE2B123C37B3D00BF6639 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B66DE2AF23C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift */,
+				B66DE2B223C37B5400BF6639 /* IncomingMessageTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B66DE2B623C3867200BF6639 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				B66DE2B723C3868100BF6639 /* ScannerViewController.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +355,7 @@
 		B68E592A23A7D477000C04DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B66DE2B623C3867200BF6639 /* Scanner */,
 				B6659E0B23BF9398006E66E5 /* Messages */,
 				B61EA9B223BA1E34001516D7 /* Inbox */,
 				B6EAC3C323B242520073D55F /* Tab Bar */,
@@ -384,7 +410,9 @@
 		B6A445F023C34C5100E64029 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				B66DE2B123C37B3D00BF6639 /* Cells */,
 				B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */,
+				B66DE2B423C37C5D00BF6639 /* PKChatBubble.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -638,6 +666,7 @@
 				B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
 				B6CF149423ABD36000D330FD /* PKFonts.swift in Sources */,
+				B66DE2B523C37C5D00BF6639 /* PKChatBubble.swift in Sources */,
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
 				B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
@@ -654,6 +683,7 @@
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
 				B6500BC223AE220000D20BAB /* MediumSB.swift in Sources */,
 				B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */,
+				B66DE2B823C3868100BF6639 /* ScannerViewController.swift in Sources */,
 				B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */,
 				B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
@@ -666,11 +696,13 @@
 				B6CF14C223ACCDC800D330FD /* String+Regex.swift in Sources */,
 				B655882123A7D6A00056FD38 /* SceneDelegateRouter.swift in Sources */,
 				B6500BC523AE220000D20BAB /* LargeSB.swift in Sources */,
+				B66DE2B323C37B5400BF6639 /* IncomingMessageTableViewCell.swift in Sources */,
 				B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */,
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B6CF14B623ABD59300D330FD /* HTTPTask.swift in Sources */,
 				B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */,
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
+				B66DE2B023C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift in Sources */,
 				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
 				B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */,
 				B6CF14BB23ABD59300D330FD /* ErrorBusinessModel.swift in Sources */,
@@ -719,6 +751,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -779,6 +812,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
