@@ -11,12 +11,22 @@ import AVFoundation
 
 protocol ScannerViewControllerDelegate: class {
     func scannerViewController(_ controller: ScannerViewController, didScan code: String)
+    func scannerViewControllerBackButtonDidTapped(_ controller: ScannerViewController)
 }
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
-    var captureSession: AVCaptureSession!
-    var previewLayer: AVCaptureVideoPreviewLayer!
+    private var captureSession: AVCaptureSession!
+    private var previewLayer: AVCaptureVideoPreviewLayer!
+    
+    private let navBar: PKNavBarView = {
+        let view = PKNavBarView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.title = "Scan"
+        view.layer.zPosition = 5
+        return view
+    }()
+    
     weak var delegate: ScannerViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -52,13 +62,25 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             failed()
             return
         }
+        
+        setupViews()
 
+        captureSession.startRunning()
+    }
+    
+    private func setupViews() {
+        navBar.delegate = self
+        view.addSubview(navBar)
+        navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
+        navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
+        
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
-
-        captureSession.startRunning()
+        
+        
     }
 
     func failed() {
@@ -107,4 +129,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         return .portrait
     }
 
+}
+
+extension ScannerViewController: PKNavBarViewDelegate {
+    
+    func pkNavBarViewBackButtonDidTapped(_ navBar: PKNavBarView) {
+        delegate?.scannerViewControllerBackButtonDidTapped(self)
+    }
+    
 }

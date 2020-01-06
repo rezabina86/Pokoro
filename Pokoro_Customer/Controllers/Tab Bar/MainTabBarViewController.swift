@@ -72,6 +72,10 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
         present(messageController, animated: true)
     }
     
+    func scannerViewControllerBackButtonDidTapped(_ controller: ScannerViewController) {
+        controller.dismiss(animated: true)
+    }
+    
 }
 
 extension MainTabBarViewController: MessageViewControllerDelegate {
