@@ -14,6 +14,7 @@ class OutgoingMessageTableViewCell: UITableViewCell {
         let view = PKChatBubble()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.bubbleColor = UIColor.PKColors.green
+        view.titleColor = UIColor.PKColors.navy
         return view
     }()
     

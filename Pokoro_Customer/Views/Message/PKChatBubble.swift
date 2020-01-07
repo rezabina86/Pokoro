@@ -33,6 +33,10 @@ class PKChatBubble: UIView {
     public var text: String? {
         willSet { self.textLabel.text = newValue }
     }
+    
+    public var titleColor: UIColor? {
+        willSet { textLabel.textColor = newValue }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

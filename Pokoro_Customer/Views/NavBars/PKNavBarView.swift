@@ -49,6 +49,10 @@ class PKNavBarView: UIView {
         }
     }
     
+    public var titleColor: UIColor? {
+        willSet { titleLabel.textColor = newValue }
+    }
+    
     public var isBackButtonHidden: Bool = false {
         willSet { backButton.isHidden = newValue }
     }

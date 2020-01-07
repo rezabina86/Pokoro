@@ -43,6 +43,13 @@ class MessageTableViewCell: UITableViewCell {
         label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
         return label
     }()
+    
+    public var thread: DemoMessagesBusinessModel.Thread? {
+        willSet {
+            barcodeTypeLabel.text = newValue?.barcodeName
+            bodyLabel.text = newValue?.messages.last?.message
+        }
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

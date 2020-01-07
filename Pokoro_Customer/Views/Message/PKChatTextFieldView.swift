@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PKChatTextFieldViewDelegate: class {
-    func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String?)
+    func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String)
 }
 
 class PKChatTextFieldView: UIView {
@@ -91,6 +91,7 @@ class PKChatTextFieldView: UIView {
     @objc
     private func sendButtonDidTapped(_ sender: UIButton) {
         guard let text = textField.text, text.count != 0 else { return }
+        textField.text = nil
         delegate?.pkChatTextFieldViewSendButtonDidTapped(self, with: text)
     }
 

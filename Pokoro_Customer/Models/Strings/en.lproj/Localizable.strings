@@ -23,4 +23,9 @@
 //Chat
 "textMessage" = "Text Message";
 
+//Profile
+"logout" = "Log Out";
+"myBarcodes" = "My Barcodes";
 
+//Barcodes
+"myBarcodes" = "My Barcodes";

@@ -19,7 +19,7 @@ class MainTabBarViewController: UITabBarController {
         
         let tab1 = InboxNavigationViewController()
         let tab2 = ScannerViewController()
-        let tab3 = ProfileViewController()
+        let tab3 = ProfileNavigationViewController()
         
         self.viewControllers = [tab1, tab2, tab3]
         tab1.tabBarItem = UITabBarItem(title: "inbox".localized, image: UIImage(named: "inbox"), tag: 0)
@@ -68,6 +68,8 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
     func scannerViewController(_ controller: ScannerViewController, didScan code: String) {
         controller.dismiss(animated: true)
         let messageController = MessageViewController()
+        let newThread = DemoMessageManager.shared.createNewThread()
+        messageController.thread = newThread
         messageController.delegate = self
         present(messageController, animated: true)
     }

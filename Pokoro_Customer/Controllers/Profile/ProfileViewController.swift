@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tableFooterView = UIView(frame: CGRect.zero)
         view.separatorInset = ThemeManager.shared.theme!.tableViewSeparatorInset
-        view.separatorColor = UIColor.systemGray3
+        view.separatorColor = UIColor.systemGray
         return view
     }()
     
@@ -70,7 +70,9 @@ extension ProfileViewController: UITableViewDelegate {
         case 2:
             switch indexPath.row {
             case 0:
-                break
+                let barcodesController = BarcodesViewController()
+                barcodesController.delegate = self
+                navigationController?.pushViewController(barcodesController, animated: true)
             case 1:
                 askToLogout()
             default:
@@ -116,10 +118,10 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = ProfileActionTableViewCell()
             switch indexPath.row {
             case 0:
-                cell.actionImage = UIImage(named: "payments")
-                cell.title = "payments".localized
+                cell.actionImage = UIImage(named: "barcodes")
+                cell.title = "myBarcodes".localized
             case 1:
-                cell.actionImage = UIImage(named: "payments")
+                cell.actionImage = UIImage(named: "logOut")
                 cell.title = "logout".localized
             default:
                 break
@@ -128,6 +130,14 @@ extension ProfileViewController: UITableViewDataSource {
         default:
             fatalError()
         }
+    }
+    
+}
+
+extension ProfileViewController: BarcodesViewControllerDelegate {
+    
+    func barcodesViewControllerBackButtonDidTapped(_ controller: BarcodesViewController) {
+        controller.navigationController?.popViewController(animated: true)
     }
     
 }

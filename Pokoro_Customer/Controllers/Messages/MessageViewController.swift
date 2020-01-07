@@ -41,6 +41,14 @@ class MessageViewController: UIViewController {
     
     weak var delegate: MessageViewControllerDelegate?
     private var bottomConst: NSLayoutConstraint!
+    private var messages: [String] = []
+    
+    public var thread: DemoMessagesBusinessModel.Thread? {
+        didSet {
+            messages = thread?.messages.map({ $0.message }) ?? []
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,10 +115,6 @@ class MessageViewController: UIViewController {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: nil)
         }
     }
-    
-    private func ecco(_ message: String) {
-        
-    }
 
 }
 
@@ -122,8 +126,12 @@ extension MessageViewController: PKNavBarViewDelegate {
 
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
-    func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String?) {
-        Logger.log(message: text, event: .debug)
+    func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String) {
+        messages.append(text)
+        tableView.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .bottom)
+        tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
+        
+        DemoMessageManager.shared.saveMessage(thread!.id, message: text)
     }
     
 }
@@ -143,26 +151,13 @@ extension MessageViewController: UITableViewDelegate {
 extension MessageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            let cell = IncomingMessageTableViewCell()
-            cell.message = "Hi"
-            return cell
-        case 1:
-            let cell = OutgoingMessageTableViewCell()
-            cell.message = "Hi, How Are you?"
-            return cell
-        case 2:
-            let cell = IncomingMessageTableViewCell()
-            cell.message = "Good\nDo you have any plan this evening?\nIf no, let me know"
-            return cell
-        default:
-            fatalError()
-        }
+        let cell = OutgoingMessageTableViewCell()
+        cell.message = messages[indexPath.row]
+        return cell
     }
     
 }

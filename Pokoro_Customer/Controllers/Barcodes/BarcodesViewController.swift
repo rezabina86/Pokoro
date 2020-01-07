@@ -1,15 +1,19 @@
 //
-//  InboxViewController.swift
+//  BarcodesViewController.swift
 //  Pokoro_Customer
 //
-//  Created by Reza Bina on 2019-12-30.
-//  Copyright © 2019 Reza Bina. All rights reserved.
+//  Created by Reza Bina on 2020-01-07.
+//  Copyright © 2020 Reza Bina. All rights reserved.
 //
 
 import UIKit
 
-class InboxViewController: UIViewController {
-    
+protocol BarcodesViewControllerDelegate: class {
+    func barcodesViewControllerBackButtonDidTapped(_ controller: BarcodesViewController)
+}
+
+class BarcodesViewController: UIViewController {
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -17,7 +21,7 @@ class InboxViewController: UIViewController {
     private let navBar: PKNavBarView = {
         let view = PKNavBarView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isBackButtonHidden = true
+        view.title = "myBarcodes".localized
         return view
     }()
     
@@ -30,23 +34,17 @@ class InboxViewController: UIViewController {
         return view
     }()
     
-    private var threads: DemoMessagesBusinessModel.Threads? {
-        didSet { tableView.reloadData() }
-    }
+    weak var delegate: BarcodesViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        threads = DemoMessageManager.shared.threads
-    }
-    
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
+        navBar.delegate = self
         view.addSubview(navBar)
         navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
@@ -63,41 +61,40 @@ class InboxViewController: UIViewController {
 
 }
 
-extension InboxViewController: UITableViewDelegate {
+extension BarcodesViewController: PKNavBarViewDelegate {
+    
+    func pkNavBarViewBackButtonDidTapped(_ navBar: PKNavBarView) {
+        delegate?.barcodesViewControllerBackButtonDidTapped(self)
+    }
+    
+}
+
+extension BarcodesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 96
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let messageController = MessageViewController()
-        messageController.delegate = self
-        messageController.thread = threads?.threads[indexPath.row]
-        messageController.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(messageController, animated: true)
+        
     }
     
 }
 
-extension InboxViewController: UITableViewDataSource {
+extension BarcodesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return threads?.threads.count ?? 0
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = MessageTableViewCell()
-        cell.thread = threads?.threads[indexPath.row]
+        let cell = BarcodeTableViewCell()
+        cell.name = "Car Barcode"
         return cell
-    }
-    
-}
-
-extension InboxViewController: MessageViewControllerDelegate {
-    
-    func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
-        controller.navigationController?.popViewController(animated: true)
     }
     
 }

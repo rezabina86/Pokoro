@@ -44,12 +44,17 @@
 		B66DE2BB23C38D7900BF6639 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */; };
 		B66DE2C023C38ED000BF6639 /* ProfileActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */; };
 		B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */; };
+		B67CB0FE23C4D83900EA1858 /* DemoMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */; };
+		B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */; };
 		B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C423A7D10200672E00 /* AppDelegate.swift */; };
 		B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C623A7D10200672E00 /* SceneDelegate.swift */; };
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
 		B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CD23A7D10400672E00 /* Assets.xcassets */; };
 		B68FA4D123A7D10400672E00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CF23A7D10400672E00 /* LaunchScreen.storyboard */; };
 		B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */; };
+		B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */; };
+		B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9321023C5245E006863E0 /* BarcodesViewController.swift */; };
+		B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9321423C52677006863E0 /* BarcodeTableViewCell.swift */; };
 		B6CF148F23ABD34300D330FD /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148C23ABD34300D330FD /* SF-Pro-Display-Light.otf */; };
 		B6CF149023ABD34300D330FD /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148D23ABD34300D330FD /* SF-Pro-Display-Regular.otf */; };
 		B6CF149123ABD34300D330FD /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6CF148E23ABD34300D330FD /* SF-Pro-Display-Semibold.otf */; };
@@ -118,6 +123,8 @@
 		B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileActionTableViewCell.swift; sourceTree = "<group>"; };
 		B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMessageManager.swift; sourceTree = "<group>"; };
+		B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMessagesBusinessModel.swift; sourceTree = "<group>"; };
 		B68FA4C123A7D10200672E00 /* Pokoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68FA4C423A7D10200672E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C623A7D10200672E00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +133,9 @@
 		B68FA4D023A7D10400672E00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B68FA4D223A7D10400672E00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKChatTextFieldView.swift; sourceTree = "<group>"; };
+		B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationViewController.swift; sourceTree = "<group>"; };
+		B6C9321023C5245E006863E0 /* BarcodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodesViewController.swift; sourceTree = "<group>"; };
+		B6C9321423C52677006863E0 /* BarcodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeTableViewCell.swift; sourceTree = "<group>"; };
 		B6CF148C23ABD34300D330FD /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
 		B6CF148D23ABD34300D330FD /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		B6CF148E23ABD34300D330FD /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
@@ -332,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */,
+				B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -353,9 +364,19 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		B67CB0FC23C4D7E400EA1858 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */,
+				B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B67CB0FC23C4D7E400EA1858 /* Demo */,
 				B6E20BE223AE56E7003CD0E7 /* KeyChain */,
 				B6CF149523ABD59300D330FD /* Network Layer */,
 				B6CF14A623ABD59300D330FD /* Rest Models */,
@@ -374,6 +395,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B6C9321223C5265B006863E0 /* Barcodes */,
 				B66DE2BC23C38EB600BF6639 /* Profile */,
 				B6A445F023C34C5100E64029 /* Message */,
 				B61EA9B523BA2254001516D7 /* Inbox */,
@@ -387,6 +409,7 @@
 		B68E592A23A7D477000C04DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B6C9320F23C52448006863E0 /* Barcodes */,
 				B66DE2B923C38D6A00BF6639 /* Profile */,
 				B66DE2B623C3867200BF6639 /* Scanner */,
 				B6659E0B23BF9398006E66E5 /* Messages */,
@@ -448,6 +471,30 @@
 				B66DE2B423C37C5D00BF6639 /* PKChatBubble.swift */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		B6C9320F23C52448006863E0 /* Barcodes */ = {
+			isa = PBXGroup;
+			children = (
+				B6C9321023C5245E006863E0 /* BarcodesViewController.swift */,
+			);
+			path = Barcodes;
+			sourceTree = "<group>";
+		};
+		B6C9321223C5265B006863E0 /* Barcodes */ = {
+			isa = PBXGroup;
+			children = (
+				B6C9321323C52664006863E0 /* Cells */,
+			);
+			path = Barcodes;
+			sourceTree = "<group>";
+		};
+		B6C9321323C52664006863E0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B6C9321423C52677006863E0 /* BarcodeTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B6CF148B23ABD34300D330FD /* Fonts */ = {
@@ -697,7 +744,9 @@
 			files = (
 				B6CF14B323ABD59300D330FD /* NetworkManager.swift in Sources */,
 				B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */,
+				B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
+				B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */,
 				B6CF149423ABD36000D330FD /* PKFonts.swift in Sources */,
 				B66DE2B523C37C5D00BF6639 /* PKChatBubble.swift in Sources */,
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
@@ -736,6 +785,7 @@
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B6CF14B623ABD59300D330FD /* HTTPTask.swift in Sources */,
 				B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */,
+				B67CB0FE23C4D83900EA1858 /* DemoMessageManager.swift in Sources */,
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
 				B66DE2B023C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift in Sources */,
 				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
@@ -746,12 +796,14 @@
 				B6CF14AF23ABD59300D330FD /* ParameterEncoding.swift in Sources */,
 				B6500BC023AE220000D20BAB /* H1.swift in Sources */,
 				B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */,
+				B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */,
 				B6CF14B723ABD59300D330FD /* HTTPMethod.swift in Sources */,
 				B6CF14B823ABD59300D330FD /* Router.swift in Sources */,
 				B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */,
 				B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */,
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
+				B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */,
 				B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */,
 				B6500BBD23AE220000D20BAB /* H2.swift in Sources */,
 				B6CF14C123ACCDC800D330FD /* Text+Localize.swift in Sources */,
