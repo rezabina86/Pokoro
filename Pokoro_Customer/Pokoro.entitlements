@@ -6,9 +6,5 @@
 	<array>
 		<string>Default</string>
 	</array>
-	<key>com.apple.developer.associated-domains</key>
-	<array>
-		<string>pokoro.com</string>
-	</array>
 </dict>
 </plist>

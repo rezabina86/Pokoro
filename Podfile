@@ -5,14 +5,14 @@ target 'Pokoro_Customer' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'NVActivityIndicatorView'
-  pod 'Crashlytics'
-  pod 'SDWebImage'
-  pod 'SwiftMessages'
-  pod 'SwiftOverlays'
+  #pod 'NVActivityIndicatorView'
+  #pod 'Crashlytics'
+  #pod 'SDWebImage'
+  #pod 'SwiftMessages'
+  #pod 'SwiftOverlays'
   pod 'M13ProgressSuite'
-  pod 'Alamofire'
-  pod 'RxSwift'
-  pod 'RxCocoa'
+  #pod 'Alamofire'
+  #pod 'RxSwift'
+  #pod 'RxCocoa'
 
 end

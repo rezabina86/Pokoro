@@ -1,64 +1,16 @@
 PODS:
-  - Alamofire (4.9.1)
-  - Crashlytics (3.14.0):
-    - Fabric (~> 1.10.2)
-  - Fabric (1.10.2)
   - M13ProgressSuite (1.2.9)
-  - NVActivityIndicatorView (4.8.0):
-    - NVActivityIndicatorView/Presenter (= 4.8.0)
-  - NVActivityIndicatorView/Presenter (4.8.0)
-  - RxCocoa (5.0.1):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.0.1):
-    - RxSwift (~> 5)
-  - RxSwift (5.0.1)
-  - SDWebImage (5.4.1):
-    - SDWebImage/Core (= 5.4.1)
-  - SDWebImage/Core (5.4.1)
-  - SwiftMessages (7.0.1):
-    - SwiftMessages/App (= 7.0.1)
-  - SwiftMessages/App (7.0.1)
-  - SwiftOverlays (5.0.1)
 
 DEPENDENCIES:
-  - Alamofire
-  - Crashlytics
   - M13ProgressSuite
-  - NVActivityIndicatorView
-  - RxCocoa
-  - RxSwift
-  - SDWebImage
-  - SwiftMessages
-  - SwiftOverlays
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - Crashlytics
-    - Fabric
     - M13ProgressSuite
-    - NVActivityIndicatorView
-    - RxCocoa
-    - RxRelay
-    - RxSwift
-    - SDWebImage
-    - SwiftMessages
-    - SwiftOverlays
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
-  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
-  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
-  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
-  SDWebImage: 29c340dbdcef342bb13125553f4e19ce056b07a7
-  SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
-  SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
 
-PODFILE CHECKSUM: 3d4d96922d5f117db0107d2d7b126328ebb61a10
+PODFILE CHECKSUM: bf1dea964e5236f6cc3cfb1c26217a0c21a19b8e
 
 COCOAPODS: 1.8.4

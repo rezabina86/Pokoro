@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol BarcodesViewControllerDelegate: class {
     func barcodesViewControllerBackButtonDidTapped(_ controller: BarcodesViewController)
@@ -80,7 +81,12 @@ extension BarcodesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        guard let url = Bundle.main.url(forResource: "sample", withExtension: "pdf") else { return }
+        let controller = BarcodeViewerViewController()
+        controller.delegate = self
+        controller.document = url
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }
@@ -88,13 +94,21 @@ extension BarcodesViewController: UITableViewDelegate {
 extension BarcodesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BarcodeTableViewCell()
         cell.name = "Car Barcode"
         return cell
+    }
+    
+}
+
+extension BarcodesViewController: BarcodeViewerViewControllerDelegate {
+    
+    func barcodeViewerViewControllerBackButtonDidTapped(_ controller: BarcodeViewerViewController) {
+        controller.navigationController?.popViewController(animated: true)
     }
     
 }

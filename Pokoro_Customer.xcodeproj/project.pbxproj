@@ -28,6 +28,10 @@
 		B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882923A7DF650056FD38 /* AuthenticationCoordinator.swift */; };
 		B655882D23A7E0160056FD38 /* PKUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882C23A7E0160056FD38 /* PKUserManager.swift */; };
 		B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882F23A7E0920056FD38 /* LoginViewController.swift */; };
+		B656EB8D23C652D20069AFD0 /* PKEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB8C23C652D20069AFD0 /* PKEmptyStateView.swift */; };
+		B656EB8F23C654780069AFD0 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */; };
+		B656EB9123C6591E0069AFD0 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B656EB9023C6591D0069AFD0 /* sample.pdf */; };
+		B656EB9323C65AAE0069AFD0 /* BarcodeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */; };
 		B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */; };
 		B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */; };
 		B66A3CF823AA982300916C95 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CF623AA982300916C95 /* Logger.swift */; };
@@ -107,6 +111,10 @@
 		B655882923A7DF650056FD38 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B655882C23A7E0160056FD38 /* PKUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKUserManager.swift; sourceTree = "<group>"; };
 		B655882F23A7E0920056FD38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B656EB8C23C652D20069AFD0 /* PKEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKEmptyStateView.swift; sourceTree = "<group>"; };
+		B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
+		B656EB9023C6591D0069AFD0 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
+		B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewerViewController.swift; sourceTree = "<group>"; };
 		B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationViewController.swift; sourceTree = "<group>"; };
 		B66A3CF623AA982300916C95 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -271,6 +279,7 @@
 				B6CF14BF23ACCDC800D330FD /* String+Regex.swift */,
 				B6CF14BE23ACCDC800D330FD /* Text+Localize.swift */,
 				B655882723A7DC780056FD38 /* UIApplication+SwitchRoot.swift */,
+				B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,6 +298,14 @@
 				B655882F23A7E0920056FD38 /* LoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		B656EB8B23C652BA0069AFD0 /* Empty States */ = {
+			isa = PBXGroup;
+			children = (
+				B656EB8C23C652D20069AFD0 /* PKEmptyStateView.swift */,
+			);
+			path = "Empty States";
 			sourceTree = "<group>";
 		};
 		B6659E0B23BF9398006E66E5 /* Messages */ = {
@@ -395,6 +412,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B656EB8B23C652BA0069AFD0 /* Empty States */,
 				B6C9321223C5265B006863E0 /* Barcodes */,
 				B66DE2BC23C38EB600BF6639 /* Profile */,
 				B6A445F023C34C5100E64029 /* Message */,
@@ -452,6 +470,7 @@
 		B68FA4C323A7D10200672E00 /* Pokoro_Customer */ = {
 			isa = PBXGroup;
 			children = (
+				B656EB9023C6591D0069AFD0 /* sample.pdf */,
 				B6E20BE123AE4E77003CD0E7 /* Pokoro.entitlements */,
 				B655881E23A7D6720056FD38 /* Coordinators */,
 				B655881F23A7D6840056FD38 /* Routers */,
@@ -477,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				B6C9321023C5245E006863E0 /* BarcodesViewController.swift */,
+				B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */,
 			);
 			path = Barcodes;
 			sourceTree = "<group>";
@@ -634,7 +654,7 @@
 				B68FA4BD23A7D10200672E00 /* Sources */,
 				B68FA4BE23A7D10200672E00 /* Frameworks */,
 				B68FA4BF23A7D10200672E00 /* Resources */,
-				66C38E69FC5054A363A78D4D /* [CP] Embed Pods Frameworks */,
+				621E09455DF3B9965086F0C0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -688,6 +708,7 @@
 				B6CF14BD23ABD59300D330FD /* Localizable.strings in Resources */,
 				B6CF148F23ABD34300D330FD /* SF-Pro-Display-Light.otf in Resources */,
 				B6CF149123ABD34300D330FD /* SF-Pro-Display-Semibold.otf in Resources */,
+				B656EB9123C6591E0069AFD0 /* sample.pdf in Resources */,
 				B6CF149023ABD34300D330FD /* SF-Pro-Display-Regular.otf in Resources */,
 				B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */,
 			);
@@ -696,7 +717,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		66C38E69FC5054A363A78D4D /* [CP] Embed Pods Frameworks */ = {
+		621E09455DF3B9965086F0C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -763,8 +784,11 @@
 				B6500BC323AE220000D20BAB /* LargeLight.swift in Sources */,
 				B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */,
 				B6CF14B523ABD59300D330FD /* NetworkRouter.swift in Sources */,
+				B656EB9323C65AAE0069AFD0 /* BarcodeViewerViewController.swift in Sources */,
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
 				B6500BC223AE220000D20BAB /* MediumSB.swift in Sources */,
+				B656EB8F23C654780069AFD0 /* UITableView+EmptyState.swift in Sources */,
+				B656EB8D23C652D20069AFD0 /* PKEmptyStateView.swift in Sources */,
 				B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */,
 				B66DE2B823C3868100BF6639 /* ScannerViewController.swift in Sources */,
 				B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */,
@@ -958,6 +982,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -978,6 +1003,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

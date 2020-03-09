@@ -114,17 +114,17 @@ class LoginViewController: UIViewController {
     
     @objc
     private func handleAuthorizationAppleIDButtonPress() {
-//        let appleIDProvider = ASAuthorizationAppleIDProvider()
-//        let request = appleIDProvider.createRequest()
-//        request.requestedScopes = [.fullName, .email]
-//
-//        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-//        authorizationController.delegate = self
-//        authorizationController.presentationContextProvider = self
-//        authorizationController.performRequests()
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
         
-        PKUserManager.shared.token = "token"
-        checkLogin()
+//        PKUserManager.shared.token = "token"
+//        checkLogin()
     }
     
     private func checkLogin() {
@@ -136,6 +136,10 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        PKUserManager.shared.token = "token"
+        checkLogin()
+        
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
             let userIdentifier = appleIDCredential.user

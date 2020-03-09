@@ -31,7 +31,14 @@ class InboxViewController: UIViewController {
     }()
     
     private var threads: DemoMessagesBusinessModel.Threads? {
-        didSet { tableView.reloadData() }
+        didSet {
+            tableView.reloadData()
+            if (threads?.threads.count ?? 0) == 0 {
+                tableView.showEmptyView(title: "No Messages", subtitle: "Scan Barcode to start a conversation", image: UIImage(named: "talk"))
+            } else {
+                tableView.hideEmptyView()
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -41,7 +48,7 @@ class InboxViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        threads = DemoMessageManager.shared.threads
+        refresh()
     }
     
     private func setupViews() {
@@ -59,6 +66,13 @@ class InboxViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
+    }
+    
+    private func refresh() {
+        threads = DemoMessageManager.shared.threads
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.refresh()
+        }
     }
 
 }
