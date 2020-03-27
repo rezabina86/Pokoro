@@ -102,12 +102,9 @@ extension BarcodesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let namespace = namespaces?.results[indexPath.row].makeQR() else { return }
-        let qrImage = UIImage(ciImage: namespace)
-        Logger.log(message: qrImage.size, event: .warning)
         let controller = BarcodeViewerViewController()
         controller.delegate = self
-        controller.document = UIImage(named: "qrHolder")?.overlayWith(image: qrImage, posX: 30, posY: 30)
+        controller.document = namespaces?.results[indexPath.row].makePDF()
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
     }

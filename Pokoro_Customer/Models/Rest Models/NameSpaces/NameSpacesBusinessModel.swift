@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import PDFKit
 
 struct NameSpacesBusinessModel {
     
@@ -59,8 +60,18 @@ struct NameSpacesBusinessModel {
             self.qr = qrMaker(namespace.id)
         }
         
-        func makeQR() -> CIImage? {
+        private func makeQR() -> CIImage? {
             return qrMaker(id, scale: CGAffineTransform(scaleX: 5.94, y: 5.94))
+        }
+        
+        func makePDF() -> PDFDocument? {
+            guard let qrimg = makeQR() else { return nil }
+            let qrImage = UIImage(ciImage: qrimg)
+            guard let finalImage = UIImage(named: "qrHolder")?.overlayWith(image: qrImage, posX: 30, posY: 30) else { return nil }
+            let document = PDFDocument()
+            let imagePDF = PDFPage(image: finalImage)
+            document.insert(imagePDF!, at: 0)
+            return document
         }
     }
     

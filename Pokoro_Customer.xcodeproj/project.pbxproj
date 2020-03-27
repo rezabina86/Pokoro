@@ -11,6 +11,7 @@
 		B60C94DC242E08B00015DABF /* NameSpacesBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */; };
 		B60C94DF242E0CC20015DABF /* BarcodeMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */; };
 		B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E0242E24060015DABF /* UIImage+overlay.swift */; };
+		B60C94E4242E2F9F0015DABF /* PKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E3242E2F9F0015DABF /* PKButton.swift */; };
 		B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */; };
 		B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B323BA1E48001516D7 /* InboxViewController.swift */; };
 		B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */; };
@@ -104,6 +105,7 @@
 		B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpacesBusinessModel.swift; sourceTree = "<group>"; };
 		B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeMaker.swift; sourceTree = "<group>"; };
 		B60C94E0242E24060015DABF /* UIImage+overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+overlay.swift"; sourceTree = "<group>"; };
+		B60C94E3242E2F9F0015DABF /* PKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKButton.swift; sourceTree = "<group>"; };
 		B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKNavBarView.swift; sourceTree = "<group>"; };
 		B61EA9B323BA1E48001516D7 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -229,6 +231,14 @@
 				B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */,
 			);
 			path = "Barcode Manager";
+			sourceTree = "<group>";
+		};
+		B60C94E2242E2F890015DABF /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				B60C94E3242E2F9F0015DABF /* PKButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		B61EA9AF23BA1A3B001516D7 /* NavBars */ = {
@@ -504,6 +514,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B60C94E2242E2F890015DABF /* Buttons */,
 				B656EB8B23C652BA0069AFD0 /* Empty States */,
 				B6C9321223C5265B006863E0 /* Barcodes */,
 				B66DE2BC23C38EB600BF6639 /* Profile */,
@@ -862,6 +873,7 @@
 				B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
 				B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */,
+				B60C94E4242E2F9F0015DABF /* PKButton.swift in Sources */,
 				B6CF149423ABD36000D330FD /* PKFonts.swift in Sources */,
 				B66DE2B523C37C5D00BF6639 /* PKChatBubble.swift in Sources */,
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,

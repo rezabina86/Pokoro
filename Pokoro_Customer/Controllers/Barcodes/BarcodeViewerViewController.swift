@@ -30,19 +30,19 @@ class BarcodeViewerViewController: UIViewController {
         let view = PDFView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.scaleFactor = 0.8
-        //view.autoScales = true
         return view
     }()
     
+    private let exportButton: PKButton = {
+        let btn = PKButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setTitle("export".localized, for: .normal)
+        return btn
+    }()
+    
     weak var delegate: BarcodeViewerViewControllerDelegate?
-    public var document: UIImage? {
-        willSet {
-            guard let image = newValue else { return }
-            let document = PDFDocument()
-            let imagePDF = PDFPage(image: image)
-            document.insert(imagePDF!, at: 0)
-            pdfView.document = document
-        }
+    public var document: PDFDocument? {
+        willSet { pdfView.document = newValue }
     }
 
     override func viewDidLoad() {
@@ -64,6 +64,22 @@ class BarcodeViewerViewController: UIViewController {
         pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         pdfView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         pdfView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
+        
+        exportButton.addTarget(self, action: #selector(exportButtonDidTapped(_:)), for: .touchUpInside)
+        view.addSubview(exportButton)
+        exportButton.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -16).isActive = true
+        exportButton.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 16).isActive = true
+        exportButton.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -16).isActive = true
+        exportButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    }
+    
+    @objc
+    private func exportButtonDidTapped(_ sender: PKButton) {
+        
+        guard let data = self.document?.dataRepresentation() else { return }
+        let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        self.present(activityController, animated: true, completion: nil)
+        
     }
 
 }
