@@ -16,14 +16,15 @@ enum NetworkEnvironment {
 
 enum RKApis {
     case login(model: LoginBusinessModel.Fetch.Request)
+    case getNameSpaces(model: NameSpacesBusinessModel.Fetch.Request)
 }
 
 extension RKApis: EndPointType {
     
     var environmentBaseURL: String {
         switch NetworkManager.environment {
-        case .production: return "https://api.ronaker.com/api/v1"
-        case .dev: return "https://api.ronaker.com/api/v1"
+        case .production: return "http://23.92.221.40:3000/api/v1"
+        case .dev: return "http://23.92.221.40:3000/api/v1"
         }
     }
     
@@ -35,12 +36,14 @@ extension RKApis: EndPointType {
     var path: String {
         switch self {
         case .login(_): return "/users/token_auth/"
+        case .getNameSpaces(_): return "/namespaces"
         }
     }
     
     var httpMethod: HTTPMethod {
         switch self {
         case .login(_): return .post
+        case .getNameSpaces(_): return .get
         }
     }
     
@@ -48,13 +51,15 @@ extension RKApis: EndPointType {
         switch self {
         case .login(let model):
             return .requestParameters(bodyParameters: model, urlParameters: nil)
+        case .getNameSpaces(let model):
+            return .requestParameters(bodyParameters: nil, urlParameters: model.parameters)
         }
     }
     
     var headers: HTTPHeaders? {
         var headers: [String: String] = [:]
         if let token = PKUserManager.shared.token {
-            headers["Authorization"] = "Token \(token)"
+            headers["session"] = token
         }
         return headers
     }

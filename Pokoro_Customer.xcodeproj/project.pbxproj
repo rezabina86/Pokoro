@@ -8,9 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		8420BF2C11DAAAF3895CEA29 /* Pods_Pokoro_Customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F78620F4A4FDE8E3D7F46E /* Pods_Pokoro_Customer.framework */; };
+		B60C94DC242E08B00015DABF /* NameSpacesBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */; };
+		B60C94DF242E0CC20015DABF /* BarcodeMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */; };
+		B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E0242E24060015DABF /* UIImage+overlay.swift */; };
 		B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */; };
 		B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B323BA1E48001516D7 /* InboxViewController.swift */; };
 		B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */; };
+		B644EB48242CACAB00D7CF61 /* SocketEndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB47242CACAB00D7CF61 /* SocketEndPointType.swift */; };
+		B644EB4C242CB74C00D7CF61 /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB4B242CB74C00D7CF61 /* SocketEvent.swift */; };
+		B644EB4E242CBB0400D7CF61 /* PKSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB4D242CBB0400D7CF61 /* PKSocketManager.swift */; };
+		B644EB51242CBCF200D7CF61 /* SendMessageBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB50242CBCF200D7CF61 /* SendMessageBusinessModel.swift */; };
+		B644EB53242CBECB00D7CF61 /* SeenMessageBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB52242CBECA00D7CF61 /* SeenMessageBusinessModel.swift */; };
+		B644EB55242CBF7200D7CF61 /* GetMessageBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB54242CBF7200D7CF61 /* GetMessageBusinessModel.swift */; };
+		B644EB57242CD44500D7CF61 /* AuthenticateBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB56242CD44500D7CF61 /* AuthenticateBusinessModel.swift */; };
 		B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB223AE220000D20BAB /* LargeRegular.swift */; };
 		B6500BBD23AE220000D20BAB /* H2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB323AE220000D20BAB /* H2.swift */; };
 		B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6500BB423AE220000D20BAB /* MediumRegular.swift */; };
@@ -91,9 +101,19 @@
 		01F78620F4A4FDE8E3D7F46E /* Pods_Pokoro_Customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokoro_Customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4DE833D26DD341D674456F /* Pods-Pokoro_Customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.debug.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.debug.xcconfig"; sourceTree = "<group>"; };
 		90C0B15D1D4EC7026B2236F8 /* Pods-Pokoro_Customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.release.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.release.xcconfig"; sourceTree = "<group>"; };
+		B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpacesBusinessModel.swift; sourceTree = "<group>"; };
+		B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeMaker.swift; sourceTree = "<group>"; };
+		B60C94E0242E24060015DABF /* UIImage+overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+overlay.swift"; sourceTree = "<group>"; };
 		B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKNavBarView.swift; sourceTree = "<group>"; };
 		B61EA9B323BA1E48001516D7 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		B644EB47242CACAB00D7CF61 /* SocketEndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEndPointType.swift; sourceTree = "<group>"; };
+		B644EB4B242CB74C00D7CF61 /* SocketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
+		B644EB4D242CBB0400D7CF61 /* PKSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKSocketManager.swift; sourceTree = "<group>"; };
+		B644EB50242CBCF200D7CF61 /* SendMessageBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageBusinessModel.swift; sourceTree = "<group>"; };
+		B644EB52242CBECA00D7CF61 /* SeenMessageBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenMessageBusinessModel.swift; sourceTree = "<group>"; };
+		B644EB54242CBF7200D7CF61 /* GetMessageBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMessageBusinessModel.swift; sourceTree = "<group>"; };
+		B644EB56242CD44500D7CF61 /* AuthenticateBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateBusinessModel.swift; sourceTree = "<group>"; };
 		B6500BB223AE220000D20BAB /* LargeRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeRegular.swift; sourceTree = "<group>"; };
 		B6500BB323AE220000D20BAB /* H2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H2.swift; sourceTree = "<group>"; };
 		B6500BB423AE220000D20BAB /* MediumRegular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumRegular.swift; sourceTree = "<group>"; };
@@ -195,6 +215,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B60C94DA242E08890015DABF /* NameSpaces */ = {
+			isa = PBXGroup;
+			children = (
+				B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */,
+			);
+			path = NameSpaces;
+			sourceTree = "<group>";
+		};
+		B60C94DD242E0C930015DABF /* Barcode Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */,
+			);
+			path = "Barcode Manager";
+			sourceTree = "<group>";
+		};
 		B61EA9AF23BA1A3B001516D7 /* NavBars */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +262,59 @@
 				B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B644EB40242CA58900D7CF61 /* Socket Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B644EB43242CAA5200D7CF61 /* EndPoint */,
+				B644EB42242CAA4B00D7CF61 /* Manager */,
+				B644EB41242CAA4500D7CF61 /* Encoding */,
+				B644EB44242CAA5A00D7CF61 /* Service */,
+			);
+			path = "Socket Layer";
+			sourceTree = "<group>";
+		};
+		B644EB41242CAA4500D7CF61 /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		B644EB42242CAA4B00D7CF61 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B644EB4D242CBB0400D7CF61 /* PKSocketManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		B644EB43242CAA5200D7CF61 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				B644EB4B242CB74C00D7CF61 /* SocketEvent.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		B644EB44242CAA5A00D7CF61 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B644EB47242CACAB00D7CF61 /* SocketEndPointType.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		B644EB4F242CBCD000D7CF61 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				B644EB50242CBCF200D7CF61 /* SendMessageBusinessModel.swift */,
+				B644EB52242CBECA00D7CF61 /* SeenMessageBusinessModel.swift */,
+				B644EB54242CBF7200D7CF61 /* GetMessageBusinessModel.swift */,
+				B644EB56242CD44500D7CF61 /* AuthenticateBusinessModel.swift */,
+			);
+			path = Messages;
 			sourceTree = "<group>";
 		};
 		B6500BB123AE220000D20BAB /* Labels */ = {
@@ -280,6 +369,7 @@
 				B6CF14BE23ACCDC800D330FD /* Text+Localize.swift */,
 				B655882723A7DC780056FD38 /* UIApplication+SwitchRoot.swift */,
 				B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */,
+				B60C94E0242E24060015DABF /* UIImage+overlay.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -287,6 +377,7 @@
 		B655882B23A7E0010056FD38 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B60C94DD242E0C930015DABF /* Barcode Manager */,
 				B655882C23A7E0160056FD38 /* PKUserManager.swift */,
 			);
 			path = Managers;
@@ -393,6 +484,7 @@
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B644EB40242CA58900D7CF61 /* Socket Layer */,
 				B67CB0FC23C4D7E400EA1858 /* Demo */,
 				B6E20BE223AE56E7003CD0E7 /* KeyChain */,
 				B6CF149523ABD59300D330FD /* Network Layer */,
@@ -589,6 +681,8 @@
 		B6CF14A623ABD59300D330FD /* Rest Models */ = {
 			isa = PBXGroup;
 			children = (
+				B60C94DA242E08890015DABF /* NameSpaces */,
+				B644EB4F242CBCD000D7CF61 /* Messages */,
 				B6CF14A723ABD59300D330FD /* Errors */,
 				B6CF14A923ABD59300D330FD /* Login */,
 			);
@@ -774,6 +868,7 @@
 				B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
 				B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */,
+				B60C94DC242E08B00015DABF /* NameSpacesBusinessModel.swift in Sources */,
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
@@ -781,16 +876,21 @@
 				B6CF14B923ABD59300D330FD /* NetworkLogger.swift in Sources */,
 				B6CF14BA23ABD59300D330FD /* EndPointType.swift in Sources */,
 				B6CF14BC23ABD59300D330FD /* LoginBusinessModel.swift in Sources */,
+				B60C94DF242E0CC20015DABF /* BarcodeMaker.swift in Sources */,
+				B644EB57242CD44500D7CF61 /* AuthenticateBusinessModel.swift in Sources */,
 				B6500BC323AE220000D20BAB /* LargeLight.swift in Sources */,
 				B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */,
 				B6CF14B523ABD59300D330FD /* NetworkRouter.swift in Sources */,
+				B644EB4C242CB74C00D7CF61 /* SocketEvent.swift in Sources */,
 				B656EB9323C65AAE0069AFD0 /* BarcodeViewerViewController.swift in Sources */,
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
 				B6500BC223AE220000D20BAB /* MediumSB.swift in Sources */,
 				B656EB8F23C654780069AFD0 /* UITableView+EmptyState.swift in Sources */,
 				B656EB8D23C652D20069AFD0 /* PKEmptyStateView.swift in Sources */,
 				B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */,
+				B644EB55242CBF7200D7CF61 /* GetMessageBusinessModel.swift in Sources */,
 				B66DE2B823C3868100BF6639 /* ScannerViewController.swift in Sources */,
+				B644EB4E242CBB0400D7CF61 /* PKSocketManager.swift in Sources */,
 				B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */,
 				B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
@@ -802,6 +902,8 @@
 				B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */,
 				B6CF14C223ACCDC800D330FD /* String+Regex.swift in Sources */,
 				B655882123A7D6A00056FD38 /* SceneDelegateRouter.swift in Sources */,
+				B644EB53242CBECB00D7CF61 /* SeenMessageBusinessModel.swift in Sources */,
+				B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */,
 				B6500BC523AE220000D20BAB /* LargeSB.swift in Sources */,
 				B66DE2B323C37B5400BF6639 /* IncomingMessageTableViewCell.swift in Sources */,
 				B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */,
@@ -832,7 +934,9 @@
 				B6500BBD23AE220000D20BAB /* H2.swift in Sources */,
 				B6CF14C123ACCDC800D330FD /* Text+Localize.swift in Sources */,
 				B655882823A7DC780056FD38 /* UIApplication+SwitchRoot.swift in Sources */,
+				B644EB51242CBCF200D7CF61 /* SendMessageBusinessModel.swift in Sources */,
 				B66A3CFE23AA9ACA00916C95 /* Theme.swift in Sources */,
+				B644EB48242CACAB00D7CF61 /* SocketEndPointType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

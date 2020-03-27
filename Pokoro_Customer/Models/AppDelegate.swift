@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import SocketIO
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    private let manager = PKSocketManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        PKUserManager.shared.token = "wrWCRqKZ62nLvFyqDmkATH"
+        manager.delegate = self
+        manager.connect()
+        
         return true
     }
 
@@ -29,6 +36,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
 }
 
+extension AppDelegate: PKSocketManagerDelegate {
+    
+    func pkSocketManagerClientStatusChanged(_ manager: PKSocketManager, event: SocketClientEvent) {
+        if event == .connect {
+            manager.authenticate(model: AuthenticateBusinessModel(session: "nDC4UETSN1Mph6tmNsC68Y"))
+        }
+        print(event)
+    }
+    
+    func pkSocketManagerDidReceive(_ manager: PKSocketManager, _ message: GetMessageBusinessModel) {
+        print(message)
+    }
+    
+    func pkSocketManagerDidAuthenticate(_ manager: PKSocketManager) {
+        print("Authenticated")
+    }
+    
+}

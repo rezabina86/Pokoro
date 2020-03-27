@@ -29,14 +29,19 @@ class BarcodeViewerViewController: UIViewController {
     private let pdfView: PDFView = {
         let view = PDFView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.autoScales = true
+        view.scaleFactor = 0.8
+        //view.autoScales = true
         return view
     }()
     
     weak var delegate: BarcodeViewerViewControllerDelegate?
-    public var document: URL? {
+    public var document: UIImage? {
         willSet {
-            pdfView.document = PDFDocument(url: newValue!)
+            guard let image = newValue else { return }
+            let document = PDFDocument()
+            let imagePDF = PDFPage(image: image)
+            document.insert(imagePDF!, at: 0)
+            pdfView.document = document
         }
     }
 
@@ -56,7 +61,7 @@ class BarcodeViewerViewController: UIViewController {
         
         view.addSubview(pdfView)
         pdfView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
-        pdfView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
+        pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         pdfView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         pdfView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
     }

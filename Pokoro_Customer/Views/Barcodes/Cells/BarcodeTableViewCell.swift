@@ -28,6 +28,10 @@ class BarcodeTableViewCell: UITableViewCell {
     public var name: String? {
         willSet { barcodeName.text = newValue }
     }
+    
+    public var qr: UIImage? {
+        willSet { barcodeImageView.image = newValue }
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

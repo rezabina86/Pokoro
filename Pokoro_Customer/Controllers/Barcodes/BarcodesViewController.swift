@@ -36,10 +36,19 @@ class BarcodesViewController: UIViewController {
     }()
     
     weak var delegate: BarcodesViewControllerDelegate?
+    
+    private var namespaces: NameSpacesBusinessModel.Fetch.ViewModel? {
+        didSet { tableView.reloadData() }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getNameSpaces()
     }
     
     private func setupViews() {
@@ -58,6 +67,17 @@ class BarcodesViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
+    }
+    
+    private func getNameSpaces() {
+        NetworkManager().getNameSpaces(request: NameSpacesBusinessModel.Fetch.Request(page: 1)) { [weak self] (model, error) in
+            guard let `self` = self else { return }
+            if let error = error {
+                
+            } else if let model = model {
+                self.namespaces = NameSpacesBusinessModel.Fetch.ViewModel(response: model)
+            }
+        }
     }
 
 }
@@ -81,10 +101,13 @@ extension BarcodesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = Bundle.main.url(forResource: "sample", withExtension: "pdf") else { return }
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let namespace = namespaces?.results[indexPath.row].makeQR() else { return }
+        let qrImage = UIImage(ciImage: namespace)
+        Logger.log(message: qrImage.size, event: .warning)
         let controller = BarcodeViewerViewController()
         controller.delegate = self
-        controller.document = url
+        controller.document = UIImage(named: "qrHolder")?.overlayWith(image: qrImage, posX: 30, posY: 30)
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -94,12 +117,15 @@ extension BarcodesViewController: UITableViewDelegate {
 extension BarcodesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return namespaces?.results.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BarcodeTableViewCell()
-        cell.name = "Car Barcode"
+        cell.name = namespaces?.results[indexPath.row].name
+        if let qr = namespaces?.results[indexPath.row].qr {
+            cell.qr = UIImage(ciImage: qr)
+        }
         return cell
     }
     

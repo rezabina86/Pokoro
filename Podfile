@@ -7,12 +7,13 @@ target 'Pokoro_Customer' do
 
   #pod 'NVActivityIndicatorView'
   #pod 'Crashlytics'
-  #pod 'SDWebImage'
-  #pod 'SwiftMessages'
+  pod 'SDWebImage'
+  pod 'SwiftMessages'
   #pod 'SwiftOverlays'
   pod 'M13ProgressSuite'
+  pod 'Socket.IO-Client-Swift'
   #pod 'Alamofire'
-  #pod 'RxSwift'
-  #pod 'RxCocoa'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 
 end
