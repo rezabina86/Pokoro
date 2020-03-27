@@ -46,6 +46,14 @@ class MainTabBarViewController: UITabBarController {
         }
         setupTabBar()
     }
+    
+    private func showChat() {
+        let messageController = MessageViewController()
+        let newThread = DemoMessageManager.shared.createNewThread()
+        messageController.thread = newThread
+        messageController.delegate = self
+        present(messageController, animated: true)
+    }
 
 }
 
@@ -67,11 +75,17 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
     
     func scannerViewController(_ controller: ScannerViewController, didScan code: String) {
         controller.dismiss(animated: true)
-        let messageController = MessageViewController()
-        let newThread = DemoMessageManager.shared.createNewThread()
-        messageController.thread = newThread
-        messageController.delegate = self
-        present(messageController, animated: true)
+        guard let code = URL(string: code)?.pathComponents.last else { return }
+        NetworkManager().checkNameSpaces(request: CheckNamespaceBusinessModel.Fetch.Request(id: code)) { [weak self] (result, error) in
+            guard let `self` = self else { return }
+            if let error = error {
+                self.showAlert(message: error.localized, type: .error)
+            } else if let result = result {
+                Logger.log(message: result, event: .info)
+                self.showChat()
+            }
+        }
+        
     }
     
     func scannerViewControllerBackButtonDidTapped(_ controller: ScannerViewController) {

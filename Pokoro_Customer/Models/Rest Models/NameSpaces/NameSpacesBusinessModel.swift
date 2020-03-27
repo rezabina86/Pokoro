@@ -33,15 +33,15 @@ struct NameSpacesBusinessModel {
             
             let results: [NameSpaceQR]
             
-            init(response: Response) {
-                self.results = response.results.map({ NameSpaceQR(namespace: $0) })
+            init(namespaces: [Namespace]) {
+                self.results = namespaces.map({ NameSpaceQR(namespace: $0) })
             }
 
         }
         
     }
     
-    struct Namespace: Decodable {
+    struct Namespace: Codable {
         let id: String
         let name: String
         let creator_id: String
@@ -51,22 +51,24 @@ struct NameSpacesBusinessModel {
         let id: String
         let name: String
         let creator_id: String
-        let qr: CIImage?
+        
+        public var qr: CIImage? {
+            return qrMaker(id, scale: CGAffineTransform(scaleX: 5.94, y: 5.94))
+        }
+        
+        public var smallQr: CIImage? {
+            return qrMaker(id)
+        }
         
         init(namespace: Namespace) {
             self.id = namespace.id
             self.name = namespace.name
             self.creator_id = namespace.creator_id
-            self.qr = qrMaker(namespace.id)
         }
         
-        private func makeQR() -> CIImage? {
-            return qrMaker(id, scale: CGAffineTransform(scaleX: 5.94, y: 5.94))
-        }
-        
-        func makePDF() -> PDFDocument? {
-            guard let qrimg = makeQR() else { return nil }
-            let qrImage = UIImage(ciImage: qrimg)
+        var document: PDFDocument? {
+            guard let qr = qr else { return nil }
+            let qrImage = UIImage(ciImage: qr)
             guard let finalImage = UIImage(named: "qrHolder")?.overlayWith(image: qrImage, posX: 30, posY: 30) else { return nil }
             let document = PDFDocument()
             let imagePDF = PDFPage(image: finalImage)

@@ -15,6 +15,11 @@
 		B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */; };
 		B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B323BA1E48001516D7 /* InboxViewController.swift */; };
 		B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */; };
+		B6353512242E61AF006A641D /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6353511242E61AF006A641D /* UIViewController+showAlert.swift */; };
+		B635351B242E62E7006A641D /* RKAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635351A242E62E6006A641D /* RKAlertView.swift */; };
+		B6353520242E6402006A641D /* CALayer+sketchShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635351F242E6402006A641D /* CALayer+sketchShadow.swift */; };
+		B6353523242E6687006A641D /* NamespacesCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6353522242E6687006A641D /* NamespacesCacheManager.swift */; };
+		B6353525242E6EA2006A641D /* CheckNamespaceBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6353524242E6EA2006A641D /* CheckNamespaceBusinessModel.swift */; };
 		B644EB48242CACAB00D7CF61 /* SocketEndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB47242CACAB00D7CF61 /* SocketEndPointType.swift */; };
 		B644EB4C242CB74C00D7CF61 /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB4B242CB74C00D7CF61 /* SocketEvent.swift */; };
 		B644EB4E242CBB0400D7CF61 /* PKSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644EB4D242CBB0400D7CF61 /* PKSocketManager.swift */; };
@@ -109,6 +114,11 @@
 		B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKNavBarView.swift; sourceTree = "<group>"; };
 		B61EA9B323BA1E48001516D7 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		B6353511242E61AF006A641D /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
+		B635351A242E62E6006A641D /* RKAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKAlertView.swift; sourceTree = "<group>"; };
+		B635351F242E6402006A641D /* CALayer+sketchShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+sketchShadow.swift"; sourceTree = "<group>"; };
+		B6353522242E6687006A641D /* NamespacesCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespacesCacheManager.swift; sourceTree = "<group>"; };
+		B6353524242E6EA2006A641D /* CheckNamespaceBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNamespaceBusinessModel.swift; sourceTree = "<group>"; };
 		B644EB47242CACAB00D7CF61 /* SocketEndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEndPointType.swift; sourceTree = "<group>"; };
 		B644EB4B242CB74C00D7CF61 /* SocketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
 		B644EB4D242CBB0400D7CF61 /* PKSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKSocketManager.swift; sourceTree = "<group>"; };
@@ -221,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */,
+				B6353524242E6EA2006A641D /* CheckNamespaceBusinessModel.swift */,
 			);
 			path = NameSpaces;
 			sourceTree = "<group>";
@@ -272,6 +283,22 @@
 				B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B635351C242E62EB006A641D /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				B635351A242E62E6006A641D /* RKAlertView.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		B6353521242E6665006A641D /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				B6353522242E6687006A641D /* NamespacesCacheManager.swift */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		B644EB40242CA58900D7CF61 /* Socket Layer */ = {
@@ -380,6 +407,8 @@
 				B655882723A7DC780056FD38 /* UIApplication+SwitchRoot.swift */,
 				B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */,
 				B60C94E0242E24060015DABF /* UIImage+overlay.swift */,
+				B6353511242E61AF006A641D /* UIViewController+showAlert.swift */,
+				B635351F242E6402006A641D /* CALayer+sketchShadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,6 +416,7 @@
 		B655882B23A7E0010056FD38 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B6353521242E6665006A641D /* Cache */,
 				B60C94DD242E0C930015DABF /* Barcode Manager */,
 				B655882C23A7E0160056FD38 /* PKUserManager.swift */,
 			);
@@ -514,6 +544,7 @@
 		B68E592923A7D474000C04DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B635351C242E62EB006A641D /* Alerts */,
 				B60C94E2242E2F890015DABF /* Buttons */,
 				B656EB8B23C652BA0069AFD0 /* Empty States */,
 				B6C9321223C5265B006863E0 /* Barcodes */,
@@ -872,6 +903,7 @@
 				B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */,
 				B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
+				B6353525242E6EA2006A641D /* CheckNamespaceBusinessModel.swift in Sources */,
 				B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */,
 				B60C94E4242E2F9F0015DABF /* PKButton.swift in Sources */,
 				B6CF149423ABD36000D330FD /* PKFonts.swift in Sources */,
@@ -880,7 +912,9 @@
 				B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
 				B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */,
+				B6353523242E6687006A641D /* NamespacesCacheManager.swift in Sources */,
 				B60C94DC242E08B00015DABF /* NameSpacesBusinessModel.swift in Sources */,
+				B6353520242E6402006A641D /* CALayer+sketchShadow.swift in Sources */,
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
@@ -905,9 +939,11 @@
 				B644EB4E242CBB0400D7CF61 /* PKSocketManager.swift in Sources */,
 				B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */,
 				B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */,
+				B635351B242E62E7006A641D /* RKAlertView.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
 				B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */,
 				B6CF14B223ABD59300D330FD /* NetworkError.swift in Sources */,
+				B6353512242E61AF006A641D /* UIViewController+showAlert.swift in Sources */,
 				B66A3D0223AA9E1900916C95 /* Colors.swift in Sources */,
 				B655882523A7DA680056FD38 /* Coordinator.swift in Sources */,
 				B655882323A7D7230056FD38 /* Routers.swift in Sources */,

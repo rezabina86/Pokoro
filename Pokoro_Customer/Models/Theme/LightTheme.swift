@@ -9,6 +9,7 @@
 import UIKit
 
 struct LightTheme: Theme {
+    var primaryButtonColor: UIColor? { return UIColor.PKColors.green }
     var primaryColor: UIColor { return UIColor.PKColors.green }
     var secondaryColor: UIColor { return UIColor.PKColors.navy }
     var backgroundColor: UIColor { return .white }

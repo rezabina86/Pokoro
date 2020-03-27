@@ -19,4 +19,5 @@ public protocol Theme: Codable {
     var navBarBackgroundColor: UIColor { get }
     var tableViewSeparatorInset: UIEdgeInsets { get }
     var tableViewSeparatorColor: UIColor? { get }
+    var primaryButtonColor: UIColor? { get }
 }

@@ -14,7 +14,7 @@ class BarcodeTableViewCell: UITableViewCell {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "barcodeDemo")
-        view.layer.cornerRadius = 3
+        view.layer.cornerRadius = 1
         view.clipsToBounds = true
         return view
     }()

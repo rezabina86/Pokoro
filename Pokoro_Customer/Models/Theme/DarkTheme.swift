@@ -19,4 +19,5 @@ class DarkTheme: Theme {
     var navBarBackgroundColor: UIColor { return UIColor.black }
     var tableViewSeparatorInset: UIEdgeInsets { return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0) }
     var tableViewSeparatorColor: UIColor? { return UIColor.systemGray3 }
+    var primaryButtonColor: UIColor? { return UIColor.PKColors.navy }
 }

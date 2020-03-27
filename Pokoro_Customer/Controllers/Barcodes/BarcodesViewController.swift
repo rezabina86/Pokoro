@@ -40,15 +40,22 @@ class BarcodesViewController: UIViewController {
     private var namespaces: NameSpacesBusinessModel.Fetch.ViewModel? {
         didSet { tableView.reloadData() }
     }
+    
+    private var namespacesLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadNamespacesCache()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        getNameSpaces()
+        syncNamespaces()
     }
     
     private func setupViews() {
@@ -73,11 +80,23 @@ class BarcodesViewController: UIViewController {
         NetworkManager().getNameSpaces(request: NameSpacesBusinessModel.Fetch.Request(page: 1)) { [weak self] (model, error) in
             guard let `self` = self else { return }
             if let error = error {
-                
+                self.showAlert(message: error.localized, type: .error)
             } else if let model = model {
-                self.namespaces = NameSpacesBusinessModel.Fetch.ViewModel(response: model)
+                NamespacesCacheManager.shared.namespaces = model.results
+                self.namespaces = NameSpacesBusinessModel.Fetch.ViewModel(namespaces: model.results)
             }
         }
+    }
+    
+    private func loadNamespacesCache() {
+        guard let namespaces = NamespacesCacheManager.shared.namespaces else { return }
+        self.namespaces = NameSpacesBusinessModel.Fetch.ViewModel(namespaces: namespaces)
+    }
+    
+    private func syncNamespaces() {
+        guard !namespacesLoaded else { return }
+        getNameSpaces()
+        namespacesLoaded = true
     }
 
 }
@@ -104,7 +123,7 @@ extension BarcodesViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let controller = BarcodeViewerViewController()
         controller.delegate = self
-        controller.document = namespaces?.results[indexPath.row].makePDF()
+        controller.document = namespaces?.results[indexPath.row].document
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -120,7 +139,7 @@ extension BarcodesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BarcodeTableViewCell()
         cell.name = namespaces?.results[indexPath.row].name
-        if let qr = namespaces?.results[indexPath.row].qr {
+        if let qr = namespaces?.results[indexPath.row].smallQr {
             cell.qr = UIImage(ciImage: qr)
         }
         return cell

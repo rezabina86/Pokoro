@@ -9,5 +9,6 @@
 import Foundation
 
 struct ErrorBusinessModel: Codable {
-    let detail: String
+    let error: String
+    let message: String
 }

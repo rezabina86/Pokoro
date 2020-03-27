@@ -23,7 +23,7 @@ class PKButton: UIButton {
     private func setup() {
         layer.cornerRadius = 5
         clipsToBounds = true
-        backgroundColor = UIColor.PKColors.green
+        backgroundColor = ThemeManager.shared.theme?.primaryButtonColor
         titleLabel?.font = UIFont.PKFonts.LargeSB
     }
 
