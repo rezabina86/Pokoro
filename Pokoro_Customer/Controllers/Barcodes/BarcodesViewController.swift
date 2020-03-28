@@ -124,6 +124,7 @@ extension BarcodesViewController: UITableViewDelegate {
         let controller = BarcodeViewerViewController()
         controller.delegate = self
         controller.document = namespaces?.results[indexPath.row].document
+        controller.qrName = namespaces?.results[indexPath.row].name
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
     }

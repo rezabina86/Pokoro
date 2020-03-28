@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         PKUserManager.shared.token = "wrWCRqKZ62nLvFyqDmkATH"
+        PKUserManager.shared.userId = "5e7dce08bb288a2e471536e8"
         manager.delegate = self
         manager.connect()
         

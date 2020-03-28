@@ -75,14 +75,19 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
     
     func scannerViewController(_ controller: ScannerViewController, didScan code: String) {
         controller.dismiss(animated: true)
-        guard let code = URL(string: code)?.pathComponents.last else { return }
+        guard let url = URL(string: code), let host = url.host, host == "pokoro.app", let code = url.pathComponents.last else {
+            showAlert(message: "invalidBarcode".localized, type: .error)
+            return
+        }
         NetworkManager().checkNameSpaces(request: CheckNamespaceBusinessModel.Fetch.Request(id: code)) { [weak self] (result, error) in
             guard let `self` = self else { return }
-            if let error = error {
-                self.showAlert(message: error.localized, type: .error)
+            if error != nil {
+                self.showAlert(message: "invalidBarcode".localized, type: .error)
             } else if let result = result {
-                Logger.log(message: result, event: .info)
-                self.showChat()
+                let viewModel = CheckNamespaceBusinessModel.Fetch.ViewModel(response: result)
+                if viewModel.isValid {
+                    self.showChat()
+                } else { self.showAlert(message: "barcodeError".localized, type: .error) }
             }
         }
         

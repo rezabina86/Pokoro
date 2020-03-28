@@ -22,7 +22,7 @@ class BarcodeViewerViewController: UIViewController {
     private let navBar: PKNavBarView = {
         let view = PKNavBarView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.title = " ".localized
+        view.title = "Hello"
         return view
     }()
     
@@ -30,6 +30,7 @@ class BarcodeViewerViewController: UIViewController {
         let view = PDFView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.scaleFactor = 0.8
+        view.backgroundColor = .lightGray
         return view
     }()
     
@@ -41,8 +42,13 @@ class BarcodeViewerViewController: UIViewController {
     }()
     
     weak var delegate: BarcodeViewerViewControllerDelegate?
+    
     public var document: PDFDocument? {
         willSet { pdfView.document = newValue }
+    }
+    
+    public var qrName: String? {
+        willSet { navBar.title = newValue }
     }
 
     override func viewDidLoad() {
@@ -68,18 +74,16 @@ class BarcodeViewerViewController: UIViewController {
         exportButton.addTarget(self, action: #selector(exportButtonDidTapped(_:)), for: .touchUpInside)
         view.addSubview(exportButton)
         exportButton.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -16).isActive = true
-        exportButton.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 16).isActive = true
-        exportButton.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -16).isActive = true
+        exportButton.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 24).isActive = true
+        exportButton.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -24).isActive = true
         exportButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
     
     @objc
     private func exportButtonDidTapped(_ sender: PKButton) {
-        
         guard let data = self.document?.dataRepresentation() else { return }
         let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
         self.present(activityController, animated: true, completion: nil)
-        
     }
 
 }

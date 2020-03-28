@@ -22,6 +22,26 @@ struct CheckNamespaceBusinessModel {
             let creator: Creator
         }
         
+        struct ViewModel {
+            
+            let id: String
+            let name: String
+            let creator: Creator
+            
+            init(response: Response) {
+                self.id = response.id
+                self.name = response.name
+                self.creator = response.creator
+            }
+            
+            var isValid: Bool {
+                guard let userId = PKUserManager.shared.userId else { return false }
+                guard userId != creator.id else { return false }
+                return true
+            }
+            
+        }
+        
     }
     
     struct Creator: Codable {

@@ -13,6 +13,8 @@
 "unableToDecode" = "Unfortunately, a server error prevented your request from being completed. Pokoro maybe undergoing maintenance or your connection may have timed out. Please try again.";
 "locationServicePermissionError" = "Unfortunately, Ronaker do not have permission to access your location.";
 "locationServiceError" = "Unfortunately, an error prevented Ronaker from getting your location.\nPlease try again.";
+"invalidBarcode" = "Please scan a valid barcode.";
+"barcodeError" = "You couldn't send message to yourself. Please scan a valid barcode.";
 
 
 //General

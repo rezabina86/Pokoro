@@ -51,19 +51,17 @@ struct NameSpacesBusinessModel {
         let id: String
         let name: String
         let creator_id: String
+        let smallQr: CIImage?
         
         public var qr: CIImage? {
             return qrMaker(id, scale: CGAffineTransform(scaleX: 5.94, y: 5.94))
-        }
-        
-        public var smallQr: CIImage? {
-            return qrMaker(id)
         }
         
         init(namespace: Namespace) {
             self.id = namespace.id
             self.name = namespace.name
             self.creator_id = namespace.creator_id
+            self.smallQr = qrMaker(id)
         }
         
         var document: PDFDocument? {
