@@ -50,7 +50,7 @@ class MainTabBarViewController: UITabBarController {
     private func showChat() {
         let messageController = MessageViewController()
         let newThread = DemoMessageManager.shared.createNewThread()
-        messageController.thread = newThread
+        //messageController.thread = newThread
         messageController.delegate = self
         present(messageController, animated: true)
     }

@@ -8,7 +8,7 @@
 
 import SocketIO
 
-struct SendMessageBusinessModel: SocketData {
+struct OutgoingMessageBusinessModel: SocketData {
     
     let namespace_id: String
     let user_id: String

@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Combine
+import SocketIO
 
 protocol MessageViewControllerDelegate: class {
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController)
 }
 
 class MessageViewController: UIViewController {
+    
+    private let manager = PKSocketManager.shared
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -30,6 +34,7 @@ class MessageViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.separatorStyle = .none
         view.tableFooterView = UIView(frame: CGRect.zero)
+        view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)
         return view
     }()
     
@@ -41,23 +46,27 @@ class MessageViewController: UIViewController {
     
     weak var delegate: MessageViewControllerDelegate?
     private var bottomConst: NSLayoutConstraint!
-    private var messages: [String] = []
     
-    public var thread: DemoMessagesBusinessModel.Thread? {
-        didSet {
-            messages = thread?.messages.map({ $0.message }) ?? []
-            tableView.reloadData()
-        }
-    }
+    private var messages: [ChatsDataModel.Message] = []
+    
+    var chatData: ChatsDataModel!
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupPublishers()
+        manager.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeNotification()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getThread()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -115,6 +124,26 @@ class MessageViewController: UIViewController {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: nil)
         }
     }
+    
+    private func getThread() {
+        chatData.fetchThreadFromAPI()
+    }
+    
+    private func setupPublishers() {
+        chatData.$messages.sink { [weak self] msg in
+            guard let `self` = self else { return }
+            let dif = self.messages.difference(from: msg)
+            self.messages = msg
+            Logger.log(message: dif, event: .debug)
+            if dif.count == 1 {
+                if let index = self.messages.firstIndex(of: dif[0]) {
+                    self.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                } else { self.tableView.reloadData() }
+            } else {
+                self.tableView.reloadData()
+            }
+        }.store(in: &cancellables)
+    }
 
 }
 
@@ -127,11 +156,11 @@ extension MessageViewController: PKNavBarViewDelegate {
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String) {
-        messages.append(text)
+        //messages.append(text)
         tableView.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .bottom)
         tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
         
-        DemoMessageManager.shared.saveMessage(thread!.id, message: text)
+        //DemoMessageManager.shared.saveMessage(thread!.id, message: text)
     }
     
 }
@@ -155,9 +184,43 @@ extension MessageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = OutgoingMessageTableViewCell()
-        cell.message = messages[indexPath.row]
-        return cell
+        let message = messages[indexPath.row]
+        if indexPath.row == messages.count - 1 {
+            chatData.fetchThreadFromAPI()
+            Logger.log(message: "FETCHHEEEEEED", event: .error)
+        }
+        if message.isIncomeMessage {
+            let cell = IncomingMessageTableViewCell()
+            cell.message = message.message
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            return cell
+        } else {
+            let cell = OutgoingMessageTableViewCell()
+            cell.message = message.message
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //Logger.log(message: indexPath.row, event: .severe)
+        
+    }
+    
+}
+
+extension MessageViewController: PKSocketManagerDelegate {
+    
+    func pkSocketManagerDidReceive(_ manager: PKSocketManager, _ message: IncomeMessageBusinessModel) {
+        chatData.saveIncomeMessage(message: message)
+    }
+    
+    func pkSocketManagerClientStatusChanged(_ manager: PKSocketManager, event: SocketClientEvent) {
+        
+    }
+    
+    func pkSocketManagerDidAuthenticate(_ manager: PKSocketManager) {
+        
     }
     
 }

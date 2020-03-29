@@ -44,10 +44,10 @@ class MessageTableViewCell: UITableViewCell {
         return label
     }()
     
-    public var thread: DemoMessagesBusinessModel.Thread? {
+    public var thread: ChatsDataModel.Thread? {
         willSet {
-            barcodeTypeLabel.text = newValue?.barcodeName
-            bodyLabel.text = newValue?.messages.last?.message
+            barcodeTypeLabel.text = newValue?.userName
+            bodyLabel.text = newValue?.lastMessage
         }
     }
 

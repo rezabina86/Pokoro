@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 class InboxViewController: UIViewController {
     
@@ -30,16 +31,8 @@ class InboxViewController: UIViewController {
         return view
     }()
     
-    private var threads: DemoMessagesBusinessModel.Threads? {
-        didSet {
-            tableView.reloadData()
-            if (threads?.threads.count ?? 0) == 0 {
-                tableView.showEmptyView(title: "No Messages", subtitle: "Scan Barcode to start a conversation", image: UIImage(named: "talk"))
-            } else {
-                tableView.hideEmptyView()
-            }
-        }
-    }
+    private var chatData: ChatsDataModel?
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +41,7 @@ class InboxViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        refresh()
+        getThreads()
     }
     
     private func setupViews() {
@@ -68,10 +61,27 @@ class InboxViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
     }
     
-    private func refresh() {
-        threads = DemoMessageManager.shared.threads
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.refresh()
+    private func setupPublisher() {
+        chatData?.$threads.sink(receiveValue: { [weak self] (threads) in
+            guard let `self` = self else { return }
+            self.tableView.reloadData()
+            if threads.count == 0 {
+                self.tableView.showEmptyView(title: "No Messages", subtitle: "Scan Barcode to start a conversation", image: UIImage(named: "talk"))
+            } else {
+                self.tableView.hideEmptyView()
+            }
+            }).store(in: &cancellables)
+    }
+    
+    private func getThreads() {
+        NetworkManager().getChats { [weak self] (chats, error) in
+            guard let `self` = self else { return }
+            if let error = error {
+                self.showAlert(message: error.localized, type: .error)
+            } else if let chats = chats {
+                self.chatData = ChatsDataModel(apiResponse: chats)
+                self.setupPublisher()
+            }
         }
     }
 
@@ -87,7 +97,8 @@ extension InboxViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let messageController = MessageViewController()
         messageController.delegate = self
-        messageController.thread = threads?.threads[indexPath.row]
+        messageController.chatData = chatData
+        chatData?.select(thread: chatData?.threads[indexPath.row])
         messageController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(messageController, animated: true)
     }
@@ -97,12 +108,12 @@ extension InboxViewController: UITableViewDelegate {
 extension InboxViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return threads?.threads.count ?? 0
+        return chatData?.threads.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = MessageTableViewCell()
-        cell.thread = threads?.threads[indexPath.row]
+        cell.thread = chatData?.threads[indexPath.row]
         return cell
     }
     

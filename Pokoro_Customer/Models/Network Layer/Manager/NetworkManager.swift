@@ -112,6 +112,58 @@ struct NetworkManager {
         }
     }
     
+    func getChats(completion: @escaping (_ result: ChatsBusinessModel.Fetch.Response?, _ error: String?) -> ()) {
+        router.request(.getChats) { (data, response, error) in
+            if error != nil { completion(nil, NetworkResponse.noNetwork.rawValue) }
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let result = try JSONDecoder().decode(ChatsBusinessModel.Fetch.Response.self, from: responseData)
+                        completion(result, nil)
+                    } catch {
+                        Logger.log(message: error, event: LogEvent.error)
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                default:
+                    let error = self.handleErrors(data: data, result: result)
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
+    func getThread(request: ThreadBusinessModel.Fetch.Request, completion: @escaping (_ result: ThreadBusinessModel.Fetch.Response?, _ error: String?) -> ()) {
+        router.request(.getThread(model: request)) { (data, response, error) in
+            if error != nil { completion(nil, NetworkResponse.noNetwork.rawValue) }
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let result = try JSONDecoder().decode(ThreadBusinessModel.Fetch.Response.self, from: responseData)
+                        completion(result, nil)
+                    } catch {
+                        Logger.log(message: error, event: LogEvent.error)
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                default:
+                    let error = self.handleErrors(data: data, result: result)
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
 }
 
 

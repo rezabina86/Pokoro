@@ -9,7 +9,7 @@
 import SocketIO
 
 protocol PKSocketManagerDelegate: class {
-    func pkSocketManagerDidReceive(_ manager: PKSocketManager, _ message: GetMessageBusinessModel)
+    func pkSocketManagerDidReceive(_ manager: PKSocketManager, _ message: IncomeMessageBusinessModel)
     func pkSocketManagerClientStatusChanged(_ manager: PKSocketManager, event: SocketClientEvent)
     func pkSocketManagerDidAuthenticate(_ manager: PKSocketManager)
 }
@@ -30,6 +30,10 @@ class PKSocketManager: NSObject {
         setupListeners()
     }
     
+    public var isConnected: Bool {
+        return socket.status == .connected
+    }
+    
     public func setupListeners() {
         authenticated()
         getMessage()
@@ -44,7 +48,7 @@ class PKSocketManager: NSObject {
         socket.disconnect()
     }
     
-    public func sendMessage(model: SendMessageBusinessModel) {
+    public func sendMessage(model: OutgoingMessageBusinessModel) {
         socket.emit(SocketEvent.sendMessage.event, model)
     }
 
@@ -57,7 +61,7 @@ class PKSocketManager: NSObject {
             if let dic = data.first as? [String : Any] {
                 do {
                     let data = try JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
-                    let result = try JSONDecoder().decode(GetMessageBusinessModel.self, from: data)
+                    let result = try JSONDecoder().decode(IncomeMessageBusinessModel.self, from: data)
                     self.delegate?.pkSocketManagerDidReceive(self, result)
                 } catch {
                     print(error)

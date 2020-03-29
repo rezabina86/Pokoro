@@ -46,7 +46,7 @@ struct CheckNamespaceBusinessModel {
     
     struct Creator: Codable {
         let id: String
-        let name: String
+        let name: String?
     }
     
 }

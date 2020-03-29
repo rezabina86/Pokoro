@@ -8,13 +8,14 @@
 
 import SocketIO
 
-struct GetMessageBusinessModel: Decodable {
+struct IncomeMessageBusinessModel: Decodable {
     
     let id: String
+    let chat_id: String
     let user_id: String
     let namespace_id: String
     let message: String
     let timestamp: Date
-    let last_message_id: String
+    let last_message_id: String?
     
 }

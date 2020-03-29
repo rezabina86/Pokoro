@@ -43,17 +43,21 @@ extension AppDelegate: PKSocketManagerDelegate {
     
     func pkSocketManagerClientStatusChanged(_ manager: PKSocketManager, event: SocketClientEvent) {
         if event == .connect {
-            manager.authenticate(model: AuthenticateBusinessModel(session: "nDC4UETSN1Mph6tmNsC68Y"))
+            guard let session = PKUserManager.shared.token else {
+                manager.disconnect()
+                return
+            }
+            manager.authenticate(model: AuthenticateBusinessModel(session: session))
         }
-        print(event)
+        Logger.log(message: event, event: .info)
     }
     
-    func pkSocketManagerDidReceive(_ manager: PKSocketManager, _ message: GetMessageBusinessModel) {
-        print(message)
+    func pkSocketManagerDidReceive(_ manager: PKSocketManager, _ message: IncomeMessageBusinessModel) {
+        Logger.log(message: message, event: .info)
     }
     
     func pkSocketManagerDidAuthenticate(_ manager: PKSocketManager) {
-        print("Authenticated")
+        Logger.log(message: "Authenticated", event: .info)
     }
     
 }
