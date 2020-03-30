@@ -16,8 +16,6 @@ protocol MessageViewControllerDelegate: class {
 
 class MessageViewController: UIViewController {
     
-    private let manager = PKSocketManager.shared
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -48,6 +46,7 @@ class MessageViewController: UIViewController {
     private var bottomConst: NSLayoutConstraint!
     
     private var messages: [ChatsDataModel.Message] = []
+    private var fetchInProgress = false
     
     var chatData: ChatsDataModel!
     private var cancellables = Set<AnyCancellable>()
@@ -56,7 +55,6 @@ class MessageViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupPublishers()
-        manager.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +124,8 @@ class MessageViewController: UIViewController {
     }
     
     private func getThread() {
-        chatData.fetchThreadFromAPI()
+        fetchInProgress = true
+        chatData.fetchThreadFromAPI(completion: { self.fetchInProgress = false })
     }
     
     private func setupPublishers() {
@@ -134,7 +133,6 @@ class MessageViewController: UIViewController {
             guard let `self` = self else { return }
             let dif = self.messages.difference(from: msg)
             self.messages = msg
-            Logger.log(message: dif, event: .debug)
             if dif.count == 1 {
                 if let index = self.messages.firstIndex(of: dif[0]) {
                     self.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
@@ -156,11 +154,12 @@ extension MessageViewController: PKNavBarViewDelegate {
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String) {
-        //messages.append(text)
-        tableView.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .bottom)
-        tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
-        
-        //DemoMessageManager.shared.saveMessage(thread!.id, message: text)
+        //tableView.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .bottom)
+        //tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
+        chatData.sendMessage(text)
+        if messages.count > 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
 }
@@ -185,9 +184,9 @@ extension MessageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
-        if indexPath.row == messages.count - 1 {
-            chatData.fetchThreadFromAPI()
-            Logger.log(message: "FETCHHEEEEEED", event: .error)
+        if indexPath.row == messages.count - 1, !fetchInProgress {
+            fetchInProgress = true
+            chatData.fetchThreadFromAPI(completion: { self.fetchInProgress = false })
         }
         if message.isIncomeMessage {
             let cell = IncomingMessageTableViewCell()
@@ -203,24 +202,9 @@ extension MessageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //Logger.log(message: indexPath.row, event: .severe)
-        
+        let message = messages[indexPath.row]
+        chatData.seenMessage(message)
     }
     
 }
 
-extension MessageViewController: PKSocketManagerDelegate {
-    
-    func pkSocketManagerDidReceive(_ manager: PKSocketManager, _ message: IncomeMessageBusinessModel) {
-        chatData.saveIncomeMessage(message: message)
-    }
-    
-    func pkSocketManagerClientStatusChanged(_ manager: PKSocketManager, event: SocketClientEvent) {
-        
-    }
-    
-    func pkSocketManagerDidAuthenticate(_ manager: PKSocketManager) {
-        
-    }
-    
-}

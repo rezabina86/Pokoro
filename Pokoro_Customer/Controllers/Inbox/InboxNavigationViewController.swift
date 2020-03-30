@@ -10,13 +10,17 @@ import UIKit
 
 class InboxNavigationViewController: UINavigationController {
     
+    public var chatData: ChatsDataModel?
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [InboxViewController()]
+        let inboxController = InboxViewController()
+        inboxController.chatData = chatData
+        viewControllers = [inboxController]
         interactivePopGestureRecognizer?.delegate = nil
         isNavigationBarHidden = true
     }

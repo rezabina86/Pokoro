@@ -38,6 +38,7 @@ class PKSocketManager: NSObject {
         authenticated()
         getMessage()
         setupClientListeners()
+        sendMessageListener()
     }
 
     public func connect() {
@@ -55,6 +56,10 @@ class PKSocketManager: NSObject {
     public func authenticate(model: AuthenticateBusinessModel) {
         socket.emit(SocketEvent.authentication.event, model)
     }
+    
+    public func seenMessage(model: SeenMessageBusinessModel) {
+        socket.emit(SocketEvent.seenMessage.event, model)
+    }
 
     private func getMessage() {
         socket.on(SocketEvent.getMessage.event) { (data, _) in
@@ -65,7 +70,24 @@ class PKSocketManager: NSObject {
                     self.delegate?.pkSocketManagerDidReceive(self, result)
                 } catch {
                     print(error)
-                    return }
+                    return
+                }
+                
+            }
+        }
+    }
+    
+    private func sendMessageListener() {
+        socket.on(SocketEvent.sentMessage.event) { (data, _) in
+            if let dic = data.first as? [String : Any] {
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+                    let result = try JSONDecoder().decode(IncomeMessageBusinessModel.self, from: data)
+                    self.delegate?.pkSocketManagerDidReceive(self, result)
+                } catch {
+                    print(error)
+                    return
+                }
                 
             }
         }

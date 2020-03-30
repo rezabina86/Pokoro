@@ -15,10 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let manager = PKSocketManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        PKUserManager.shared.token = "wrWCRqKZ62nLvFyqDmkATH"
-        PKUserManager.shared.userId = "5e7dce08bb288a2e471536e8"
-        manager.delegate = self
-        manager.connect()
+        PKUserManager.shared.token = "uQSkERWyPPYrofa74rtGhi"
+        PKUserManager.shared.userId = "5e81b8304cdf676b208bbcc9"
+        
+        //PKUserManager.shared.token = "ia1j5ojj8BtXGEDdTNcapy"
+        //PKUserManager.shared.userId = "5e81e0e64cdf676b208bbcee"
         
         return true
     }
@@ -39,25 +40,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate: PKSocketManagerDelegate {
-    
-    func pkSocketManagerClientStatusChanged(_ manager: PKSocketManager, event: SocketClientEvent) {
-        if event == .connect {
-            guard let session = PKUserManager.shared.token else {
-                manager.disconnect()
-                return
-            }
-            manager.authenticate(model: AuthenticateBusinessModel(session: session))
-        }
-        Logger.log(message: event, event: .info)
-    }
-    
-    func pkSocketManagerDidReceive(_ manager: PKSocketManager, _ message: IncomeMessageBusinessModel) {
-        Logger.log(message: message, event: .info)
-    }
-    
-    func pkSocketManagerDidAuthenticate(_ manager: PKSocketManager) {
-        Logger.log(message: "Authenticated", event: .info)
-    }
-    
-}

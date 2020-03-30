@@ -9,15 +9,19 @@
 import UIKit
 
 class MainTabBarViewController: UITabBarController {
+    
+    public var chatData: ChatsDataModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        chatData = ChatsDataModel()
         setupTabBar()
     }
     
     private func setupTabBar() {
         
         let tab1 = InboxNavigationViewController()
+        tab1.chatData = chatData
         let tab2 = ScannerViewController()
         let tab3 = ProfileNavigationViewController()
         
@@ -47,10 +51,10 @@ class MainTabBarViewController: UITabBarController {
         setupTabBar()
     }
     
-    private func showChat() {
+    private func showChat(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
         let messageController = MessageViewController()
-        let newThread = DemoMessageManager.shared.createNewThread()
-        //messageController.thread = newThread
+        chatData?.startThread(with: namespace)
+        messageController.chatData = chatData
         messageController.delegate = self
         present(messageController, animated: true)
     }
@@ -86,7 +90,7 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
             } else if let result = result {
                 let viewModel = CheckNamespaceBusinessModel.Fetch.ViewModel(response: result)
                 if viewModel.isValid {
-                    self.showChat()
+                    self.showChat(namespace: result)
                 } else { self.showAlert(message: "barcodeError".localized, type: .error) }
             }
         }

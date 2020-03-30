@@ -15,6 +15,7 @@ enum SocketEvent {
     case getMessage
     case seenMessage
     case authenticated
+    case sentMessage
 }
 
 extension SocketEvent: SocketEventType {
@@ -31,6 +32,8 @@ extension SocketEvent: SocketEventType {
             return "seen_message"
         case .authenticated:
             return "authenticated"
+        case .sentMessage:
+            return "sent_message"
         }
     }
     

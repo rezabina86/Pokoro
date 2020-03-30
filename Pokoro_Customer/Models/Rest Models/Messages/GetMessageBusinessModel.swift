@@ -18,4 +18,9 @@ struct IncomeMessageBusinessModel: Decodable {
     let timestamp: Date
     let last_message_id: String?
     
+    var isOutgoingMessage: Bool {
+        guard let userId = PKUserManager.shared.userId else { return false }
+        return user_id == userId
+    }
+    
 }

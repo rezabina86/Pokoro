@@ -11,11 +11,13 @@ import SocketIO
 struct OutgoingMessageBusinessModel: SocketData {
     
     let namespace_id: String
-    let user_id: String
+    let user_id: String?
     let message: String
     
     func socketRepresentation() -> SocketData {
-        return ["namespace_id" : namespace_id, "user_id" : user_id, "message" : message]
+        var data = ["namespace_id" : namespace_id, "message" : message]
+        if let user_id = user_id { data["user_id"] = user_id }
+        return data
     }
     
 }
