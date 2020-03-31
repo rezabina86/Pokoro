@@ -10,9 +10,9 @@ import UIKit
 
 extension UIApplication {
     
-    static public func switchRootViewController(rootViewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
-        guard let sceneDelegate = self.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        guard let window = sceneDelegate.window else { return }
+    static public func switchRootViewController(rootViewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        guard let appDelegate = self.shared.delegate as? AppDelegate else { return }
+        guard let window = appDelegate.window else { return }
         if animated {
             UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 let oldState: Bool = UIView.areAnimationsEnabled

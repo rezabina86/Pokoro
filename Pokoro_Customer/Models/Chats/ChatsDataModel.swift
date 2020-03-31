@@ -16,6 +16,7 @@ class ChatsDataModel: ObservableObject {
     @Published var threads: [Thread] = []
     @Published var messages: [Message] = []
     private var selectedThread: Thread?
+    public var name: String?
     
     private var paginationEnded: Bool = false
     private var lastMessageId: String?
@@ -39,12 +40,15 @@ class ChatsDataModel: ObservableObject {
             switch message.isOutgoingMessage {
             case true:
                 self.messages.insert(Message(socketMessage: message), at: 0)
+                if let affectedThread = self.threads.first(where: { $0.id == message.chat_id }) {
+                    self.seenAllMessageIn(thread: affectedThread)
+                }
             case false:
                 if self.isThreadFound(id: message.chat_id) {
                     if message.chat_id == self.selectedThread?.id {
                         self.messages.insert(Message(socketMessage: message), at: 0)
                     } else {
-                        if let affectedThread = self.threads.first(where: { $0.id == message.id }) {
+                        if let affectedThread = self.threads.first(where: { $0.id == message.chat_id }) {
                             self.seenAllMessageIn(thread: affectedThread)
                         }
                     }
@@ -83,6 +87,7 @@ class ChatsDataModel: ObservableObject {
         lastMessageId = thread?.lastMessageId
         selectedThread = thread
         seenAllMessageIn(thread: thread)
+        name = selectedThread?.userName
         messages.removeAll()
     }
     
@@ -196,6 +201,7 @@ class ChatsDataModel: ObservableObject {
             self.id = ""
             self.namespaceId = namespace.id
             self.timeStamp = 0
+            self.userName = namespace.creator.name
         }
         
         var isThreadTemp: Bool {

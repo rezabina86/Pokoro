@@ -38,8 +38,8 @@ class ProfileViewController: UIViewController {
     
     private func logOut() {
         PKUserManager.shared.clearDataOnLogout()
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.presentAuthenticationCoordinator()
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.presentAuthenticationCoordinator()
     }
     
     private func askToLogout() {

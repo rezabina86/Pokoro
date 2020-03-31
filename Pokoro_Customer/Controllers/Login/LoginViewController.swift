@@ -125,8 +125,8 @@ class LoginViewController: UIViewController {
     }
     
     private func checkLogin() {
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.presentAuthenticationCoordinator()
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.presentAuthenticationCoordinator()
     }
 
 }
@@ -134,41 +134,15 @@ class LoginViewController: UIViewController {
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
-        //PKUserManager.shared.token = "token"
-        //checkLogin()
-        
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-            let token = appleIDCredential.identityToken
-            
-            Logger.log(message: userIdentifier, event: .debug)
-            Logger.log(message: fullName, event: .debug)
-            Logger.log(message: email, event: .debug)
-            Logger.log(message: token, event: .debug)
-            
-            
-//            do {
-//                try KeychainItem(service: "com.pokoro.app", account: "userIdentifier").saveItem(userIdentifier)
-//            } catch {
-//                print("Unable to save userIdentifier to keychain.")
-//            }
-        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
-//            // Sign in using an existing iCloud Keychain credential.
-//            let username = passwordCredential.user
-//            let password = passwordCredential.password
-//
-//            // For the purpose of this demo app, show the password credential as an alert.
-//            DispatchQueue.main.async {
-//                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
-//                let alertController = UIAlertController(title: "Keychain Credential Received",
-//                                                        message: message,
-//                                                        preferredStyle: .alert)
-//                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-//                self.present(alertController, animated: true, completion: nil)
-//            }
+            PKUserManager.shared.checkCredential(appleIDCredential, completion: { [weak self] (success, error) in
+                guard let `self` = self else { return }
+                if let error = error {
+                    self.showAlert(message: error.localized, type: .error)
+                } else if success {
+                    self.checkLogin()
+                }
+            })
         }
     }
     

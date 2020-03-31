@@ -60,6 +60,7 @@ class MessageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeNotification()
+        navBar.title = chatData.name
     }
     
     override func viewDidAppear(_ animated: Bool) {

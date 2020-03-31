@@ -16,7 +16,7 @@ class SceneDelegateRouter: Routers {
     }
     
     func present(_ viewController: UIViewController, animated: Bool, onDismissed: (() -> Void)?) {
-        UIApplication.switchRootViewController(rootViewController: viewController, animated: true)
+        UIApplication.switchRootViewController(rootViewController: viewController, animated: true, completion: nil)
         window.makeKeyAndVisible()
     }
     

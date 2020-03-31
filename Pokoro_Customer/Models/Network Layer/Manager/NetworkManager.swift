@@ -60,6 +60,58 @@ struct NetworkManager {
         }
     }
     
+    func login(request: LoginBusinessModel.Fetch.Request, completion: @escaping (_ result: LoginBusinessModel.Fetch.Response?, _ error: String?) -> ()) {
+        router.request(.login(model: request)) { (data, response, error) in
+            if error != nil { completion(nil, NetworkResponse.noNetwork.rawValue) }
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let result = try JSONDecoder().decode(LoginBusinessModel.Fetch.Response.self, from: responseData)
+                        completion(result, nil)
+                    } catch {
+                        Logger.log(message: error, event: LogEvent.error)
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                default:
+                    let error = self.handleErrors(data: data, result: result)
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
+    func registerUser(request: RegisterBusinessModel.Fetch.Request, completion: @escaping (_ result: RegisterBusinessModel.Fetch.Response?, _ error: String?) -> ()) {
+        router.request(.registerUser(model: request)) { (data, response, error) in
+            if error != nil { completion(nil, NetworkResponse.noNetwork.rawValue) }
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let result = try JSONDecoder().decode(RegisterBusinessModel.Fetch.Response.self, from: responseData)
+                        completion(result, nil)
+                    } catch {
+                        Logger.log(message: error, event: LogEvent.error)
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                default:
+                    let error = self.handleErrors(data: data, result: result)
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
     func getNameSpaces(request: NameSpacesBusinessModel.Fetch.Request, completion: @escaping (_ result: NameSpacesBusinessModel.Fetch.Response?, _ error: String?) -> ()) {
         router.request(.getNameSpaces(model: request)) { (data, response, error) in
             if error != nil { completion(nil, NetworkResponse.noNetwork.rawValue) }

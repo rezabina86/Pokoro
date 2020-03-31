@@ -68,10 +68,10 @@
 		B67CB0FE23C4D83900EA1858 /* DemoMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */; };
 		B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */; };
 		B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C423A7D10200672E00 /* AppDelegate.swift */; };
-		B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C623A7D10200672E00 /* SceneDelegate.swift */; };
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
 		B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CD23A7D10400672E00 /* Assets.xcassets */; };
 		B68FA4D123A7D10400672E00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CF23A7D10400672E00 /* LaunchScreen.storyboard */; };
+		B6A1DE6A24338DFB003A9470 /* RegisterBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1DE6924338DFB003A9470 /* RegisterBusinessModel.swift */; };
 		B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */; };
 		B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */; };
 		B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9321023C5245E006863E0 /* BarcodesViewController.swift */; };
@@ -206,11 +206,11 @@
 		B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMessagesBusinessModel.swift; sourceTree = "<group>"; };
 		B68FA4C123A7D10200672E00 /* Pokoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68FA4C423A7D10200672E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B68FA4C623A7D10200672E00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C823A7D10200672E00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B68FA4CD23A7D10400672E00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B68FA4D023A7D10400672E00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B68FA4D223A7D10400672E00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6A1DE6924338DFB003A9470 /* RegisterBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBusinessModel.swift; sourceTree = "<group>"; };
 		B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKChatTextFieldView.swift; sourceTree = "<group>"; };
 		B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationViewController.swift; sourceTree = "<group>"; };
 		B6C9321023C5245E006863E0 /* BarcodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodesViewController.swift; sourceTree = "<group>"; };
@@ -596,7 +596,6 @@
 				B655882B23A7E0010056FD38 /* Managers */,
 				B655882623A7DC010056FD38 /* Extensions */,
 				B68FA4C423A7D10200672E00 /* AppDelegate.swift */,
-				B68FA4C623A7D10200672E00 /* SceneDelegate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -676,6 +675,22 @@
 				B68E592B23A7D48D000C04DF /* Supporting Files */,
 			);
 			path = Pokoro_Customer;
+			sourceTree = "<group>";
+		};
+		B6A1DE6724338DBF003A9470 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B6CF14AA23ABD59300D330FD /* LoginBusinessModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B6A1DE6824338DC2003A9470 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				B6A1DE6924338DFB003A9470 /* RegisterBusinessModel.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		B6A445F023C34C5100E64029 /* Message */ = {
@@ -789,7 +804,7 @@
 				B60C94DA242E08890015DABF /* NameSpaces */,
 				B644EB4F242CBCD000D7CF61 /* Messages */,
 				B6CF14A723ABD59300D330FD /* Errors */,
-				B6CF14A923ABD59300D330FD /* Login */,
+				B6CF14A923ABD59300D330FD /* LoginRegister */,
 			);
 			path = "Rest Models";
 			sourceTree = "<group>";
@@ -802,12 +817,13 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
-		B6CF14A923ABD59300D330FD /* Login */ = {
+		B6CF14A923ABD59300D330FD /* LoginRegister */ = {
 			isa = PBXGroup;
 			children = (
-				B6CF14AA23ABD59300D330FD /* LoginBusinessModel.swift */,
+				B6A1DE6824338DC2003A9470 /* Register */,
+				B6A1DE6724338DBF003A9470 /* Login */,
 			);
-			path = Login;
+			path = LoginRegister;
 			sourceTree = "<group>";
 		};
 		B6CF14AB23ABD59300D330FD /* Strings */ = {
@@ -1102,7 +1118,6 @@
 				B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */,
 				B6500BC523AE220000D20BAB /* LargeSB.swift in Sources */,
 				B66DE2B323C37B5400BF6639 /* IncomingMessageTableViewCell.swift in Sources */,
-				B68FA4C723A7D10200672E00 /* SceneDelegate.swift in Sources */,
 				B66DE2C023C38ED000BF6639 /* ProfileActionTableViewCell.swift in Sources */,
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B6CF14B623ABD59300D330FD /* HTTPTask.swift in Sources */,
@@ -1126,6 +1141,7 @@
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
 				B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */,
+				B6A1DE6A24338DFB003A9470 /* RegisterBusinessModel.swift in Sources */,
 				B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */,
 				B6500BBD23AE220000D20BAB /* H2.swift in Sources */,
 				B6CF14C123ACCDC800D330FD /* Text+Localize.swift in Sources */,
