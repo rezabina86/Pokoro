@@ -8,6 +8,7 @@
 
 import UIKit
 import SocketIO
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,11 +16,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let manager = PKSocketManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        PKUserManager.shared.token = "uQSkERWyPPYrofa74rtGhi"
-        PKUserManager.shared.userId = "5e81b8304cdf676b208bbcc9"
+        //PKUserManager.shared.token = "uQSkERWyPPYrofa74rtGhi"
+        //PKUserManager.shared.userId = "5e81b8304cdf676b208bbcc9"
         
         //PKUserManager.shared.token = "ia1j5ojj8BtXGEDdTNcapy"
         //PKUserManager.shared.userId = "5e81e0e64cdf676b208bbcee"
+        
+        //START OneSignal initialization code
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+
+        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
+        OneSignal.initWithLaunchOptions(launchOptions,
+        appId: "3bbd9b9a-ccaf-44b3-b55a-a921f41e8bf8",
+        handleNotificationAction: nil,
+        settings: onesignalInitSettings)
+
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+
+        // Recommend moving the below line to prompt for push after informing the user about
+        //   how your app will use them.
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+        print("User accepted notifications: \(accepted)")
+        })
+        //END OneSignal initializataion code
         
         return true
     }

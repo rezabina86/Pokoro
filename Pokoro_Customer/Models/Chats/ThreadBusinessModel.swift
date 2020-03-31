@@ -45,7 +45,7 @@ struct ThreadBusinessModel {
         let user_id: String
         let namespace_id: String
         let message: String
-        let timestamp: Date
+        let timestamp: Int64
     }
     
     struct OtherUser: Codable {

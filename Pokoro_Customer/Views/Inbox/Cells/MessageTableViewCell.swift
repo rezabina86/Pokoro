@@ -40,14 +40,24 @@ class MessageTableViewCell: UITableViewCell {
     private let bodyLabel: SmallRegular = {
         let label = SmallRegular()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
         return label
+    }()
+    
+    private let unseenLabel: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.PKColors.green
+        view.layer.cornerRadius = 4
+        view.clipsToBounds = true
+        return view
     }()
     
     public var thread: ChatsDataModel.Thread? {
         willSet {
             barcodeTypeLabel.text = newValue?.userName
             bodyLabel.text = newValue?.lastMessage
+            unseenLabel.isHidden = !(newValue?.hasUnseenMessage ?? false)
+            dateLabel.text = newValue?.stringDate
         }
     }
 
@@ -72,7 +82,6 @@ class MessageTableViewCell: UITableViewCell {
         addSubview(barcodeTypeLabel)
         barcodeTypeLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 12).isActive = true
         barcodeTypeLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16).isActive = true
-        //barcodeTypeLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
         addSubview(dateLabel)
         dateLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 16).isActive = true
@@ -85,7 +94,14 @@ class MessageTableViewCell: UITableViewCell {
         bodyLabel.topAnchor.constraint(equalTo: barcodeTypeLabel.bottomAnchor, constant: 4).isActive = true
         bodyLabel.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -12).isActive = true
         bodyLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16).isActive = true
-        bodyLabel.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -12).isActive = true
+        //bodyLabel.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -12).isActive = true
+        
+        addSubview(unseenLabel)
+        unseenLabel.centerYAnchor.constraint(equalTo: bodyLabel.centerYAnchor, constant: 0).isActive = true
+        unseenLabel.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -12).isActive = true
+        unseenLabel.leadingAnchor.constraint(equalTo: bodyLabel.trailingAnchor, constant: 4).isActive = true
+        unseenLabel.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        unseenLabel.widthAnchor.constraint(equalToConstant: 8).isActive = true
     }
 
 }

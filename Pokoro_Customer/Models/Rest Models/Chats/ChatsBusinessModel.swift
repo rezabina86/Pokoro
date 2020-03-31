@@ -23,7 +23,7 @@ struct ChatsBusinessModel {
     struct Chat:Codable {
         let id: String
         let unread_messages_count: Int
-        let updated_at: Date
+        let updated_at: Int64
         let other_user: OtherUser
         let namespace: Namespace
         let last_message: LastMessage
@@ -50,7 +50,7 @@ struct ChatsBusinessModel {
         let user_id: String
         let namespace_id: String
         let message: String
-        let timestamp: Date
+        let timestamp: Int64
     }
     
 }

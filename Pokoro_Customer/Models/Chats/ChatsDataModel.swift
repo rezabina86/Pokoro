@@ -41,7 +41,13 @@ class ChatsDataModel: ObservableObject {
                 self.messages.insert(Message(socketMessage: message), at: 0)
             case false:
                 if self.isThreadFound(id: message.chat_id) {
-                    if message.chat_id == self.selectedThread?.id { self.messages.insert(Message(socketMessage: message), at: 0) }
+                    if message.chat_id == self.selectedThread?.id {
+                        self.messages.insert(Message(socketMessage: message), at: 0)
+                    } else {
+                        if let affectedThread = self.threads.first(where: { $0.id == message.id }) {
+                            self.seenAllMessageIn(thread: affectedThread)
+                        }
+                    }
                 }
             }
         })
@@ -53,6 +59,7 @@ class ChatsDataModel: ObservableObject {
                 guard let `self` = self else { return }
                 let newThread = Thread(incomeMessage: message)
                 newThread.userName = result.other_user.name
+                newThread.hasUnseenMessage = true
                 if self.selectedThread?.isThreadTemp ?? false { self.selectedThread = newThread }
                 self.threads.insert(contentsOf: [newThread], at: 0)
                 completion()
@@ -65,8 +72,9 @@ class ChatsDataModel: ObservableObject {
         newThread.lastMessageId = message.id
         newThread.timeStamp = message.timestamp
         newThread.id = message.chat_id
-        
-        threads[effectedThread.offset] = newThread
+        newThread.hasUnseenMessage = true
+        threads.remove(at: effectedThread.offset)
+        threads.insert(contentsOf: [newThread], at: 0)
         completion()
     }
     
@@ -74,7 +82,15 @@ class ChatsDataModel: ObservableObject {
         paginationEnded = false
         lastMessageId = thread?.lastMessageId
         selectedThread = thread
+        seenAllMessageIn(thread: thread)
         messages.removeAll()
+    }
+    
+    private func seenAllMessageIn(thread: Thread?) {
+        guard let affectedThread = threads.enumerated().first(where: { $0.element.id == thread?.id }) else { return }
+        affectedThread.element.hasUnseenMessage = false
+        threads.remove(at: affectedThread.offset)
+        threads.insert(contentsOf: [affectedThread.element], at: affectedThread.offset)
     }
     
     public func fetchThreadFromAPI(completion: @escaping () -> Void) {
@@ -135,10 +151,11 @@ class ChatsDataModel: ObservableObject {
         var userId: String?
         var userName: String?
         var lastMessage: String?
-        var timeStamp: Date
+        var timeStamp: Int64
         var lastMessageId: String?
         var namespaceId: String?
         var lastMessageUserId: String?
+        var hasUnseenMessage: Bool = false
         
         init(apiResponse: ChatsBusinessModel.Chat) {
             self.id = apiResponse.id
@@ -149,6 +166,7 @@ class ChatsDataModel: ObservableObject {
             self.lastMessageId = apiResponse.last_message.id
             self.namespaceId = apiResponse.namespace.id
             self.lastMessageUserId = apiResponse.last_message.user_id
+            self.hasUnseenMessage = apiResponse.unread_messages_count != 0
         }
         
         init(thread: Thread) {
@@ -171,16 +189,21 @@ class ChatsDataModel: ObservableObject {
             self.lastMessageId = incomeMessage.id
             self.namespaceId = incomeMessage.namespace_id
             self.lastMessageUserId = incomeMessage.user_id
+            self.hasUnseenMessage = true
         }
         
         init(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
             self.id = ""
             self.namespaceId = namespace.id
-            self.timeStamp = Date()
+            self.timeStamp = 0
         }
         
         var isThreadTemp: Bool {
             return id.count == 0
+        }
+        
+        var stringDate: String? {
+            return Date(timeIntervalSince1970: TimeInterval(timeStamp / 1000)).stringFormat
         }
         
     }
@@ -191,7 +214,7 @@ class ChatsDataModel: ObservableObject {
         let user_id: String?
         let message: String?
         var lastMessageId: String?
-        let timestamp: Date
+        let timestamp: Int64
         let isSeen: Bool
         
         init(thread: Thread) {
