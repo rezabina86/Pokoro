@@ -129,6 +129,17 @@ extension BarcodesViewController: UITableViewDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = FooterButton()
+        view.delegate = self
+        view.title = "+ New QR"
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 64
+    }
+    
 }
 
 extension BarcodesViewController: UITableViewDataSource {
@@ -152,6 +163,48 @@ extension BarcodesViewController: BarcodeViewerViewControllerDelegate {
     
     func barcodeViewerViewControllerBackButtonDidTapped(_ controller: BarcodeViewerViewController) {
         controller.navigationController?.popViewController(animated: true)
+    }
+    
+}
+
+extension BarcodesViewController: FooterButtonDelegate {
+    
+    func footerButtonDidTapped(_ footer: FooterButton, button: PKButton) {
+        let alertController = UIAlertController(title: "addQRTitle".localized, message: "addQRMessage".localized, preferredStyle: UIAlertController.Style.alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "enterName".localized
+        }
+        let saveAction = UIAlertAction(title: "save".localized, style: UIAlertAction.Style.default, handler: { [weak self] alert -> Void in
+            guard let `self` = self else { return }
+            let textField = alertController.textFields![0] as UITextField
+            self.createNameSpace(textField.text)
+        })
+        let cancelAction = UIAlertAction(title: "cancel".localized, style: UIAlertAction.Style.default, handler: {
+            (action : UIAlertAction!) -> Void in })
+
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+}
+
+extension BarcodesViewController {
+    
+    private func createNameSpace(_ name: String?) {
+        guard let name = name, name.count > 0 else {
+            showAlert(message: "createBarcodeError".localized, type: .error)
+            return
+        }
+        NetworkManager().createNamespace(request: CreateNamespaceBusinessModel.Fetch.Request(name: name)) { [weak self] (result, error) in
+            guard let `self` = self else { return }
+            if let error = error {
+                self.showAlert(message: error.localized, type: .error)
+            } else if result != nil {
+                self.getNameSpaces()
+            }
+        }
     }
     
 }

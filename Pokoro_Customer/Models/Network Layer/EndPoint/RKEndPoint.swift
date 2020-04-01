@@ -21,6 +21,7 @@ enum RKApis {
     case checkNameSpace(model: CheckNamespaceBusinessModel.Fetch.Request)
     case getChats
     case getThread(model: ThreadBusinessModel.Fetch.Request)
+    case createNamespace(model: CreateNamespaceBusinessModel.Fetch.Request)
 }
 
 extension RKApis: EndPointType {
@@ -45,6 +46,7 @@ extension RKApis: EndPointType {
         case .checkNameSpace(let model): return "/namespaces/\(model.id)"
         case .getChats: return "/chats"
         case .getThread(let model): return "/chats/\(model.id)"
+        case .createNamespace(_): return "/namespaces/"
         }
     }
     
@@ -56,6 +58,7 @@ extension RKApis: EndPointType {
         case .checkNameSpace(_): return .get
         case .getChats: return .get
         case .getThread(_): return .get
+        case .createNamespace(_): return .post
         }
     }
     
@@ -73,6 +76,8 @@ extension RKApis: EndPointType {
             return .request
         case .getThread(let model):
             return .requestParameters(bodyParameters: nil, urlParameters: model.parameters)
+        case .createNamespace(let model):
+            return .requestParameters(bodyParameters: model, urlParameters: nil)
         }
     }
     

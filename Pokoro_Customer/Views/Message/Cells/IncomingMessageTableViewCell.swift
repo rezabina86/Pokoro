@@ -20,6 +20,10 @@ class IncomingMessageTableViewCell: UITableViewCell {
     public var message: String? {
         willSet { chatBubble.text = newValue }
     }
+    
+    public var date: String? {
+        willSet { chatBubble.date = newValue }
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

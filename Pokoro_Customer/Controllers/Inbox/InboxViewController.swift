@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import SocketIO
 
 class InboxViewController: UIViewController {
     
@@ -37,7 +38,7 @@ class InboxViewController: UIViewController {
     }
     private var cancellables = Set<AnyCancellable>()
     private var threadsAreSynced = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -67,7 +68,6 @@ class InboxViewController: UIViewController {
     
     private func setupPublisher() {
         chatData?.$threads.sink(receiveValue: { [weak self] (threads) in
-            Logger.log(message: threads, event: .info)
             guard let `self` = self else { return }
             self.threads = threads
             if threads.count == 0 {
@@ -75,23 +75,34 @@ class InboxViewController: UIViewController {
             } else {
                 self.tableView.hideEmptyView()
             }
-            }).store(in: &cancellables)
+        }).store(in: &cancellables)
+        
+        PKUserManager.shared.$isThreadsNeedUpdate.sink { [weak self] (value) in
+            guard let `self` = self else { return }
+            if value {
+                self.threadsAreSynced = false
+                self.getThreads()
+            }
+        }.store(in: &cancellables)
     }
     
     private func getThreads() {
         guard threadsAreSynced == false else { return }
+        self.navBar.title = "Updating..."
         NetworkManager().getChats { [weak self] (chats, error) in
             guard let `self` = self else { return }
+            self.navBar.title = ""
             if let error = error {
                 self.showAlert(message: error.localized, type: .error)
             } else if let chats = chats {
                 self.chatData?.setup(apiResponse: chats)
                 self.setupPublisher()
                 self.threadsAreSynced = true
+                PKUserManager.shared.isThreadsNeedUpdate = false
             }
         }
     }
-
+    
 }
 
 extension InboxViewController: UITableViewDelegate {
@@ -102,10 +113,10 @@ extension InboxViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        chatData?.select(thread: threads[indexPath.row])
         let messageController = MessageViewController()
         messageController.delegate = self
         messageController.chatData = chatData
-        chatData?.select(thread: threads[indexPath.row])
         messageController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(messageController, animated: true)
     }
@@ -130,6 +141,7 @@ extension InboxViewController: MessageViewControllerDelegate {
     
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
         controller.navigationController?.popViewController(animated: true)
+        chatData?.select(thread: nil)
     }
     
 }

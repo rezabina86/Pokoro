@@ -19,10 +19,24 @@ class PKChatBubble: UIView {
         return view
     }()
     
-    private var textLabel: MediumRegular = {
-        let label = MediumRegular()
-        label.layer.zPosition = 5
+    private let textLabel: UITextView = {
+        let label = UITextView()
+        label.font = UIFont.PKFonts.MediumRegular
+        label.backgroundColor = .clear
+        label.dataDetectorTypes = .all
+        label.isEditable = false
+        label.isScrollEnabled = false
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = ThemeManager.shared.theme?.textColor
+        return label
+    }()
+    
+    private let dateLabel: SmallSB = {
+        let label = SmallSB()
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.textColor = ThemeManager.shared.theme?.textColor
         return label
     }()
     
@@ -32,6 +46,10 @@ class PKChatBubble: UIView {
     
     public var text: String? {
         willSet { self.textLabel.text = newValue }
+    }
+    
+    public var date: String? {
+        willSet { dateLabel.text = newValue }
     }
     
     public var titleColor: UIColor? {
@@ -56,10 +74,15 @@ class PKChatBubble: UIView {
         holder.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: 0).isActive = true
         
         holder.addSubview(self.textLabel)
-        textLabel.topAnchor.constraint(equalTo: holder.safeTopAnchor, constant: 12).isActive = true
-        textLabel.bottomAnchor.constraint(equalTo: holder.safeBottomAnchor, constant: -12).isActive = true
-        textLabel.leadingAnchor.constraint(equalTo: holder.safeLeadingAnchor, constant: 12).isActive = true
-        textLabel.trailingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: -12).isActive = true
+        textLabel.topAnchor.constraint(equalTo: holder.safeTopAnchor, constant: 6).isActive = true
+        textLabel.leadingAnchor.constraint(equalTo: holder.safeLeadingAnchor, constant: 6).isActive = true
+        textLabel.trailingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: -6).isActive = true
+        
+        holder.addSubview(dateLabel)
+        dateLabel.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 2).isActive = true
+        dateLabel.bottomAnchor.constraint(equalTo: holder.safeBottomAnchor, constant: -6).isActive = true
+        dateLabel.leadingAnchor.constraint(equalTo: holder.safeLeadingAnchor, constant: 12).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: -12).isActive = true
     }
 
 }

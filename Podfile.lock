@@ -1,12 +1,6 @@
 PODS:
   - M13ProgressSuite (1.2.9)
   - OneSignal (2.13.0)
-  - RxCocoa (5.1.1):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.1.1):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.1)
   - SDWebImage (5.6.1):
     - SDWebImage/Core (= 5.6.1)
   - SDWebImage/Core (5.6.1)
@@ -16,39 +10,35 @@ PODS:
   - SwiftMessages (7.0.1):
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
+  - SwiftOverlays (5.0.1)
 
 DEPENDENCIES:
   - M13ProgressSuite
   - OneSignal
-  - RxCocoa
-  - RxSwift
   - SDWebImage
   - Socket.IO-Client-Swift
   - SwiftMessages
+  - SwiftOverlays
 
 SPEC REPOS:
   trunk:
     - M13ProgressSuite
     - OneSignal
-    - RxCocoa
-    - RxRelay
-    - RxSwift
     - SDWebImage
     - Socket.IO-Client-Swift
     - Starscream
     - SwiftMessages
+    - SwiftOverlays
 
 SPEC CHECKSUMS:
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
   OneSignal: 09c9fe1e7a097af5fda94e00c1598c3c945552b9
-  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
-  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
-  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SDWebImage: 7edb9c3ea661e77a66661f7f044de8c1b55d1120
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
+  SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
 
-PODFILE CHECKSUM: f365e0aa035976966dcb346aecd6ab90515f8468
+PODFILE CHECKSUM: b9d8f912b87f694e4bc5df089f78e85dabb36d41
 
 COCOAPODS: 1.9.1

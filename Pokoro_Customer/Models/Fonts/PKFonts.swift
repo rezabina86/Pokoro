@@ -45,11 +45,11 @@ extension UIFont {
         }
         
         static var SmallSB : UIFont {
-            return UIFont(name: "SFProDisplay-Semibold", size: 10) ?? UIFont.systemFont(ofSize: 10, weight: .semibold)
+            return UIFont(name: "SFProDisplay-Semibold", size: 8) ?? UIFont.systemFont(ofSize: 8, weight: .semibold)
         }
         
         static var SmallRegular : UIFont {
-            return UIFont(name: "SFProDisplay-Regular", size: 10) ?? UIFont.systemFont(ofSize: 10, weight: .regular)
+            return UIFont(name: "SFProDisplay-Regular", size: 8) ?? UIFont.systemFont(ofSize: 8, weight: .regular)
         }
         
     }

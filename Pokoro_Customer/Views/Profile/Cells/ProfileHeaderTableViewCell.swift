@@ -25,8 +25,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     private let nameLabel: H2 = {
         let label = H2()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.text = "Reza Bina"
+        label.text = PKUserManager.shared.name
         return label
     }()
 
@@ -51,7 +50,8 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         avatarView.heightAnchor.constraint(equalToConstant: 72).isActive = true
         
         addSubview(nameLabel)
-        nameLabel.centerYAnchor.constraint(equalTo: avatarView.safeCenterYAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 24).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -24).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 16).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -24).isActive = true
     }

@@ -24,7 +24,6 @@ class MessageTableViewCell: UITableViewCell {
     private let barcodeTypeLabel: LargeSB = {
         let label = LargeSB()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "My Car's Barcode"
         label.numberOfLines = 1
         return label
     }()
@@ -32,13 +31,12 @@ class MessageTableViewCell: UITableViewCell {
     private let dateLabel: SmallSB = {
         let label = SmallSB()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Fri 6 Oct, 09:41"
         label.numberOfLines = 1
         return label
     }()
     
-    private let bodyLabel: SmallRegular = {
-        let label = SmallRegular()
+    private let bodyLabel: MediumRegular = {
+        let label = MediumRegular()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -58,6 +56,7 @@ class MessageTableViewCell: UITableViewCell {
             bodyLabel.text = newValue?.lastMessage
             unseenLabel.isHidden = !(newValue?.hasUnseenMessage ?? false)
             dateLabel.text = newValue?.stringDate
+            avatarImageView.image = LetterImageGenerator.imageWith(name: newValue?.userName)
         }
     }
 

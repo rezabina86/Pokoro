@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D970360857FD639CD612E56 /* libPods-Pokoro_Customer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 496FC59BBAA483EDD93BE5CE /* libPods-Pokoro_Customer.a */; };
+		B600A06A2434B3F700B6008A /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600A0692434B3F700B6008A /* Date+Components.swift */; };
 		B60C94DC242E08B00015DABF /* NameSpacesBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */; };
 		B60C94DF242E0CC20015DABF /* BarcodeMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */; };
 		B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E0242E24060015DABF /* UIImage+overlay.swift */; };
@@ -48,9 +50,12 @@
 		B656EB8F23C654780069AFD0 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */; };
 		B656EB9123C6591E0069AFD0 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B656EB9023C6591D0069AFD0 /* sample.pdf */; };
 		B656EB9323C65AAE0069AFD0 /* BarcodeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */; };
-		B663927B2433632700CCE252 /* Date+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663927A2433632700CCE252 /* Date+string.swift */; };
 		B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */; };
 		B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */; };
+		B6678E052434CC8100617D08 /* UIViewController+waiting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6678E042434CC8100617D08 /* UIViewController+waiting.swift */; };
+		B6678E082434D27C00617D08 /* LetterImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6678E072434D27C00617D08 /* LetterImageGenerator.swift */; };
+		B6678E0B2434DCC200617D08 /* FooterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6678E0A2434DCC200617D08 /* FooterButton.swift */; };
+		B6678E0D2434E26B00617D08 /* CreateNamespaceBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6678E0C2434E26B00617D08 /* CreateNamespaceBusinessModel.swift */; };
 		B66A3CF823AA982300916C95 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CF623AA982300916C95 /* Logger.swift */; };
 		B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CF723AA982300916C95 /* LogEvent.swift */; };
 		B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A3CFA23AA987A00916C95 /* Date+toString.swift */; };
@@ -107,8 +112,7 @@
 		B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EAC3C423B242BC0073D55F /* MainTabBarViewController.swift */; };
 		B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EAC3CB23B250430073D55F /* DarkTheme.swift */; };
 		B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */; };
-		CE9C4E7EC8328112A670EAF2 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3430A088E594418BA1E6D0B4 /* libPods-OneSignalNotificationServiceExtension.a */; };
-		E3B4AAE5DC70D1571D33855A /* libPods-Pokoro_Customer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8A3F483FFFBD0D1431934B /* libPods-Pokoro_Customer.a */; };
+		B7377A132CBE4C81BE4D20C7 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAB5FAA3F0389BF62BBDD42 /* libPods-OneSignalNotificationServiceExtension.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,11 +143,12 @@
 		0E0DCAE38271F20A6B40C995 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		1D4DE833D26DD341D674456F /* Pods-Pokoro_Customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.debug.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.debug.xcconfig"; sourceTree = "<group>"; };
 		2942CBFFE937D50075CA93DC /* Pods-Pokoro_Customer-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer-OneSignalNotificationServiceExtension/Pods-Pokoro_Customer-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		2B8A3F483FFFBD0D1431934B /* libPods-Pokoro_Customer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pokoro_Customer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3430A088E594418BA1E6D0B4 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		496FC59BBAA483EDD93BE5CE /* libPods-Pokoro_Customer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pokoro_Customer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDB091194AC8DA4F4CED41C /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		6B807AA5F63B5088246004DD /* Pods-Pokoro_Customer-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer-OneSignalNotificationServiceExtension/Pods-Pokoro_Customer-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		90C0B15D1D4EC7026B2236F8 /* Pods-Pokoro_Customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokoro_Customer.release.xcconfig"; path = "Target Support Files/Pods-Pokoro_Customer/Pods-Pokoro_Customer.release.xcconfig"; sourceTree = "<group>"; };
+		AAAB5FAA3F0389BF62BBDD42 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B600A0692434B3F700B6008A /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
 		B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpacesBusinessModel.swift; sourceTree = "<group>"; };
 		B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeMaker.swift; sourceTree = "<group>"; };
 		B60C94E0242E24060015DABF /* UIImage+overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+overlay.swift"; sourceTree = "<group>"; };
@@ -185,9 +190,12 @@
 		B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
 		B656EB9023C6591D0069AFD0 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewerViewController.swift; sourceTree = "<group>"; };
-		B663927A2433632700CCE252 /* Date+string.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+string.swift"; sourceTree = "<group>"; };
 		B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationViewController.swift; sourceTree = "<group>"; };
+		B6678E042434CC8100617D08 /* UIViewController+waiting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+waiting.swift"; sourceTree = "<group>"; };
+		B6678E072434D27C00617D08 /* LetterImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterImageGenerator.swift; sourceTree = "<group>"; };
+		B6678E0A2434DCC200617D08 /* FooterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButton.swift; sourceTree = "<group>"; };
+		B6678E0C2434E26B00617D08 /* CreateNamespaceBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNamespaceBusinessModel.swift; sourceTree = "<group>"; };
 		B66A3CF623AA982300916C95 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B66A3CF723AA982300916C95 /* LogEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogEvent.swift; sourceTree = "<group>"; };
 		B66A3CFA23AA987A00916C95 /* Date+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+toString.swift"; sourceTree = "<group>"; };
@@ -256,7 +264,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3B4AAE5DC70D1571D33855A /* libPods-Pokoro_Customer.a in Frameworks */,
+				2D970360857FD639CD612E56 /* libPods-Pokoro_Customer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE9C4E7EC8328112A670EAF2 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
+				B7377A132CBE4C81BE4D20C7 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +297,7 @@
 			children = (
 				B60C94DB242E08B00015DABF /* NameSpacesBusinessModel.swift */,
 				B6353524242E6EA2006A641D /* CheckNamespaceBusinessModel.swift */,
+				B6678E0C2434E26B00617D08 /* CreateNamespaceBusinessModel.swift */,
 			);
 			path = NameSpaces;
 			sourceTree = "<group>";
@@ -467,7 +476,8 @@
 				B6353511242E61AF006A641D /* UIViewController+showAlert.swift */,
 				B635351F242E6402006A641D /* CALayer+sketchShadow.swift */,
 				B626B7FA2430CF77007307FF /* Array+difference.swift */,
-				B663927A2433632700CCE252 /* Date+string.swift */,
+				B600A0692434B3F700B6008A /* Date+Components.swift */,
+				B6678E042434CC8100617D08 /* UIViewController+waiting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -475,6 +485,7 @@
 		B655882B23A7E0010056FD38 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B6678E062434D26600617D08 /* Avatar */,
 				B6353521242E6665006A641D /* Cache */,
 				B60C94DD242E0C930015DABF /* Barcode Manager */,
 				B655882C23A7E0160056FD38 /* PKUserManager.swift */,
@@ -504,6 +515,22 @@
 				B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */,
 			);
 			path = Messages;
+			sourceTree = "<group>";
+		};
+		B6678E062434D26600617D08 /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				B6678E072434D27C00617D08 /* LetterImageGenerator.swift */,
+			);
+			path = Avatar;
+			sourceTree = "<group>";
+		};
+		B6678E092434DCA500617D08 /* Footer Button */ = {
+			isa = PBXGroup;
+			children = (
+				B6678E0A2434DCC200617D08 /* FooterButton.swift */,
+			);
+			path = "Footer Button";
 			sourceTree = "<group>";
 		};
 		B66A3CF523AA982300916C95 /* Logger */ = {
@@ -715,6 +742,7 @@
 		B6C9321223C5265B006863E0 /* Barcodes */ = {
 			isa = PBXGroup;
 			children = (
+				B6678E092434DCA500617D08 /* Footer Button */,
 				B6C9321323C52664006863E0 /* Cells */,
 			);
 			path = Barcodes;
@@ -879,8 +907,8 @@
 		D28EF1079F83EEAFD99C5AE2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2B8A3F483FFFBD0D1431934B /* libPods-Pokoro_Customer.a */,
-				3430A088E594418BA1E6D0B4 /* libPods-OneSignalNotificationServiceExtension.a */,
+				AAAB5FAA3F0389BF62BBDD42 /* libPods-OneSignalNotificationServiceExtension.a */,
+				496FC59BBAA483EDD93BE5CE /* libPods-Pokoro_Customer.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -897,7 +925,7 @@
 				B68FA4BE23A7D10200672E00 /* Frameworks */,
 				B68FA4BF23A7D10200672E00 /* Resources */,
 				B6CF180424322FC90023F92A /* Embed App Extensions */,
-				2C8567DCCF9D0D260D85AEE0 /* [CP] Copy Pods Resources */,
+				41CE21D435BB7DC2FA20D31C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1012,7 +1040,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2C8567DCCF9D0D260D85AEE0 /* [CP] Copy Pods Resources */ = {
+		41CE21D435BB7DC2FA20D31C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1078,13 +1106,13 @@
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
 				B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */,
+				B6678E052434CC8100617D08 /* UIViewController+waiting.swift in Sources */,
 				B6CF14B923ABD59300D330FD /* NetworkLogger.swift in Sources */,
 				B6CF14BA23ABD59300D330FD /* EndPointType.swift in Sources */,
 				B6CF14BC23ABD59300D330FD /* LoginBusinessModel.swift in Sources */,
 				B60C94DF242E0CC20015DABF /* BarcodeMaker.swift in Sources */,
 				B644EB57242CD44500D7CF61 /* AuthenticateBusinessModel.swift in Sources */,
 				B6500BC323AE220000D20BAB /* LargeLight.swift in Sources */,
-				B663927B2433632700CCE252 /* Date+string.swift in Sources */,
 				B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */,
 				B6CF14B523ABD59300D330FD /* NetworkRouter.swift in Sources */,
 				B644EB4C242CB74C00D7CF61 /* SocketEvent.swift in Sources */,
@@ -1101,7 +1129,9 @@
 				B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */,
 				B626B7FB2430CF77007307FF /* Array+difference.swift in Sources */,
 				B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */,
+				B6678E0D2434E26B00617D08 /* CreateNamespaceBusinessModel.swift in Sources */,
 				B6DCE317242F9E3400928E8F /* ChatsBusinessModel.swift in Sources */,
+				B6678E082434D27C00617D08 /* LetterImageGenerator.swift in Sources */,
 				B635351B242E62E7006A641D /* RKAlertView.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
 				B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */,
@@ -1140,10 +1170,12 @@
 				B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */,
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
+				B600A06A2434B3F700B6008A /* Date+Components.swift in Sources */,
 				B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */,
 				B6A1DE6A24338DFB003A9470 /* RegisterBusinessModel.swift in Sources */,
 				B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */,
 				B6500BBD23AE220000D20BAB /* H2.swift in Sources */,
+				B6678E0B2434DCC200617D08 /* FooterButton.swift in Sources */,
 				B6CF14C123ACCDC800D330FD /* Text+Localize.swift in Sources */,
 				B655882823A7DC780056FD38 /* UIApplication+SwitchRoot.swift in Sources */,
 				B644EB51242CBCF200D7CF61 /* SendMessageBusinessModel.swift in Sources */,
@@ -1315,7 +1347,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1323,6 +1355,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
 				SWIFT_VERSION = 5.0;
@@ -1338,7 +1371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1346,6 +1379,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
 				SWIFT_VERSION = 5.0;

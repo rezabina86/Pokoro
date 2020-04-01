@@ -27,15 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         presentAuthenticationCoordinator()
         
         //START OneSignal initialization code
+        
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
         
         // Replace 'YOUR_APP_ID' with your OneSignal App ID.
-        OneSignal.initWithLaunchOptions(launchOptions,
-                                        appId: "3bbd9b9a-ccaf-44b3-b55a-a921f41e8bf8",
-                                        handleNotificationAction: nil,
-                                        settings: onesignalInitSettings)
+//        OneSignal.initWithLaunchOptions(launchOptions,
+//                                        appId: "3bbd9b9a-ccaf-44b3-b55a-a921f41e8bf8",
+//                                        handleNotificationAction: nil,
+//                                        settings: onesignalInitSettings)
         
-        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "3bbd9b9a-ccaf-44b3-b55a-a921f41e8bf8", handleNotificationReceived: nil, handleNotificationAction: { (result) in
+            Logger.log(message: result?.action, event: .debug)
+        }, settings: onesignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = .none
         
         // Recommend moving the below line to prompt for push after informing the user about
         //   how your app will use them.
@@ -68,5 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ThemeManager.shared.set(theme: style == .light ? LightTheme() : DarkTheme())
     }
     
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        PKUserManager.shared.isThreadsNeedUpdate = true
+    }
+    
 }
-

@@ -7,15 +7,36 @@
 //
 
 import UIKit
+import Combine
+import AVFoundation
 
 class MainTabBarViewController: UITabBarController {
     
     public var chatData: ChatsDataModel?
+    private var cancellables = Set<AnyCancellable>()
+    private var pageLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         chatData = ChatsDataModel()
         setupTabBar()
+        setupListener()
+    }
+    
+    private func setupListener() {
+        chatData?.$unseenThreads.sink(receiveValue: { [weak self] (unseen) in
+            guard let `self` = self else { return }
+            guard let items = self.tabBar.items else { return }
+            items[0].badgeValue = unseen == 0 ? nil : "\(unseen)"
+            items[0].badgeColor = .systemRed
+            UIApplication.shared.applicationIconBadgeNumber = unseen
+        }).store(in: &cancellables)
+        
+        chatData?.$newMessageRecieved.sink(receiveValue: { [weak self] (_) in
+            guard let `self` = self else { return }
+            if self.pageLoaded { AudioServicesPlayAlertSound(SystemSoundID(1016)) }
+            self.pageLoaded = true
+        }).store(in: &cancellables)
     }
     
     private func setupTabBar() {
@@ -40,20 +61,20 @@ class MainTabBarViewController: UITabBarController {
         self.delegate = self
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        let userInterfaceStyle = self.traitCollection.userInterfaceStyle
-        switch userInterfaceStyle {
-        case .dark:
-            ThemeManager.shared.set(theme: DarkTheme())
-        default:
-            ThemeManager.shared.set(theme: LightTheme())
-        }
-        setupTabBar()
-    }
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        let userInterfaceStyle = self.traitCollection.userInterfaceStyle
+//        switch userInterfaceStyle {
+//        case .dark:
+//            ThemeManager.shared.set(theme: DarkTheme())
+//        default:
+//            ThemeManager.shared.set(theme: LightTheme())
+//        }
+//        setupTabBar()
+//    }
     
     private func showChat(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
-        let messageController = MessageViewController()
         chatData?.startThread(with: namespace)
+        let messageController = MessageViewController()
         messageController.chatData = chatData
         messageController.delegate = self
         present(messageController, animated: true)

@@ -9,8 +9,9 @@
 import UIKit
 import OneSignal
 import AuthenticationServices
+import Combine
 
-class PKUserManager: NSObject {
+class PKUserManager: NSObject, ObservableObject {
     
     typealias credentialHandler = (_ success: Bool, _ error: String?) -> Void
     
@@ -39,11 +40,20 @@ class PKUserManager: NSObject {
         token = nil
     }
     
+    @Published var isThreadsNeedUpdate: Bool = true
+    
     func checkCredential(_ credential: ASAuthorizationAppleIDCredential, completion: @escaping credentialHandler) {
         let userIdentifier = credential.user
         if let name = credential.fullName, let email = credential.email {
-            registerUser(userIdentifier: userIdentifier, email: email, name: "\(name.givenName ?? "") \(name.familyName ?? "")") { (success, error) in
-                completion(success, error)
+            registerUser(userIdentifier: userIdentifier, email: email, name: "\(name.givenName ?? "") \(name.familyName ?? "")") { [weak self] (success, error) in
+                guard let `self` = self else { return }
+                if error != nil {
+                    self.loginUser(userIdentifier: userIdentifier) { (success, error) in
+                        completion(success,error)
+                    }
+                } else {
+                    completion(success, nil)
+                }
             }
         } else {
             loginUser(userIdentifier: userIdentifier) { (success, error) in

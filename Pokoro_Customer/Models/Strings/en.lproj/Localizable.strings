@@ -19,6 +19,8 @@
 
 //General
 "and" = " and ";
+"cancel" = "Cancel";
+"save" = "Save";
 
 //Login
 "noticeWelcome" = "By continiung, you are indicating that you accept our ";
@@ -41,3 +43,7 @@
 //Barcodes
 "myBarcodes" = "My Barcodes";
 "export" = "Export";
+"enterName" = "Enter Name";
+"addQRTitle" = "Add New QR Code";
+"addQRMessage" = "Please enter a name for the new QR code";
+"createBarcodeError" = "You should choice a valid name";

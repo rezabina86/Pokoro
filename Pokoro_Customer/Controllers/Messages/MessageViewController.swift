@@ -48,7 +48,9 @@ class MessageViewController: UIViewController {
     private var messages: [ChatsDataModel.Message] = []
     private var fetchInProgress = false
     
-    var chatData: ChatsDataModel!
+    var chatData: ChatsDataModel! {
+        willSet { navBar.title = newValue.selectedThread?.userName }
+    }
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -60,7 +62,6 @@ class MessageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeNotification()
-        navBar.title = chatData.name
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -155,8 +156,6 @@ extension MessageViewController: PKNavBarViewDelegate {
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String) {
-        //tableView.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .bottom)
-        //tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
         chatData.sendMessage(text)
         if messages.count > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
@@ -185,18 +184,23 @@ extension MessageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
-        if indexPath.row == messages.count - 1, !fetchInProgress {
-            fetchInProgress = true
-            chatData.fetchThreadFromAPI(completion: { self.fetchInProgress = false })
+        DispatchQueue(label: "com.pokoro.fetch").async { [weak self] in
+            guard let `self` = self else { return }
+            if indexPath.row == self.messages.count - 1, !self.fetchInProgress {
+                self.fetchInProgress = true
+                self.chatData.fetchThreadFromAPI(completion: { self.fetchInProgress = false })
+            }
         }
         if message.isIncomeMessage {
             let cell = IncomingMessageTableViewCell()
             cell.message = message.message
+            cell.date = message.stringDate
             cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             return cell
         } else {
             let cell = OutgoingMessageTableViewCell()
             cell.message = message.message
+            cell.date = message.stringDate
             cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             return cell
         }

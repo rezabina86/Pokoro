@@ -15,23 +15,22 @@ class ChatsDataModel: ObservableObject {
     private let manager = PKSocketManager.shared
     @Published var threads: [Thread] = []
     @Published var messages: [Message] = []
-    private var selectedThread: Thread?
-    public var name: String?
+    @Published var unseenThreads: Int = 0
+    @Published var newMessageRecieved: Int = 0
+    public var selectedThread: Thread?
     
     private var paginationEnded: Bool = false
     private var lastMessageId: String?
     
     init() {
         manager.delegate = self
-        manager.connect()
     }
     
     public func setup(apiResponse: ChatsBusinessModel.Fetch.Response) {
+        manager.connect()
         self.threads = apiResponse.results.map({ Thread(apiResponse: $0) })
-    }
-    
-    private func isThreadFound(id: String) -> Bool {
-        return threads.first(where: { $0.id == id }) != nil
+        self.updateUnseenMessages()
+        self.refreshThreads()
     }
     
     public func saveIncomeMessage(message: IncomeMessageBusinessModel) {
@@ -40,25 +39,21 @@ class ChatsDataModel: ObservableObject {
             switch message.isOutgoingMessage {
             case true:
                 self.messages.insert(Message(socketMessage: message), at: 0)
-                if let affectedThread = self.threads.first(where: { $0.id == message.chat_id }) {
-                    self.seenAllMessageIn(thread: affectedThread)
-                }
+                self.seenAllMessageIn(threadId: message.chat_id)
             case false:
-                if self.isThreadFound(id: message.chat_id) {
-                    if message.chat_id == self.selectedThread?.id {
-                        self.messages.insert(Message(socketMessage: message), at: 0)
-                    } else {
-                        if let affectedThread = self.threads.first(where: { $0.id == message.chat_id }) {
-                            self.seenAllMessageIn(thread: affectedThread)
-                        }
-                    }
+                if message.chat_id == self.selectedThread?.id {
+                    self.messages.insert(Message(socketMessage: message), at: 0)
+                    self.seenAllMessageIn(threadId: message.chat_id)
+                } else {
+                    self.newMessageRecieved += 1
                 }
             }
+            self.updateUnseenMessages()
         })
     }
     
     private func updateThread(with message: IncomeMessageBusinessModel, completion: @escaping () -> Void) {
-        guard let effectedThread = threads.enumerated().first(where: { $0.element.id == message.chat_id }) else {
+        guard let editingThread = findThread(id: message.chat_id) else {
             getChatDetail(chatId: message.chat_id) { [weak self] (result) in
                 guard let `self` = self else { return }
                 let newThread = Thread(incomeMessage: message)
@@ -66,19 +61,16 @@ class ChatsDataModel: ObservableObject {
                 newThread.hasUnseenMessage = true
                 if self.selectedThread?.isThreadTemp ?? false { self.selectedThread = newThread }
                 self.threads.insert(contentsOf: [newThread], at: 0)
+                self.refreshThreads()
                 completion()
             }
             return
         }
-        let newThread = Thread(thread: effectedThread.element)
-        newThread.lastMessage = message.message
-        newThread.lastMessageUserId = message.user_id
-        newThread.lastMessageId = message.id
-        newThread.timeStamp = message.timestamp
-        newThread.id = message.chat_id
-        newThread.hasUnseenMessage = true
-        threads.remove(at: effectedThread.offset)
+        let newThread = Thread(thread: editingThread.thread)
+        newThread.updateThread(with: message)
+        threads.remove(at: editingThread.offset)
         threads.insert(contentsOf: [newThread], at: 0)
+        refreshThreads()
         completion()
     }
     
@@ -86,25 +78,26 @@ class ChatsDataModel: ObservableObject {
         paginationEnded = false
         lastMessageId = thread?.lastMessageId
         selectedThread = thread
-        seenAllMessageIn(thread: thread)
-        name = selectedThread?.userName
+        seenAllMessageIn(threadId: thread?.id)
         messages.removeAll()
+        updateUnseenMessages()
     }
     
-    private func seenAllMessageIn(thread: Thread?) {
-        guard let affectedThread = threads.enumerated().first(where: { $0.element.id == thread?.id }) else { return }
-        affectedThread.element.hasUnseenMessage = false
-        threads.remove(at: affectedThread.offset)
-        threads.insert(contentsOf: [affectedThread.element], at: affectedThread.offset)
+    private func refreshThreads() {
+        let newOrder = threads.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
+        threads = newOrder
+    }
+    
+    private func seenAllMessageIn(threadId: String?) {
+        guard let id = threadId, let editingThread = findThread(id: id) else { return }
+        editingThread.thread.hasUnseenMessage = false
+        threads.remove(at: editingThread.offset)
+        threads.insert(contentsOf: [editingThread.thread], at: editingThread.offset)
     }
     
     public func fetchThreadFromAPI(completion: @escaping () -> Void) {
         guard let selectedThread = selectedThread, let lastMessageId = lastMessageId, paginationEnded == false else { return }
-        if messages.isEmpty {
-            let firstMessage = Message(thread: selectedThread)
-            Logger.log(message: firstMessage.user_id, event: .error)
-            messages.append(firstMessage)
-        }
+        if messages.isEmpty { messages.append(Message(thread: selectedThread)) }
         NetworkManager().getThread(request: ThreadBusinessModel.Fetch.Request(id: selectedThread.id, last_message: lastMessageId, direction: .backward)) { [weak self] (response, error) in
             guard let `self` = self else { return }
             if let error = error {
@@ -137,6 +130,11 @@ class ChatsDataModel: ObservableObject {
         return threads.first(where: { $0.namespaceId == namespaceId })
     }
     
+    private func findThread(id: String) -> (offset: Int, thread: Thread)? {
+        guard let thread = threads.enumerated().first(where: { $0.element.id == id }) else { return nil }
+        return (thread.offset, thread.element)
+    }
+    
     public func startThread(with namespace: CheckNamespaceBusinessModel.Fetch.Response) {
         if let namespace = findThread(with: namespace.id) {
             select(thread: namespace)
@@ -149,6 +147,14 @@ class ChatsDataModel: ObservableObject {
         NetworkManager().getThread(request: ThreadBusinessModel.Fetch.Request(id: chatId)) { (response, _) in
             if let response = response { completion(response) }
         }
+    }
+    
+    private func updateUnseenMessages() {
+        var unseenTotal = 0
+        threads.forEach({
+            if $0.hasUnseenMessage { unseenTotal += 1 }
+        })
+        unseenThreads = unseenTotal
     }
     
     class Thread {
@@ -212,6 +218,19 @@ class ChatsDataModel: ObservableObject {
             return Date(timeIntervalSince1970: TimeInterval(timeStamp / 1000)).stringFormat
         }
         
+        var lastMessageDate: Date {
+            return Date(timeIntervalSince1970: TimeInterval(timeStamp / 1000))
+        }
+        
+        func updateThread(with incomeMessage: IncomeMessageBusinessModel) {
+            lastMessage = incomeMessage.message
+            lastMessageUserId = incomeMessage.user_id
+            lastMessageId = incomeMessage.id
+            timeStamp = incomeMessage.timestamp
+            id = incomeMessage.chat_id
+            hasUnseenMessage = true
+        }
+        
     }
     
     class Message: Hashable {
@@ -251,6 +270,18 @@ class ChatsDataModel: ObservableObject {
         
         var isIncomeMessage: Bool {
             return user_id != PKUserManager.shared.userId
+        }
+        
+        var stringDate: String? {
+            return Date(timeIntervalSince1970: TimeInterval(self.timestamp / 1000)).stringFormat
+        }
+        
+        func stringDate(completion: @escaping (_ date: String?) -> Void) {
+            DispatchQueue(label: "com.pokoro.stringDate").async { [weak self] in
+                guard let `self` = self else { return }
+                let stringDate = Date(timeIntervalSince1970: TimeInterval(self.timestamp / 1000)).stringFormat
+                completion(stringDate)
+            }
         }
         
         static func == (lhs: ChatsDataModel.Message, rhs: ChatsDataModel.Message) -> Bool {

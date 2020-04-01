@@ -111,9 +111,11 @@ class PKSocketManager: NSObject {
             self.delegate?.pkSocketManagerClientStatusChanged(self, event: .disconnect)
         }
         
-        socket.on(clientEvent: .reconnect) { (_, _) in
+        socket.on(clientEvent: .reconnect) { [weak self] (_, _) in
+            guard let `self` = self else { return }
             self.delegate?.pkSocketManagerClientStatusChanged(self, event: .reconnect)
         }
+        
     }
     
 }
