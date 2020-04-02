@@ -143,6 +143,28 @@ class MessageViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }.store(in: &cancellables)
+        
+        chatData?.$socketStatus.sink(receiveValue: { [weak self] (event) in
+            guard let `self` = self else { return }
+            self.handleSocketStatus(event: event)
+        }).store(in: &cancellables)
+    }
+    
+    private func handleSocketStatus(event: SocketClientEvent) {
+        switch event {
+        case .connect:
+            navBar.title = chatData.selectedThread?.userName
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+                guard let `self` = self else { return }
+                //self.getThreads()
+            }
+        case .disconnect:
+            if PKUserManager.shared.isAppInForeground { chatData?.connect() }
+        case .reconnect:
+            navBar.title = "Connecting..."
+        default:
+            break
+        }
     }
 
 }
@@ -155,10 +177,14 @@ extension MessageViewController: PKNavBarViewDelegate {
 
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
-    func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String) {
-        chatData.sendMessage(text)
-        if messages.count > 0 {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String, completion: @escaping () -> Void) {
+        chatData.sendMessage(text) { [weak self] (success) in
+            guard let `self` = self else { return }
+            guard success else { return }
+            if self.messages.count > 0 {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
+            completion()
         }
     }
     
@@ -172,6 +198,13 @@ extension MessageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        Logger.log(message: velocity.y, event: .debug)
+        if velocity.y > 0.1 {
+            self.chatBoxView.textField.resignFirstResponder()
+        }
     }
     
 }

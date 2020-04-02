@@ -38,9 +38,13 @@ class PKUserManager: NSObject, ObservableObject {
     
     public func clearDataOnLogout() {
         token = nil
+        OneSignal.deleteTag("user_id")
+        NamespacesCacheManager.shared.clear()
+        ThreadsCacheManager.shared.clear()
     }
     
-    @Published var isThreadsNeedUpdate: Bool = true
+    @Published var isAppInForeground: Bool = true
+    @Published var pushNotificationChatId: String?
     
     func checkCredential(_ credential: ASAuthorizationAppleIDCredential, completion: @escaping credentialHandler) {
         let userIdentifier = credential.user

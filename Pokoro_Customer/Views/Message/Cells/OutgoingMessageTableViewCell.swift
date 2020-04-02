@@ -15,6 +15,7 @@ class OutgoingMessageTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.bubbleColor = UIColor.PKColors.green
         view.titleColor = UIColor.PKColors.navy
+        view.dateColor = UIColor.PKColors.navy
         return view
     }()
     

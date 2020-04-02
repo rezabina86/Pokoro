@@ -11,7 +11,8 @@ import Foundation
 extension Date {
     
     var stringFormat: String? {
-        let days = daysBetweenDates(startDate: self, endDate: Date())
+        let numberOfdays = Date() - self
+        guard let days = numberOfdays.day else { return nil }
         if days == 0 {
             return "Today \(self.hour):\(self.minute < 10 ? "0\(self.minute)" : "\(self.minute)")"
         } else if days == 1 {
@@ -23,39 +24,42 @@ extension Date {
         }
     }
     
-    private func daysBetweenDates(startDate: Date, endDate: Date) -> Int {
+    static func -(recent: Date, previous: Date) -> (month: Int?, day: Int?, hour: Int?, minute: Int?) {
+        
         let calendar = Calendar.current
-        guard let start = calendar.ordinality(of: .day, in: .era, for: startDate) else { return 0 }
-        guard let end = calendar.ordinality(of: .day, in: .era, for: endDate) else { return 0 }
-        return end - start
+        let date1 = calendar.startOfDay(for: recent)
+        let date2 = calendar.startOfDay(for: previous)
+        
+        let diff = calendar.dateComponents([.month, .day, .hour, .minute], from: date2, to: date1)
+        return (month: diff.month, day: diff.day, hour: diff.hour, minute: diff.minute)
     }
     
     private func convertMonths(month : Int) -> String {
         switch month {
         case 1:
-            return "January"
+            return "Jan"
         case 2:
-            return "February"
+            return "Feb"
         case 3:
-            return "March"
+            return "Mar"
         case 4:
-            return "April"
+            return "Apr"
         case 5:
             return "May"
         case 6:
-            return "June"
+            return "Jun"
         case 7:
-            return "July"
+            return "Jul"
         case 8:
-            return "August"
+            return "Aug"
         case 9:
-            return "September"
+            return "Sep"
         case 10:
-            return "October"
+            return "Oct"
         case 11:
-            return "November"
+            return "Nov"
         case 12:
-            return "December"
+            return "Dec"
         default:
             return ""
         }

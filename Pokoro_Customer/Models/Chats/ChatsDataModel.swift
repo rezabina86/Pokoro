@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import SocketIO
+import AVFoundation
 
 class ChatsDataModel: ObservableObject {
     
@@ -17,7 +18,9 @@ class ChatsDataModel: ObservableObject {
     @Published var messages: [Message] = []
     @Published var unseenThreads: Int = 0
     @Published var newMessageRecieved: Int = 0
+    @Published var socketStatus: SocketClientEvent = .disconnect
     public var selectedThread: Thread?
+    private var unsentMessages: [OutgoingMessageBusinessModel] = []
     
     private var paginationEnded: Bool = false
     private var lastMessageId: String?
@@ -26,8 +29,15 @@ class ChatsDataModel: ObservableObject {
         manager.delegate = self
     }
     
-    public func setup(apiResponse: ChatsBusinessModel.Fetch.Response) {
+    public func connect() {
         manager.connect()
+    }
+    
+    public func disconnect() {
+        manager.disconnect()
+    }
+    
+    public func setup(apiResponse: ChatsBusinessModel.Fetch.Response) {
         self.threads = apiResponse.results.map({ Thread(apiResponse: $0) })
         self.updateUnseenMessages()
         self.refreshThreads()
@@ -44,6 +54,7 @@ class ChatsDataModel: ObservableObject {
                 if message.chat_id == self.selectedThread?.id {
                     self.messages.insert(Message(socketMessage: message), at: 0)
                     self.seenAllMessageIn(threadId: message.chat_id)
+                    AudioServicesPlayAlertSound(SystemSoundID(1117))
                 } else {
                     self.newMessageRecieved += 1
                 }
@@ -59,6 +70,9 @@ class ChatsDataModel: ObservableObject {
                 let newThread = Thread(incomeMessage: message)
                 newThread.userName = result.other_user.name
                 newThread.hasUnseenMessage = true
+                newThread.nameSpaceOwner = result.namespace.creator.id
+                newThread.namespaceName = result.namespace.name
+                newThread.namespaceId = result.namespace.id
                 if self.selectedThread?.isThreadTemp ?? false { self.selectedThread = newThread }
                 self.threads.insert(contentsOf: [newThread], at: 0)
                 self.refreshThreads()
@@ -121,9 +135,21 @@ class ChatsDataModel: ObservableObject {
         manager.seenMessage(model: SeenMessageBusinessModel(chat_id: selectedThread.id, message_id: message.id))
     }
     
-    public func sendMessage(_ message: String) {
+    public func sendMessage(_ message: String, completion: @escaping (_ success: Bool) -> Void) {
         guard let selectedThread = selectedThread, let namespaceId = selectedThread.namespaceId else { return }
-        manager.sendMessage(model: OutgoingMessageBusinessModel(namespace_id: namespaceId, user_id: selectedThread.userId, message: message))
+        let message = OutgoingMessageBusinessModel(namespace_id: namespaceId, user_id: selectedThread.userId, message: message)
+        handleSendMessage(message, completion: { success in
+            completion(success)
+        })
+    }
+    
+    private func handleSendMessage(_ message: OutgoingMessageBusinessModel, completion: (_ success: Bool) -> Void) {
+        if socketStatus == .connect {
+            manager.sendMessage(model: message)
+            completion(true)
+        } else {
+            completion(false)
+        }
     }
     
     private func findThread(with namespaceId: String) -> Thread? {
@@ -165,8 +191,10 @@ class ChatsDataModel: ObservableObject {
         var timeStamp: Int64
         var lastMessageId: String?
         var namespaceId: String?
+        var namespaceName: String?
         var lastMessageUserId: String?
         var hasUnseenMessage: Bool = false
+        var nameSpaceOwner: String?
         
         init(apiResponse: ChatsBusinessModel.Chat) {
             self.id = apiResponse.id
@@ -178,6 +206,8 @@ class ChatsDataModel: ObservableObject {
             self.namespaceId = apiResponse.namespace.id
             self.lastMessageUserId = apiResponse.last_message.user_id
             self.hasUnseenMessage = apiResponse.unread_messages_count != 0
+            self.namespaceName = apiResponse.namespace.name
+            self.nameSpaceOwner = apiResponse.namespace.creator.id
         }
         
         init(thread: Thread) {
@@ -189,6 +219,8 @@ class ChatsDataModel: ObservableObject {
             self.lastMessageId = thread.lastMessageId
             self.namespaceId = thread.namespaceId
             self.lastMessageUserId = thread.lastMessageUserId
+            self.namespaceName = thread.namespaceName
+            self.nameSpaceOwner = thread.nameSpaceOwner
         }
         
         init(incomeMessage: IncomeMessageBusinessModel) {
@@ -208,6 +240,8 @@ class ChatsDataModel: ObservableObject {
             self.namespaceId = namespace.id
             self.timeStamp = 0
             self.userName = namespace.creator.name
+            self.namespaceName = namespace.name
+            self.nameSpaceOwner = namespace.creator.id
         }
         
         var isThreadTemp: Bool {
@@ -229,6 +263,11 @@ class ChatsDataModel: ObservableObject {
             timeStamp = incomeMessage.timestamp
             id = incomeMessage.chat_id
             hasUnseenMessage = true
+        }
+        
+        var isUserOwnerOfTheNamespace: Bool {
+            guard let ownerId = nameSpaceOwner, let userId = PKUserManager.shared.userId else { return false }
+            return ownerId == userId
         }
         
     }
@@ -298,6 +337,7 @@ class ChatsDataModel: ObservableObject {
 extension ChatsDataModel: PKSocketManagerDelegate {
     
     func pkSocketManagerClientStatusChanged(_ manager: PKSocketManager, event: SocketClientEvent) {
+        socketStatus = event
         if event == .connect {
             guard let session = PKUserManager.shared.token else {
                 manager.disconnect()

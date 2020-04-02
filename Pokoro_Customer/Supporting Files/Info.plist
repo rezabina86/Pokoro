@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location will be used when you send a message to other users.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location will be used when you send a message to other users.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -31,6 +27,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need to access to the camera in case of read the QR Codes</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location will be used when you send a message to other users.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location will be used when you send a message to other users.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

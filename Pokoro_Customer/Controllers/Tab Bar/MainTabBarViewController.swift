@@ -34,9 +34,14 @@ class MainTabBarViewController: UITabBarController {
         
         chatData?.$newMessageRecieved.sink(receiveValue: { [weak self] (_) in
             guard let `self` = self else { return }
-            if self.pageLoaded { AudioServicesPlayAlertSound(SystemSoundID(1016)) }
+            if self.pageLoaded { AudioServicesPlayAlertSound(SystemSoundID(1312)) }
             self.pageLoaded = true
         }).store(in: &cancellables)
+        
+        PKUserManager.shared.$pushNotificationChatId.sink { [weak self] (id) in
+            guard let `self` = self, let id = id else { return }
+            self.handlePushNotification(id: id)
+        }.store(in: &cancellables)
     }
     
     private func setupTabBar() {
@@ -61,15 +66,40 @@ class MainTabBarViewController: UITabBarController {
         self.delegate = self
     }
     
+    private func handlePushNotification(id: String) {
+        NetworkManager().getChats { [weak self] (threads, error) in
+            guard let `self` = self else { return }
+            if let threads = threads {
+                guard let selectedThread = threads.results.first(where: { $0.id == id }) else { return }
+                let thread = ChatsDataModel.Thread(apiResponse: selectedThread)
+                self.showPushThread(thread: thread)
+            }
+        }
+    }
+    
+    private func showPushThread(thread: ChatsDataModel.Thread) {
+        chatData?.select(thread: thread)
+        let messageController = MessageViewController()
+        messageController.delegate = self
+        messageController.chatData = chatData
+        messageController.hidesBottomBarWhenPushed = true
+        self.selectedViewController?.present(messageController, animated: true)
+    }
+    
 //    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 //        let userInterfaceStyle = self.traitCollection.userInterfaceStyle
-//        switch userInterfaceStyle {
-//        case .dark:
-//            ThemeManager.shared.set(theme: DarkTheme())
-//        default:
-//            ThemeManager.shared.set(theme: LightTheme())
+//        Logger.log(message: PKUserManager.shared.theme, event: .warning)
+//        Logger.log(message: userInterfaceStyle.rawValue, event: .warning)
+//        if PKUserManager.shared.isThemeChanged(newTheme: (userInterfaceStyle == .dark) ? .dark : .light) {
+//            Logger.log(message: "Changed", event: .info)
+//            switch userInterfaceStyle {
+//            case .dark:
+//                ThemeManager.shared.set(theme: DarkTheme())
+//            default:
+//                ThemeManager.shared.set(theme: LightTheme())
+//            }
+//            setupTabBar()
 //        }
-//        setupTabBar()
 //    }
     
     private func showChat(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
@@ -127,6 +157,7 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
 extension MainTabBarViewController: MessageViewControllerDelegate {
     
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
+        chatData?.select(thread: nil)
         controller.dismiss(animated: true)
     }
     

@@ -29,21 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //START OneSignal initialization code
         
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-        
-        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
-//        OneSignal.initWithLaunchOptions(launchOptions,
-//                                        appId: "3bbd9b9a-ccaf-44b3-b55a-a921f41e8bf8",
-//                                        handleNotificationAction: nil,
-//                                        settings: onesignalInitSettings)
-        
         OneSignal.initWithLaunchOptions(launchOptions, appId: "3bbd9b9a-ccaf-44b3-b55a-a921f41e8bf8", handleNotificationReceived: nil, handleNotificationAction: { (result) in
-            Logger.log(message: result?.action, event: .debug)
+            guard let chatId = result?.notification.payload.additionalData["chat_id"] as? String else { return }
+            PKUserManager.shared.pushNotificationChatId = chatId
         }, settings: onesignalInitSettings)
         
         OneSignal.inFocusDisplayType = .none
         
-        // Recommend moving the below line to prompt for push after informing the user about
-        //   how your app will use them.
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notifications: \(accepted)")
             if let user_id = PKUserManager.shared.userId {
@@ -74,7 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        PKUserManager.shared.isThreadsNeedUpdate = true
+        PKUserManager.shared.isAppInForeground = true
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        PKUserManager.shared.isAppInForeground = false
     }
     
 }

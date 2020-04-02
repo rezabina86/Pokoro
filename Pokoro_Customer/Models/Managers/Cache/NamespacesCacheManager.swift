@@ -23,4 +23,8 @@ class NamespacesCacheManager: NSObject {
         }
     }
     
+    func clear() {
+        namespaces = nil
+    }
+    
 }

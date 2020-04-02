@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PKChatTextFieldViewDelegate: class {
-    func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String)
+    func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String, completion: @escaping () -> Void)
 }
 
 class PKChatTextFieldView: UIView {
@@ -32,7 +32,7 @@ class PKChatTextFieldView: UIView {
         return view
     }()
     
-    private let textField: UITextField = {
+    public let textField: UITextField = {
         let view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.clear
@@ -91,8 +91,10 @@ class PKChatTextFieldView: UIView {
     @objc
     private func sendButtonDidTapped(_ sender: UIButton) {
         guard let text = textField.text, text.count != 0 else { return }
-        textField.text = nil
-        delegate?.pkChatTextFieldViewSendButtonDidTapped(self, with: text)
+        delegate?.pkChatTextFieldViewSendButtonDidTapped(self, with: text, completion: { [weak self] in
+            guard let `self` = self else { return }
+            self.textField.text = nil
+        })
     }
 
 }

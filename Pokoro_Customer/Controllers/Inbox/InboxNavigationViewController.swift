@@ -23,6 +23,17 @@ class InboxNavigationViewController: UINavigationController {
         viewControllers = [inboxController]
         interactivePopGestureRecognizer?.delegate = nil
         isNavigationBarHidden = true
+        delegate = self
     }
 
+}
+
+extension InboxNavigationViewController: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if viewController.isKind(of: InboxViewController.self) {
+            chatData?.select(thread: nil)
+        }
+    }
+    
 }

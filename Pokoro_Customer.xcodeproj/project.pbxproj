@@ -78,6 +78,7 @@
 		B68FA4D123A7D10400672E00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CF23A7D10400672E00 /* LaunchScreen.storyboard */; };
 		B6A1DE6A24338DFB003A9470 /* RegisterBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1DE6924338DFB003A9470 /* RegisterBusinessModel.swift */; };
 		B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */; };
+		B6A44FF22435EEB500B255A4 /* ThreadsCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A44FF12435EEB500B255A4 /* ThreadsCacheManager.swift */; };
 		B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */; };
 		B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9321023C5245E006863E0 /* BarcodesViewController.swift */; };
 		B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9321423C52677006863E0 /* BarcodeTableViewCell.swift */; };
@@ -220,6 +221,7 @@
 		B68FA4D223A7D10400672E00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6A1DE6924338DFB003A9470 /* RegisterBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBusinessModel.swift; sourceTree = "<group>"; };
 		B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKChatTextFieldView.swift; sourceTree = "<group>"; };
+		B6A44FF12435EEB500B255A4 /* ThreadsCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsCacheManager.swift; sourceTree = "<group>"; };
 		B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationViewController.swift; sourceTree = "<group>"; };
 		B6C9321023C5245E006863E0 /* BarcodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodesViewController.swift; sourceTree = "<group>"; };
 		B6C9321423C52677006863E0 /* BarcodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeTableViewCell.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				B6353522242E6687006A641D /* NamespacesCacheManager.swift */,
+				B6A44FF12435EEB500B255A4 /* ThreadsCacheManager.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -1132,6 +1135,7 @@
 				B6678E0D2434E26B00617D08 /* CreateNamespaceBusinessModel.swift in Sources */,
 				B6DCE317242F9E3400928E8F /* ChatsBusinessModel.swift in Sources */,
 				B6678E082434D27C00617D08 /* LetterImageGenerator.swift in Sources */,
+				B6A44FF22435EEB500B255A4 /* ThreadsCacheManager.swift in Sources */,
 				B635351B242E62E7006A641D /* RKAlertView.swift in Sources */,
 				B66A3D0423AA9EDD00916C95 /* LightTheme.swift in Sources */,
 				B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */,
@@ -1347,7 +1351,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1371,7 +1375,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1393,6 +1397,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1401,6 +1406,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1415,6 +1421,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1423,6 +1430,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
