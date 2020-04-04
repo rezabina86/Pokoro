@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Messages: Hashable {
+protocol Messages {
     
     var id: String { get set }
     var userId: String? { get set }

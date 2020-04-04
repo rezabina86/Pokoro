@@ -27,6 +27,9 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     //When user left the thread it'll be nil
     public var selectedThread: T?
     
+    //This property will be false when the last message in a thread is fetched
+    private var messagesPaginationEnded: Bool = false
+    
     private var cancellables = Set<AnyCancellable>()
     
     //This property sets within AppDelegate and PKUserManager.
@@ -37,6 +40,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     //Socket Manager
     private let socketManager = PKSocketManager.shared
     
+    //Once the chatManager initialized it tries to connect to the socket and if connection is successful it will get all threads from the server
     init() {
         socketManager.delegate = self
         setupListeners()
@@ -46,30 +50,61 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
         PKUserManager.shared.$isAppInForeground.sink { [weak self] (status) in
             guard let `self` = self else { return }
             self.appInForeground = status
-            self.setup()
+            self.connect()
         }.store(in: &cancellables)
     }
     
+    //Use this method to disconnect from socket if the app goes to background or user logged out
     public func disconnect() {
         socketManager.disconnect()
     }
     
-    private func setup() {
+    //This private method connects to socket only if user logged in and app is in foreground
+    private func connect() {
         if PKUserManager.shared.isUserLoggedIn && appInForeground {
             socketManager.connect()
         }
     }
     
-    private func getThreads() {
+    public func selectThread(_ thread: T?) {
+        selectedThread = thread
+        messages.removeAll()
+        if let lastMessage = thread?.lastMessage as? M { messages.append(lastMessage) }
+        messagesPaginationEnded = false
+    }
+    
+    //This method calls when socket connection authenticated.
+    private func fetchThreads() {
         NetworkManager().getChats { [weak self] (result, error) in
             guard let `self` = self else { return }
             if error != nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
                     guard let `self` = self else { return }
-                    self.getThreads()
+                    self.fetchThreads()
                 }
             } else if let chats = result {
                 self.threads = chats.results.map({ T(apiResponse: $0) })
+            }
+        }
+    }
+    
+    //Call this method from Messages controller when user reached at the end of message list
+    //This method reversed the messages list, but I should change it in the future.
+    public func fetchThreadMessages(completion: @escaping () -> Void) {
+        guard let selectedThread = selectedThread, let lastMessageId = messages.last?.id, !messagesPaginationEnded else { return }
+        NetworkManager().getThread(request: ThreadBusinessModel.Fetch.Request(id: selectedThread.id, last_message: lastMessageId, direction: .backward)) { [weak self] (result, error) in
+            guard let `self` = self else { return }
+            if error != nil {
+                completion()
+            } else if let result = result {
+                guard result.messages.count > 0 else {
+                    self.messagesPaginationEnded = true
+                    completion()
+                    return
+                }
+                let msgs = result.messages.reversed().map({ M(apiResponse: $0) })
+                self.messages.append(contentsOf: msgs)
+                completion()
             }
         }
     }
@@ -92,7 +127,7 @@ extension PkChatManager: PKSocketManagerDelegate {
     }
     
     func pkSocketManagerDidAuthenticate(_ manager: PKSocketManager) {
-        getThreads()
+        fetchThreads()
     }
     
 }

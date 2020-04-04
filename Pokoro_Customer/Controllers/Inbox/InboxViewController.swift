@@ -49,10 +49,13 @@ class InboxViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chatManager = PkChatManager()
+        
+        
+        
         loadCache()
         setupViews()
         setupPublisher()
-        chatManager = PkChatManager()
         PKUserManager.shared.chatManager = chatManager
     }
     
@@ -108,6 +111,7 @@ class InboxViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
                 guard let `self` = self else { return }
                 self.getThreads()
+                
             }
         case .disconnect:
             if PKUserManager.shared.isAppInForeground, PKUserManager.shared.isUserLoggedIn { chatData?.connect() }
