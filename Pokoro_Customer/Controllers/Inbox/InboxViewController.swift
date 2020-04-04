@@ -45,11 +45,15 @@ class InboxViewController: UIViewController {
     }
     private var cancellables = Set<AnyCancellable>()
     
+    private var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCache()
         setupViews()
         setupPublisher()
+        chatManager = PkChatManager()
+        PKUserManager.shared.chatManager = chatManager
     }
     
     private func setupViews() {
@@ -123,7 +127,7 @@ class InboxViewController: UIViewController {
             } else if let chats = chats {
                 self.chatData?.setup(apiResponse: chats)
                 ThreadsCacheManager.shared.threads = chats.results
-                PKUserManager.shared.chatManager = self.chatData
+                PKUserManager.shared.chatDataModel = self.chatData
             }
         }
     }

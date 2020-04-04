@@ -13,15 +13,16 @@
 		B60C94DF242E0CC20015DABF /* BarcodeMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */; };
 		B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E0242E24060015DABF /* UIImage+overlay.swift */; };
 		B60C94E4242E2F9F0015DABF /* PKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E3242E2F9F0015DABF /* PKButton.swift */; };
-		B61701BB24364D3A0039B5F8 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B61701B524364D380039B5F8 /* ExceptionHandler.m */; };
-		B61701BC24364D3A0039B5F8 /* DelegateTransporter.m in Sources */ = {isa = PBXBuildFile; fileRef = B61701B624364D380039B5F8 /* DelegateTransporter.m */; };
-		B61701BD24364D3A0039B5F8 /* ReverseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701B824364D380039B5F8 /* ReverseExtension.swift */; };
-		B61701BE24364D3A0039B5F8 /* KeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701B924364D390039B5F8 /* KeyValueObserver.swift */; };
-		B61701BF24364D3A0039B5F8 /* UITableViewDelegateTransporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */; };
 		B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */; };
 		B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B323BA1E48001516D7 /* InboxViewController.swift */; };
 		B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */; };
 		B626B7FB2430CF77007307FF /* Array+difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B626B7FA2430CF77007307FF /* Array+difference.swift */; };
+		B633FD5F24387B4600E62772 /* Threads.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD5E24387B4600E62772 /* Threads.swift */; };
+		B633FD6124387D2B00E62772 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD6024387D2B00E62772 /* Messages.swift */; };
+		B633FD6324387E4F00E62772 /* PkChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD6224387E4F00E62772 /* PkChatManager.swift */; };
+		B633FD6B243888CD00E62772 /* PokoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD6A243888CD00E62772 /* PokoroTests.swift */; };
+		B633FD732438920600E62772 /* ChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD722438920600E62772 /* ChatThread.swift */; };
+		B633FD752438923700E62772 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD742438923700E62772 /* ChatMessage.swift */; };
 		B6353512242E61AF006A641D /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6353511242E61AF006A641D /* UIViewController+showAlert.swift */; };
 		B635351B242E62E7006A641D /* RKAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635351A242E62E6006A641D /* RKAlertView.swift */; };
 		B6353520242E6402006A641D /* CALayer+sketchShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635351F242E6402006A641D /* CALayer+sketchShadow.swift */; };
@@ -122,6 +123,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B633FD6D243888CD00E62772 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B68FA4B923A7D10200672E00 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B68FA4C023A7D10200672E00;
+			remoteInfo = Pokoro_Customer;
+		};
 		B6CF180124322FC90023F92A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B68FA4B923A7D10200672E00 /* Project object */;
@@ -159,18 +167,18 @@
 		B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeMaker.swift; sourceTree = "<group>"; };
 		B60C94E0242E24060015DABF /* UIImage+overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+overlay.swift"; sourceTree = "<group>"; };
 		B60C94E3242E2F9F0015DABF /* PKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKButton.swift; sourceTree = "<group>"; };
-		B61701B324364D360039B5F8 /* Pokoro_Customer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pokoro_Customer-Bridging-Header.h"; sourceTree = "<group>"; };
-		B61701B424364D380039B5F8 /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionHandler.h; sourceTree = "<group>"; };
-		B61701B524364D380039B5F8 /* ExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionHandler.m; sourceTree = "<group>"; };
-		B61701B624364D380039B5F8 /* DelegateTransporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateTransporter.m; sourceTree = "<group>"; };
-		B61701B724364D380039B5F8 /* DelegateTransporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateTransporter.h; sourceTree = "<group>"; };
-		B61701B824364D380039B5F8 /* ReverseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseExtension.swift; sourceTree = "<group>"; };
-		B61701B924364D390039B5F8 /* KeyValueObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueObserver.swift; sourceTree = "<group>"; };
-		B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewDelegateTransporter.swift; sourceTree = "<group>"; };
 		B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKNavBarView.swift; sourceTree = "<group>"; };
 		B61EA9B323BA1E48001516D7 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		B626B7FA2430CF77007307FF /* Array+difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+difference.swift"; sourceTree = "<group>"; };
+		B633FD5E24387B4600E62772 /* Threads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Threads.swift; sourceTree = "<group>"; };
+		B633FD6024387D2B00E62772 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		B633FD6224387E4F00E62772 /* PkChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PkChatManager.swift; sourceTree = "<group>"; };
+		B633FD68243888CD00E62772 /* PokoroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokoroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B633FD6A243888CD00E62772 /* PokoroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokoroTests.swift; sourceTree = "<group>"; };
+		B633FD6C243888CD00E62772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B633FD722438920600E62772 /* ChatThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatThread.swift; sourceTree = "<group>"; };
+		B633FD742438923700E62772 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		B6353511242E61AF006A641D /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
 		B635351A242E62E6006A641D /* RKAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKAlertView.swift; sourceTree = "<group>"; };
 		B635351F242E6402006A641D /* CALayer+sketchShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+sketchShadow.swift"; sourceTree = "<group>"; };
@@ -275,6 +283,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B633FD65243888CD00E62772 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B68FA4BE23A7D10200672E00 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,21 +348,6 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		B61701AE24364BA10039B5F8 /* Reverse TableView */ = {
-			isa = PBXGroup;
-			children = (
-				B61701B724364D380039B5F8 /* DelegateTransporter.h */,
-				B61701B624364D380039B5F8 /* DelegateTransporter.m */,
-				B61701B424364D380039B5F8 /* ExceptionHandler.h */,
-				B61701B524364D380039B5F8 /* ExceptionHandler.m */,
-				B61701B924364D390039B5F8 /* KeyValueObserver.swift */,
-				B61701B824364D380039B5F8 /* ReverseExtension.swift */,
-				B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */,
-				B61701B324364D360039B5F8 /* Pokoro_Customer-Bridging-Header.h */,
-			);
-			path = "Reverse TableView";
-			sourceTree = "<group>";
-		};
 		B61EA9AF23BA1A3B001516D7 /* NavBars */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +379,51 @@
 				B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B633FD5A24387A8000E62772 /* Chat Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD5D24387A9300E62772 /* Manager */,
+				B633FD5C24387A8C00E62772 /* Protocols */,
+				B633FD5B24387A8700E62772 /* Models */,
+			);
+			path = "Chat Layer";
+			sourceTree = "<group>";
+		};
+		B633FD5B24387A8700E62772 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD722438920600E62772 /* ChatThread.swift */,
+				B633FD742438923700E62772 /* ChatMessage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B633FD5C24387A8C00E62772 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD5E24387B4600E62772 /* Threads.swift */,
+				B633FD6024387D2B00E62772 /* Messages.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B633FD5D24387A9300E62772 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD6224387E4F00E62772 /* PkChatManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		B633FD69243888CD00E62772 /* PokoroTests */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD6A243888CD00E62772 /* PokoroTests.swift */,
+				B633FD6C243888CD00E62772 /* Info.plist */,
+			);
+			path = PokoroTests;
 			sourceTree = "<group>";
 		};
 		B635351C242E62EB006A641D /* Alerts */ = {
@@ -641,7 +686,7 @@
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B61701AE24364BA10039B5F8 /* Reverse TableView */,
+				B633FD5A24387A8000E62772 /* Chat Layer */,
 				B6DCE318242FAA7900928E8F /* Chats */,
 				B644EB40242CA58900D7CF61 /* Socket Layer */,
 				B67CB0FC23C4D7E400EA1858 /* Demo */,
@@ -706,6 +751,7 @@
 			children = (
 				B68FA4C323A7D10200672E00 /* Pokoro_Customer */,
 				B6CF17FD24322FC90023F92A /* OneSignalNotificationServiceExtension */,
+				B633FD69243888CD00E62772 /* PokoroTests */,
 				B68FA4C223A7D10200672E00 /* Products */,
 				59DB6879B68E50C43A636E90 /* Pods */,
 				D28EF1079F83EEAFD99C5AE2 /* Frameworks */,
@@ -717,6 +763,7 @@
 			children = (
 				B68FA4C123A7D10200672E00 /* Pokoro.app */,
 				B6CF17FC24322FC90023F92A /* OneSignalNotificationServiceExtension.appex */,
+				B633FD68243888CD00E62772 /* PokoroTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -948,6 +995,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B633FD67243888CD00E62772 /* PokoroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B633FD6F243888CD00E62772 /* Build configuration list for PBXNativeTarget "PokoroTests" */;
+			buildPhases = (
+				B633FD64243888CD00E62772 /* Sources */,
+				B633FD65243888CD00E62772 /* Frameworks */,
+				B633FD66243888CD00E62772 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B633FD6E243888CD00E62772 /* PBXTargetDependency */,
+			);
+			name = PokoroTests;
+			productName = PokoroTests;
+			productReference = B633FD68243888CD00E62772 /* PokoroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B68FA4C023A7D10200672E00 /* Pokoro_Customer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B68FA4D523A7D10400672E00 /* Build configuration list for PBXNativeTarget "Pokoro_Customer" */;
@@ -997,6 +1062,10 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Reza Bina";
 				TargetAttributes = {
+					B633FD67243888CD00E62772 = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = B68FA4C023A7D10200672E00;
+					};
 					B68FA4C023A7D10200672E00 = {
 						CreatedOnToolsVersion = 11.3;
 						LastSwiftMigration = 1140;
@@ -1022,11 +1091,19 @@
 			targets = (
 				B68FA4C023A7D10200672E00 /* Pokoro_Customer */,
 				B6CF17FB24322FC90023F92A /* OneSignalNotificationServiceExtension */,
+				B633FD67243888CD00E62772 /* PokoroTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B633FD66243888CD00E62772 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B68FA4BF23A7D10200672E00 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1115,15 +1192,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B633FD64243888CD00E62772 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B633FD6B243888CD00E62772 /* PokoroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B68FA4BD23A7D10200672E00 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B6CF14B323ABD59300D330FD /* NetworkManager.swift in Sources */,
 				B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */,
-				B61701BF24364D3A0039B5F8 /* UITableViewDelegateTransporter.swift in Sources */,
 				B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
+				B633FD752438923700E62772 /* ChatMessage.swift in Sources */,
 				B6353525242E6EA2006A641D /* CheckNamespaceBusinessModel.swift in Sources */,
 				B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */,
 				B60C94E4242E2F9F0015DABF /* PKButton.swift in Sources */,
@@ -1131,13 +1216,13 @@
 				B66DE2B523C37C5D00BF6639 /* PKChatBubble.swift in Sources */,
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
 				B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */,
+				B633FD5F24387B4600E62772 /* Threads.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
 				B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */,
 				B6353523242E6687006A641D /* NamespacesCacheManager.swift in Sources */,
 				B60C94DC242E08B00015DABF /* NameSpacesBusinessModel.swift in Sources */,
 				B6353520242E6402006A641D /* CALayer+sketchShadow.swift in Sources */,
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
-				B61701BC24364D3A0039B5F8 /* DelegateTransporter.m in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
 				B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */,
@@ -1179,6 +1264,7 @@
 				B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */,
 				B6CF14C223ACCDC800D330FD /* String+Regex.swift in Sources */,
 				B655882123A7D6A00056FD38 /* SceneDelegateRouter.swift in Sources */,
+				B633FD732438920600E62772 /* ChatThread.swift in Sources */,
 				B644EB53242CBECB00D7CF61 /* SeenMessageBusinessModel.swift in Sources */,
 				B6DCE31A242FAA9600928E8F /* ChatsDataModel.swift in Sources */,
 				B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */,
@@ -1190,6 +1276,7 @@
 				B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */,
 				B67CB0FE23C4D83900EA1858 /* DemoMessageManager.swift in Sources */,
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
+				B633FD6324387E4F00E62772 /* PkChatManager.swift in Sources */,
 				B66DE2B023C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift in Sources */,
 				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
 				B66DE2BB23C38D7900BF6639 /* ProfileViewController.swift in Sources */,
@@ -1197,7 +1284,6 @@
 				B6CF14BB23ABD59300D330FD /* ErrorBusinessModel.swift in Sources */,
 				B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */,
 				B6CF14AF23ABD59300D330FD /* ParameterEncoding.swift in Sources */,
-				B61701BB24364D3A0039B5F8 /* ExceptionHandler.m in Sources */,
 				B6500BC023AE220000D20BAB /* H1.swift in Sources */,
 				B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */,
 				B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */,
@@ -1205,10 +1291,10 @@
 				B6CF14B823ABD59300D330FD /* Router.swift in Sources */,
 				B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */,
 				B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */,
-				B61701BD24364D3A0039B5F8 /* ReverseExtension.swift in Sources */,
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
 				B600A06A2434B3F700B6008A /* Date+Components.swift in Sources */,
+				B633FD6124387D2B00E62772 /* Messages.swift in Sources */,
 				B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */,
 				B6A1DE6A24338DFB003A9470 /* RegisterBusinessModel.swift in Sources */,
 				B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */,
@@ -1219,7 +1305,6 @@
 				B644EB51242CBCF200D7CF61 /* SendMessageBusinessModel.swift in Sources */,
 				B66A3CFE23AA9ACA00916C95 /* Theme.swift in Sources */,
 				B644EB48242CACAB00D7CF61 /* SocketEndPointType.swift in Sources */,
-				B61701BE24364D3A0039B5F8 /* KeyValueObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,6 +1319,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B633FD6E243888CD00E62772 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B68FA4C023A7D10200672E00 /* Pokoro_Customer */;
+			targetProxy = B633FD6D243888CD00E62772 /* PBXContainerItemProxy */;
+		};
 		B6CF180224322FC90023F92A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B6CF17FB24322FC90023F92A /* OneSignalNotificationServiceExtension */;
@@ -1262,6 +1352,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B633FD70243888CD00E62772 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
+				INFOPLIST_FILE = PokoroTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronaker.pinger.com.PokoroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokoro.app/Pokoro";
+			};
+			name = Debug;
+		};
+		B633FD71243888CD00E62772 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
+				INFOPLIST_FILE = PokoroTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronaker.pinger.com.PokoroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokoro.app/Pokoro";
+			};
+			name = Release;
+		};
 		B68FA4D323A7D10400672E00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1398,7 +1530,6 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
-				SWIFT_OBJC_BRIDGING_HEADER = "Pokoro_Customer/Models/Reverse TableView/Pokoro_Customer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1425,7 +1556,6 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
-				SWIFT_OBJC_BRIDGING_HEADER = "Pokoro_Customer/Models/Reverse TableView/Pokoro_Customer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1482,6 +1612,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B633FD6F243888CD00E62772 /* Build configuration list for PBXNativeTarget "PokoroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B633FD70243888CD00E62772 /* Debug */,
+				B633FD71243888CD00E62772 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B68FA4BC23A7D10200672E00 /* Build configuration list for PBXProject "Pokoro_Customer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
