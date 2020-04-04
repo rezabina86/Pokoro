@@ -20,4 +20,5 @@ public protocol Theme: Codable {
     var tableViewSeparatorInset: UIEdgeInsets { get }
     var tableViewSeparatorColor: UIColor? { get }
     var primaryButtonColor: UIColor? { get }
+    var barcodeLabelColor: UIColor? { get }
 }

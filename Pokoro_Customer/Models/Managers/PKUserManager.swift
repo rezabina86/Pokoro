@@ -16,6 +16,7 @@ class PKUserManager: NSObject, ObservableObject {
     typealias credentialHandler = (_ success: Bool, _ error: String?) -> Void
     
     static let shared = PKUserManager()
+    public var chatManager: ChatsDataModel?
     
     public var token: String? {
         set { UserDefaults.standard.set(newValue, forKey: "token") }
@@ -38,9 +39,12 @@ class PKUserManager: NSObject, ObservableObject {
     
     public func clearDataOnLogout() {
         token = nil
+        userId = nil
+        name = nil
         OneSignal.deleteTag("user_id")
         NamespacesCacheManager.shared.clear()
         ThreadsCacheManager.shared.clear()
+        chatManager?.disconnect()
     }
     
     @Published var isAppInForeground: Bool = true

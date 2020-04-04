@@ -30,7 +30,7 @@ class MessageTableViewCell: UITableViewCell {
     private let barcodeImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "barcodes")
+        view.image = UIImage(named: "barcodes")?.withTintColor(ThemeManager.shared.theme?.barcodeLabelColor ?? .white)
         return view
     }()
     
@@ -38,6 +38,7 @@ class MessageTableViewCell: UITableViewCell {
         let label = SmallSB()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
+        label.textColor = ThemeManager.shared.theme?.barcodeLabelColor
         return label
     }()
     

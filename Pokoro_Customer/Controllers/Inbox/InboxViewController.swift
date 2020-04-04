@@ -106,7 +106,7 @@ class InboxViewController: UIViewController {
                 self.getThreads()
             }
         case .disconnect:
-            if PKUserManager.shared.isAppInForeground { chatData?.connect() }
+            if PKUserManager.shared.isAppInForeground, PKUserManager.shared.isUserLoggedIn { chatData?.connect() }
         case .reconnect:
             navBar.title = "Connecting..."
         default:
@@ -123,6 +123,7 @@ class InboxViewController: UIViewController {
             } else if let chats = chats {
                 self.chatData?.setup(apiResponse: chats)
                 ThreadsCacheManager.shared.threads = chats.results
+                PKUserManager.shared.chatManager = self.chatData
             }
         }
     }

@@ -9,6 +9,7 @@
 import UIKit
 
 class DarkTheme: Theme {
+    var barcodeLabelColor: UIColor? { return UIColor.PKColors.green }
     var primaryColor: UIColor { return UIColor.PKColors.green }
     var secondaryColor: UIColor { return UIColor.PKColors.navy }
     var backgroundColor: UIColor { return .black }

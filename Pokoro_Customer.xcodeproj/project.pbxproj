@@ -13,6 +13,11 @@
 		B60C94DF242E0CC20015DABF /* BarcodeMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */; };
 		B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E0242E24060015DABF /* UIImage+overlay.swift */; };
 		B60C94E4242E2F9F0015DABF /* PKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E3242E2F9F0015DABF /* PKButton.swift */; };
+		B61701BB24364D3A0039B5F8 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B61701B524364D380039B5F8 /* ExceptionHandler.m */; };
+		B61701BC24364D3A0039B5F8 /* DelegateTransporter.m in Sources */ = {isa = PBXBuildFile; fileRef = B61701B624364D380039B5F8 /* DelegateTransporter.m */; };
+		B61701BD24364D3A0039B5F8 /* ReverseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701B824364D380039B5F8 /* ReverseExtension.swift */; };
+		B61701BE24364D3A0039B5F8 /* KeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701B924364D390039B5F8 /* KeyValueObserver.swift */; };
+		B61701BF24364D3A0039B5F8 /* UITableViewDelegateTransporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */; };
 		B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */; };
 		B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B323BA1E48001516D7 /* InboxViewController.swift */; };
 		B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */; };
@@ -154,6 +159,14 @@
 		B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeMaker.swift; sourceTree = "<group>"; };
 		B60C94E0242E24060015DABF /* UIImage+overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+overlay.swift"; sourceTree = "<group>"; };
 		B60C94E3242E2F9F0015DABF /* PKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKButton.swift; sourceTree = "<group>"; };
+		B61701B324364D360039B5F8 /* Pokoro_Customer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pokoro_Customer-Bridging-Header.h"; sourceTree = "<group>"; };
+		B61701B424364D380039B5F8 /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionHandler.h; sourceTree = "<group>"; };
+		B61701B524364D380039B5F8 /* ExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionHandler.m; sourceTree = "<group>"; };
+		B61701B624364D380039B5F8 /* DelegateTransporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateTransporter.m; sourceTree = "<group>"; };
+		B61701B724364D380039B5F8 /* DelegateTransporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateTransporter.h; sourceTree = "<group>"; };
+		B61701B824364D380039B5F8 /* ReverseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseExtension.swift; sourceTree = "<group>"; };
+		B61701B924364D390039B5F8 /* KeyValueObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueObserver.swift; sourceTree = "<group>"; };
+		B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewDelegateTransporter.swift; sourceTree = "<group>"; };
 		B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKNavBarView.swift; sourceTree = "<group>"; };
 		B61EA9B323BA1E48001516D7 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -318,6 +331,21 @@
 				B60C94E3242E2F9F0015DABF /* PKButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		B61701AE24364BA10039B5F8 /* Reverse TableView */ = {
+			isa = PBXGroup;
+			children = (
+				B61701B724364D380039B5F8 /* DelegateTransporter.h */,
+				B61701B624364D380039B5F8 /* DelegateTransporter.m */,
+				B61701B424364D380039B5F8 /* ExceptionHandler.h */,
+				B61701B524364D380039B5F8 /* ExceptionHandler.m */,
+				B61701B924364D390039B5F8 /* KeyValueObserver.swift */,
+				B61701B824364D380039B5F8 /* ReverseExtension.swift */,
+				B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */,
+				B61701B324364D360039B5F8 /* Pokoro_Customer-Bridging-Header.h */,
+			);
+			path = "Reverse TableView";
 			sourceTree = "<group>";
 		};
 		B61EA9AF23BA1A3B001516D7 /* NavBars */ = {
@@ -613,6 +641,7 @@
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B61701AE24364BA10039B5F8 /* Reverse TableView */,
 				B6DCE318242FAA7900928E8F /* Chats */,
 				B644EB40242CA58900D7CF61 /* Socket Layer */,
 				B67CB0FC23C4D7E400EA1858 /* Demo */,
@@ -970,6 +999,7 @@
 				TargetAttributes = {
 					B68FA4C023A7D10200672E00 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1140;
 					};
 					B6CF17FB24322FC90023F92A = {
 						CreatedOnToolsVersion = 11.4;
@@ -1091,6 +1121,7 @@
 			files = (
 				B6CF14B323ABD59300D330FD /* NetworkManager.swift in Sources */,
 				B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */,
+				B61701BF24364D3A0039B5F8 /* UITableViewDelegateTransporter.swift in Sources */,
 				B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
 				B6353525242E6EA2006A641D /* CheckNamespaceBusinessModel.swift in Sources */,
@@ -1106,6 +1137,7 @@
 				B60C94DC242E08B00015DABF /* NameSpacesBusinessModel.swift in Sources */,
 				B6353520242E6402006A641D /* CALayer+sketchShadow.swift in Sources */,
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
+				B61701BC24364D3A0039B5F8 /* DelegateTransporter.m in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
 				B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */,
@@ -1165,6 +1197,7 @@
 				B6CF14BB23ABD59300D330FD /* ErrorBusinessModel.swift in Sources */,
 				B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */,
 				B6CF14AF23ABD59300D330FD /* ParameterEncoding.swift in Sources */,
+				B61701BB24364D3A0039B5F8 /* ExceptionHandler.m in Sources */,
 				B6500BC023AE220000D20BAB /* H1.swift in Sources */,
 				B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */,
 				B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */,
@@ -1172,6 +1205,7 @@
 				B6CF14B823ABD59300D330FD /* Router.swift in Sources */,
 				B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */,
 				B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */,
+				B61701BD24364D3A0039B5F8 /* ReverseExtension.swift in Sources */,
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
 				B600A06A2434B3F700B6008A /* Date+Components.swift in Sources */,
@@ -1185,6 +1219,7 @@
 				B644EB51242CBCF200D7CF61 /* SendMessageBusinessModel.swift in Sources */,
 				B66A3CFE23AA9ACA00916C95 /* Theme.swift in Sources */,
 				B644EB48242CACAB00D7CF61 /* SocketEndPointType.swift in Sources */,
+				B61701BE24364D3A0039B5F8 /* KeyValueObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1349,9 +1384,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1362,6 +1398,8 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
+				SWIFT_OBJC_BRIDGING_HEADER = "Pokoro_Customer/Models/Reverse TableView/Pokoro_Customer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1373,9 +1411,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1386,6 +1425,7 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
+				SWIFT_OBJC_BRIDGING_HEADER = "Pokoro_Customer/Models/Reverse TableView/Pokoro_Customer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1397,7 +1437,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1421,7 +1461,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

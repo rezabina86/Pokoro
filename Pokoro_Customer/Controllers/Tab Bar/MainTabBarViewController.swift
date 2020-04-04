@@ -83,7 +83,13 @@ class MainTabBarViewController: UITabBarController {
         messageController.delegate = self
         messageController.chatData = chatData
         messageController.hidesBottomBarWhenPushed = true
-        self.selectedViewController?.present(messageController, animated: true)
+        if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
+            selectedNavigationController.popToRootViewController(animated: true)
+            selectedNavigationController.pushViewController(messageController, animated: true)
+        } else if let selectedNavigationController = selectedViewController as? ProfileNavigationViewController {
+            selectedNavigationController.popToRootViewController(animated: true)
+            selectedNavigationController.pushViewController(messageController, animated: true)
+        }
     }
     
 //    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -107,7 +113,14 @@ class MainTabBarViewController: UITabBarController {
         let messageController = MessageViewController()
         messageController.chatData = chatData
         messageController.delegate = self
-        present(messageController, animated: true)
+        messageController.hidesBottomBarWhenPushed = true
+        if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
+            selectedNavigationController.popToRootViewController(animated: true)
+            selectedNavigationController.pushViewController(messageController, animated: true)
+        } else if let selectedNavigationController = selectedViewController as? ProfileNavigationViewController {
+            selectedNavigationController.popToRootViewController(animated: true)
+            selectedNavigationController.pushViewController(messageController, animated: true)
+        }
     }
 
 }
@@ -158,7 +171,8 @@ extension MainTabBarViewController: MessageViewControllerDelegate {
     
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
         chatData?.select(thread: nil)
-        controller.dismiss(animated: true)
+        controller.navigationController?.popViewController(animated: true)
+        //controller.dismiss(animated: true)
     }
     
 }
