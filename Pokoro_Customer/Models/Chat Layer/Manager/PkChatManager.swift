@@ -22,6 +22,9 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     
     //this publisher just tells view that socket connected or not.
     @Published var managerStatus: ManagerStatus = .disconnected
+    
+    @Published var unseenThreads: Int = 0
+    
     private var socketStatus: SocketClientEvent = .disconnect
     
     //Initially nil but when user tapped on a thread, it'll be replaced by that thread.
@@ -85,6 +88,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
         messagesPaginationEnded = false
         fetchMessagesFromDB(for: thread)
         seenAllMessageInSelectedThread()
+        updateUnseenThreads()
     }
     
     private func fetchMessagesFromDB(for thread: T?) {
@@ -166,6 +170,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
                     self.selectedThread = self.threads.first(where: { $0 == selectedThread })
                     self.syncMessageWithAPI()
                 }
+                self.updateUnseenThreads()
             }
         }
     }
@@ -206,6 +211,10 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
         return (firstFoundThread.offset, firstFoundThread.element)
     }
     
+    private func findThread(namespaceId: String) -> T? {
+        return threads.first(where: { $0.namespaceId == namespaceId })
+    }
+    
     public func sendMessage(_ message: String, completion: @escaping (Bool) -> Void) {
         guard let selectedThread = selectedThread, let namespaceId = selectedThread.namespaceId else { return }
         let message = OutgoingMessageBusinessModel(namespace_id: namespaceId, user_id: selectedThread.userId, message: message)
@@ -242,6 +251,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
             } else if let result = result {
                 let newThread = T(incomeMessage: message)
                 newThread.update(with: result)
+                if self.selectedThread?.isThreadTemp ?? false { self.selectedThread = newThread }
                 self.threads.append(newThread)
                 self.sortThreads()
                 self.handleIncomeMessage(message)
@@ -259,6 +269,15 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
             messages.insert(newMessage, at: 0)
         }
         sortThreads()
+        updateUnseenThreads()
+    }
+    
+    public func startThread(with namespace: CheckNamespaceBusinessModel.Fetch.Response) {
+        if let namespace = findThread(namespaceId: namespace.id) {
+            selectThread(namespace)
+        } else {
+            selectThread(T(namespace: namespace))
+        }
     }
     
     public func seenMessage(_ message: M) {
@@ -266,7 +285,8 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
         socketManager.seenMessage(model: SeenMessageBusinessModel(chat_id: selectedThread.id, message_id: message.id))
         var seenMessage = message
         seenMessage.isSeen = true
-        //messageStore.update(seenMessage)
+        messageStore.update(seenMessage)
+        seenAllMessageInSelectedThread()
     }
     
     private func seenAllMessageInSelectedThread() {
@@ -275,6 +295,10 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
         updatedThread.hasUnseenMessage = false
         threads.remove(at: seenThread.offset)
         threads.insert(contentsOf: [updatedThread], at: seenThread.offset)
+    }
+    
+    private func updateUnseenThreads() {
+        unseenThreads = threads.filter({ $0.hasUnseenMessage }).count
     }
     
     //Everytime this method is called, it'll sort the threads by date

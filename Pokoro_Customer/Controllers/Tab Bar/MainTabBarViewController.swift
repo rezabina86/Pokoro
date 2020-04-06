@@ -24,13 +24,13 @@ class MainTabBarViewController: UITabBarController {
     }
     
     private func setupListener() {
-//        chatData?.$unseenThreads.sink(receiveValue: { [weak self] (unseen) in
-//            guard let `self` = self else { return }
-//            guard let items = self.tabBar.items else { return }
-//            items[0].badgeValue = unseen == 0 ? nil : "\(unseen)"
-//            items[0].badgeColor = .systemRed
-//            UIApplication.shared.applicationIconBadgeNumber = unseen
-//        }).store(in: &cancellables)
+        chatManager?.$unseenThreads.sink(receiveValue: { [weak self] (unseen) in
+            guard let `self` = self else { return }
+            guard let items = self.tabBar.items else { return }
+            items[0].badgeValue = unseen == 0 ? nil : "\(unseen)"
+            items[0].badgeColor = .systemRed
+            UIApplication.shared.applicationIconBadgeNumber = unseen
+        }).store(in: &cancellables)
 //
 //        chatData?.$newMessageRecieved.sink(receiveValue: { [weak self] (_) in
 //            guard let `self` = self else { return }
@@ -38,10 +38,10 @@ class MainTabBarViewController: UITabBarController {
 //            self.pageLoaded = true
 //        }).store(in: &cancellables)
 //
-//        PKUserManager.shared.$pushNotificationChatId.sink { [weak self] (id) in
-//            guard let `self` = self, let id = id else { return }
-//            self.handlePushNotification(id: id)
-//        }.store(in: &cancellables)
+        PKUserManager.shared.$pushNotificationChatId.sink { [weak self] (id) in
+            guard let `self` = self, let id = id else { return }
+            self.handlePushNotification(id: id)
+        }.store(in: &cancellables)
     }
     
     private func setupTabBar() {
@@ -71,17 +71,17 @@ class MainTabBarViewController: UITabBarController {
             guard let `self` = self else { return }
             if let threads = threads {
                 guard let selectedThread = threads.results.first(where: { $0.id == id }) else { return }
-                let thread = ChatsDataModel.Thread(apiResponse: selectedThread)
+                let thread = ChatThread<ChatMessage>(apiResponse: selectedThread)
                 self.showPushThread(thread: thread)
             }
         }
     }
     
-    private func showPushThread(thread: ChatsDataModel.Thread) {
-        //chatData?.select(thread: thread)
+    private func showPushThread(thread: ChatThread<ChatMessage>) {
+        chatManager?.selectThread(thread)
         let messageController = MessageViewController()
         messageController.delegate = self
-        //messageController.chatData = chatData
+        messageController.chatManager = chatManager
         messageController.hidesBottomBarWhenPushed = true
         if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
             selectedNavigationController.popToRootViewController(animated: true)
@@ -109,9 +109,9 @@ class MainTabBarViewController: UITabBarController {
 //    }
     
     private func showChat(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
-        //chatData?.startThread(with: namespace)
+        chatManager?.startThread(with: namespace)
         let messageController = MessageViewController()
-        //messageController.chatData = chatData
+        messageController.chatManager = chatManager
         messageController.delegate = self
         messageController.hidesBottomBarWhenPushed = true
         if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
@@ -172,7 +172,6 @@ extension MainTabBarViewController: MessageViewControllerDelegate {
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
         chatManager?.selectThread(nil)
         controller.navigationController?.popViewController(animated: true)
-        //controller.dismiss(animated: true)
     }
     
 }
