@@ -28,8 +28,13 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     //When user left the thread it'll be nil
     public var selectedThread: T?
     
+    ///Store manager that uses CoreData to save messages
+    private var messageStore: MessageStore<M>!
+    
     //This property will be false when the last message in a thread is fetched
     private var messagesPaginationEnded: Bool = false
+    
+    private var fetchInProgress: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -43,6 +48,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     
     //Once the chatManager initialized it tries to connect to the socket and if connection is successful it will get all threads from the server
     init() {
+        messageStore = MessageStore()
         socketManager.delegate = self
         setupListeners()
     }
@@ -76,8 +82,71 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     public func selectThread(_ thread: T?) {
         selectedThread = thread
         messages.removeAll()
-        if let lastMessage = thread?.lastMessage as? M { messages.append(lastMessage) }
         messagesPaginationEnded = false
+        fetchMessagesFromDB(for: thread)
+        seenAllMessageInSelectedThread()
+    }
+    
+    private func fetchMessagesFromDB(for thread: T?) {
+        guard let thread = thread else { return }
+        messages = messageStore.fetch(chatId: thread.id).reversed()
+        syncMessageWithAPI()
+    }
+    
+    private func syncMessageWithAPI() {
+        guard let lastMessage = selectedThread?.lastMessage else { return }
+        if messages.count == 0 {
+            messages.append(lastMessage as! M)
+            fetchMessagesBackward()
+        } else {
+            if lastMessage.id != messages.first?.id {
+                fetchMessagesForward()
+            }
+        }
+    }
+    
+    private func fetchMessagesForward() {
+        guard let selectedThread = selectedThread, let lastMessageId = messages.first?.id, !fetchInProgress else { return }
+        fetchInProgress = true
+        NetworkManager().getThread(request: ThreadBusinessModel.Fetch.Request(id: selectedThread.id, last_message: lastMessageId)) { [weak self] (result, error) in
+            guard let `self` = self else { return }
+            if error != nil {
+                self.fetchInProgress = false
+            } else if let result = result {
+                let msgs = result.messages.reversed().map({ M(apiResponse: $0,thread: result) })
+                self.messages.insert(contentsOf: msgs, at: 0)
+                msgs.forEach { [weak self] (m) in
+                    guard let `self` = self else { return }
+                    self.messageStore.insert(m)
+                }
+                self.fetchInProgress = false
+                self.syncMessageWithAPI()
+            }
+        }
+    }
+    
+    private func fetchMessagesBackward() {
+        guard let selectedThread = selectedThread, let lastMessageId = messages.last?.id, !messagesPaginationEnded, !fetchInProgress else { return }
+        fetchInProgress = true
+        NetworkManager().getThread(request: ThreadBusinessModel.Fetch.Request(id: selectedThread.id, last_message: lastMessageId, direction: .backward)) { [weak self] (result, error) in
+            guard let `self` = self else { return }
+            if error != nil {
+                self.fetchInProgress = false
+            } else if let result = result {
+                guard result.messages.count > 0 else {
+                    self.messagesPaginationEnded = true
+                    self.fetchInProgress = false
+                    return
+                }
+                let msgs = result.messages.reversed().map({ M(apiResponse: $0,thread: result) })
+                self.messages.append(contentsOf: msgs)
+                msgs.forEach { [weak self] (m) in
+                    guard let `self` = self else { return }
+                    self.messageStore.insert(m)
+                }
+                self.fetchInProgress = false
+            }
+        }
     }
     
     //This method calls when socket connection authenticated.
@@ -93,29 +162,37 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
                 }
             } else if let chats = result {
                 self.threads = chats.results.map({ T(apiResponse: $0) })
+                if let selectedThread = self.selectedThread {
+                    self.selectedThread = self.threads.first(where: { $0 == selectedThread })
+                    self.syncMessageWithAPI()
+                }
             }
         }
     }
     
     //Call this method from Messages controller when user reached at the end of message list
     //This method reversed the messages list, but I should change it in the future.
-    public func fetchThreadMessages(completion: @escaping () -> Void) {
-        guard let selectedThread = selectedThread, let lastMessageId = messages.last?.id, !messagesPaginationEnded else { return }
+    public func fetchThreadMessages() {
+        guard let selectedThread = selectedThread, let lastMessageId = messages.last?.id, !messagesPaginationEnded, !fetchInProgress else { return }
         managerStatus = .updatingThread
+        fetchInProgress = true
         NetworkManager().getThread(request: ThreadBusinessModel.Fetch.Request(id: selectedThread.id, last_message: lastMessageId, direction: .backward)) { [weak self] (result, error) in
             guard let `self` = self else { return }
+            self.fetchInProgress = false
             self.managerStatus = .connected
-            if error != nil {
-                completion()
+            if let error = error {
+                Logger.log(message: error, event: .error)
             } else if let result = result {
                 guard result.messages.count > 0 else {
                     self.messagesPaginationEnded = true
-                    completion()
                     return
                 }
                 let msgs = result.messages.reversed().map({ M(apiResponse: $0,thread: result) })
+                msgs.forEach { [weak self] (m) in
+                    guard let `self` = self else { return }
+                    self.messageStore.insert(m)
+                }
                 self.messages.append(contentsOf: msgs)
-                completion()
             }
         }
     }
@@ -177,9 +254,27 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
         editingThread.thread.update(with: message)
         threads[editingThread.offset] = editingThread.thread
         if let selectedThread = selectedThread, selectedThread.id == message.chat_id {
-            messages.insert(M(socketMessage: message), at: 0)
+            let newMessage = M(socketMessage: message)
+            messageStore.insert(newMessage)
+            messages.insert(newMessage, at: 0)
         }
         sortThreads()
+    }
+    
+    public func seenMessage(_ message: M) {
+        guard !message.isSeen, let selectedThread = selectedThread else { return }
+        socketManager.seenMessage(model: SeenMessageBusinessModel(chat_id: selectedThread.id, message_id: message.id))
+        var seenMessage = message
+        seenMessage.isSeen = true
+        //messageStore.update(seenMessage)
+    }
+    
+    private func seenAllMessageInSelectedThread() {
+        guard let selectedThread = selectedThread, let seenThread = threads.enumerated().first(where: { $0.element == selectedThread }) else { return }
+        var updatedThread = seenThread.element
+        updatedThread.hasUnseenMessage = false
+        threads.remove(at: seenThread.offset)
+        threads.insert(contentsOf: [updatedThread], at: seenThread.offset)
     }
     
     //Everytime this method is called, it'll sort the threads by date

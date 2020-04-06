@@ -30,6 +30,7 @@ protocol Threads: Equatable {
 }
 
 extension Threads {
+    
     var stringDate: String? {
         return Date(timeIntervalSince1970: TimeInterval(timeStamp / 1000)).stringFormat
     }

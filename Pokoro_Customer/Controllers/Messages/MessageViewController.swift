@@ -66,7 +66,7 @@ class MessageViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        getThread()
+        //getThread()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -123,11 +123,6 @@ class MessageViewController: UIViewController {
             self.bottomConst.constant = 0
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: nil)
         }
-    }
-    
-    private func getThread() {
-        fetchInProgress = true
-        chatManager.fetchThreadMessages(completion: { self.fetchInProgress = false })
     }
     
     private func setupPublishers() {
@@ -215,9 +210,8 @@ extension MessageViewController: UITableViewDataSource {
         let message = messages[indexPath.row]
         DispatchQueue(label: "com.pokoro.fetch").async { [weak self] in
             guard let `self` = self else { return }
-            if indexPath.row == self.messages.count - 1, !self.fetchInProgress {
-                self.fetchInProgress = true
-                self.chatManager.fetchThreadMessages(completion: { self.fetchInProgress = false })
+            if indexPath.row == self.messages.count - 1 {
+                self.chatManager.fetchThreadMessages()
             }
         }
         if message.isIncomeMessage {
@@ -237,7 +231,7 @@ extension MessageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let message = messages[indexPath.row]
-        //chatData.seenMessage(message)
+        chatManager.seenMessage(message)
     }
     
 }

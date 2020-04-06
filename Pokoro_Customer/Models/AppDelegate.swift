@@ -48,6 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             OneSignal.sendTag("user_id", value: user_id)
         }
         //END OneSignal initializataion code
+        
+//        let msgStore = MessageStore<ChatMessage>()
+//        msgStore.insert(ChatMessage(id: "12345", chatId: "234", userId: nil, message: nil, lastMessageId: nil, timestamp: 2345678, isSeen: true, messageDate: nil))
+//        let a = msgStore.fetchAll()
+//        Logger.log(message: a.map({ $0.chatId }), event: .warning)
         return true
     }
     
