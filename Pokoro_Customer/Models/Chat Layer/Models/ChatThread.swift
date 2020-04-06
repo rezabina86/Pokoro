@@ -29,7 +29,7 @@ class ChatThread<M: Messages>: Threads {
         self.namespaceName = apiResponse.namespace.name
         self.hasUnseenMessage = apiResponse.unread_messages_count != 0
         self.nameSpaceOwner = apiResponse.namespace.creator.name
-        self.lastMessage = M(lastMessage: apiResponse.last_message)
+        self.lastMessage = M(chat: apiResponse)
     }
     
     required init(incomeMessage: IncomeMessageBusinessModel) {
@@ -49,6 +49,25 @@ class ChatThread<M: Messages>: Threads {
         self.userName = namespace.creator.name
         self.namespaceName = namespace.name
         self.nameSpaceOwner = namespace.creator.id
+    }
+    
+    func update(with detail: ThreadBusinessModel.Fetch.Response) {
+        self.userName = detail.other_user.name
+        self.hasUnseenMessage = true
+        self.nameSpaceOwner = detail.namespace.creator.id
+        self.namespaceName = detail.namespace.name
+        self.namespaceId = detail.namespace.id
+    }
+    
+    func update(with incomeMessage: IncomeMessageBusinessModel) {
+        hasUnseenMessage = true
+        lastMessage = M(socketMessage: incomeMessage)
+        id = incomeMessage.chat_id
+        timeStamp = incomeMessage.timestamp
+    }
+    
+    static func == (lhs: ChatThread<M>, rhs: ChatThread<M>) -> Bool {
+        return lhs.id == rhs.id
     }
     
 }

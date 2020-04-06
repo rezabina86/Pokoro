@@ -64,10 +64,10 @@ class MessageTableViewCell: UITableViewCell {
         return view
     }()
     
-    public var thread: ChatsDataModel.Thread? {
+    public var thread: ChatThread<ChatMessage>? {
         willSet {
             nameLabel.text = newValue?.userName
-            bodyLabel.text = newValue?.lastMessage
+            bodyLabel.text = newValue?.lastMessage?.message
             barcodeLabel.text = newValue?.namespaceName
             unseenLabel.isHidden = !(newValue?.hasUnseenMessage ?? false)
             dateLabel.text = newValue?.stringDate

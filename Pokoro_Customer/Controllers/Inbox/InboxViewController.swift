@@ -32,8 +32,8 @@ class InboxViewController: UIViewController {
         return view
     }()
     
-    public var chatData: ChatsDataModel?
-    private var threads: [ChatsDataModel.Thread] = [] {
+    //public var chatData: ChatsDataModel?
+    private var threads: [ChatThread<ChatMessage>] = [] {
         didSet {
             if threads.count == 0 {
                 self.tableView.showEmptyView(title: "No Messages", subtitle: "Scan Barcode to start a conversation", image: UIImage(named: "talk"))
@@ -45,14 +45,10 @@ class InboxViewController: UIViewController {
     }
     private var cancellables = Set<AnyCancellable>()
     
-    private var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>!
+    var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chatManager = PkChatManager()
-        
-        
-        
         loadCache()
         setupViews()
         setupPublisher()
@@ -77,62 +73,33 @@ class InboxViewController: UIViewController {
     }
     
     private func loadCache() {
-        let savedThreads = ThreadsCacheManager.shared.threads.map({ ChatsDataModel.Thread(apiResponse: $0) })
-        let newOrder = savedThreads.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
-        threads = newOrder
+//        let savedThreads = ThreadsCacheManager.shared.threads.map({ ChatsDataModel.Thread(apiResponse: $0) })
+//        let newOrder = savedThreads.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
+//        threads = newOrder
     }
     
     private func setupPublisher() {
-        chatData?.$socketStatus.sink(receiveValue: { [weak self] (event) in
+        chatManager.$threads.sink { [weak self] (thrds) in
             guard let `self` = self else { return }
-            self.handleSocketStatus(event: event)
-        }).store(in: &cancellables)
-        
-        //*****
-        chatData?.$threads.sink(receiveValue: { [weak self] (threads) in
-            guard let `self` = self else { return }
-            if threads.count > 0 { self.threads = threads }
-        }).store(in: &cancellables)
-        
-        //*****
-        PKUserManager.shared.$isAppInForeground.sink { [weak self] (value) in
-            guard let `self` = self else { return }
-            value ? self.chatData?.connect() : self.chatData?.disconnect()
+            if thrds.count > 0 { self.threads = thrds }
         }.store(in: &cancellables)
         
-        //*****
-        
+        chatManager.$managerStatus.sink { [weak self] (status) in
+            guard let `self` = self else { return }
+            self.handleSocketStatus(event: status)
+        }.store(in: &cancellables)
     }
     
-    private func handleSocketStatus(event: SocketClientEvent) {
+    private func handleSocketStatus(event: ManagerStatus) {
         switch event {
-        case .connect:
-            navBar.title = "Updating..."
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-                guard let `self` = self else { return }
-                self.getThreads()
-                
-            }
-        case .disconnect:
-            if PKUserManager.shared.isAppInForeground, PKUserManager.shared.isUserLoggedIn { chatData?.connect() }
-        case .reconnect:
+        case .connected:
+            navBar.title = ""
+        case .disconnected:
             navBar.title = "Connecting..."
+        case .updatingThreadList:
+            navBar.title = "Updating..."
         default:
             break
-        }
-    }
-    
-    private func getThreads() {
-        NetworkManager().getChats { [weak self] (chats, error) in
-            guard let `self` = self else { return }
-            self.navBar.title = ""
-            if let error = error {
-                Logger.log(message: error, event: .error)
-            } else if let chats = chats {
-                self.chatData?.setup(apiResponse: chats)
-                ThreadsCacheManager.shared.threads = chats.results
-                PKUserManager.shared.chatDataModel = self.chatData
-            }
         }
     }
     
@@ -146,10 +113,10 @@ extension InboxViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        chatData?.select(thread: threads[indexPath.row])
+        chatManager?.selectThread(threads[indexPath.row])
         let messageController = MessageViewController()
         messageController.delegate = self
-        messageController.chatData = chatData
+        messageController.chatManager = chatManager
         messageController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(messageController, animated: true)
     }
@@ -174,7 +141,7 @@ extension InboxViewController: MessageViewControllerDelegate {
     
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
         controller.navigationController?.popViewController(animated: true)
-        chatData?.select(thread: nil)
+        chatManager?.selectThread(nil)
     }
     
 }

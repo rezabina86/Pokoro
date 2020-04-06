@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Threads {
+protocol Threads: Equatable {
     
     associatedtype M: Messages
     var id: String { get set }
@@ -24,6 +24,9 @@ protocol Threads {
     init(apiResponse: ChatsBusinessModel.Chat)
     init(incomeMessage: IncomeMessageBusinessModel)
     init(namespace: CheckNamespaceBusinessModel.Fetch.Response)
+    
+    func update(with detail: ThreadBusinessModel.Fetch.Response)
+    func update(with incomeMessage: IncomeMessageBusinessModel)
 }
 
 extension Threads {

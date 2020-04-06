@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Messages {
+protocol Messages: ObjectConvertible {
     
     var id: String { get set }
     var userId: String? { get set }
@@ -18,13 +18,17 @@ protocol Messages {
     var isSeen: Bool { get set }
     
     init(socketMessage: IncomeMessageBusinessModel)
-    init(apiResponse: ThreadBusinessModel.Message)
-    init(lastMessage: ChatsBusinessModel.LastMessage)
+    init(apiResponse: ThreadBusinessModel.Message, thread: ThreadBusinessModel.Fetch.Response)
+    init(chat: ChatsBusinessModel.Chat)
 }
 
 extension Messages {
     var isIncomeMessage: Bool {
         return userId != PKUserManager.shared.userId
+    }
+    
+    var date: Date {
+        Date(timeIntervalSince1970: TimeInterval(self.timestamp / 1000))
     }
     
     var stringDate: String? {

@@ -45,10 +45,10 @@ class MessageViewController: UIViewController {
     weak var delegate: MessageViewControllerDelegate?
     private var bottomConst: NSLayoutConstraint!
     
-    private var messages: [ChatsDataModel.Message] = []
+    private var messages: [ChatMessage] = []
     private var fetchInProgress = false
     
-    var chatData: ChatsDataModel! {
+    var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>! {
         willSet { navBar.title = newValue.selectedThread?.userName }
     }
     private var cancellables = Set<AnyCancellable>()
@@ -127,11 +127,11 @@ class MessageViewController: UIViewController {
     
     private func getThread() {
         fetchInProgress = true
-        chatData.fetchThreadFromAPI(completion: { self.fetchInProgress = false })
+        chatManager.fetchThreadMessages(completion: { self.fetchInProgress = false })
     }
     
     private func setupPublishers() {
-        chatData.$messages.sink { [weak self] msg in
+        chatManager.$messages.sink { [weak self] msg in
             guard let `self` = self else { return }
             let dif = self.messages.difference(from: msg)
             self.messages = msg
@@ -144,24 +144,20 @@ class MessageViewController: UIViewController {
             }
         }.store(in: &cancellables)
         
-        chatData?.$socketStatus.sink(receiveValue: { [weak self] (event) in
+        chatManager?.$managerStatus.sink(receiveValue: { [weak self] (event) in
             guard let `self` = self else { return }
             self.handleSocketStatus(event: event)
         }).store(in: &cancellables)
     }
     
-    private func handleSocketStatus(event: SocketClientEvent) {
+    private func handleSocketStatus(event: ManagerStatus) {
         switch event {
-        case .connect:
-            navBar.title = chatData.selectedThread?.userName
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-                guard let `self` = self else { return }
-                //self.getThreads()
-            }
-        case .disconnect:
-            if PKUserManager.shared.isAppInForeground { chatData?.connect() }
-        case .reconnect:
+        case .connected:
+            navBar.title = chatManager.selectedThread?.userName
+        case .disconnected:
             navBar.title = "Connecting..."
+        case .updatingThreadList:
+            navBar.title = "Updating..."
         default:
             break
         }
@@ -178,7 +174,7 @@ extension MessageViewController: PKNavBarViewDelegate {
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String, completion: @escaping () -> Void) {
-        chatData.sendMessage(text) { [weak self] (success) in
+        chatManager.sendMessage(text) { [weak self] (success) in
             guard let `self` = self else { return }
             guard success else { return }
             if self.messages.count > 0 {
@@ -221,7 +217,7 @@ extension MessageViewController: UITableViewDataSource {
             guard let `self` = self else { return }
             if indexPath.row == self.messages.count - 1, !self.fetchInProgress {
                 self.fetchInProgress = true
-                self.chatData.fetchThreadFromAPI(completion: { self.fetchInProgress = false })
+                self.chatManager.fetchThreadMessages(completion: { self.fetchInProgress = false })
             }
         }
         if message.isIncomeMessage {
@@ -241,7 +237,7 @@ extension MessageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let message = messages[indexPath.row]
-        chatData.seenMessage(message)
+        //chatData.seenMessage(message)
     }
     
 }
