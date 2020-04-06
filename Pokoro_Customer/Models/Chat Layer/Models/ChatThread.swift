@@ -24,7 +24,7 @@ class ChatThread<M: Messages>: Threads {
         self.id = apiResponse.id
         self.userId = apiResponse.other_user.id
         self.userName = apiResponse.other_user.name
-        self.timeStamp = apiResponse.updated_at
+        self.timeStamp = apiResponse.last_message.timestamp
         self.namespaceId = apiResponse.namespace.id
         self.namespaceName = apiResponse.namespace.name
         self.hasUnseenMessage = apiResponse.unread_messages_count != 0

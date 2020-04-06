@@ -171,6 +171,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
                     self.syncMessageWithAPI()
                 }
                 self.updateUnseenThreads()
+                self.sortThreads()
             }
         }
     }
@@ -267,6 +268,9 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
             let newMessage = M(socketMessage: message)
             messageStore.insert(newMessage)
             messages.insert(newMessage, at: 0)
+            if !message.isOutgoingMessage { AudioServicesPlayAlertSound(SystemSoundID(1117)) }
+        } else {
+            AudioServicesPlayAlertSound(SystemSoundID(1312))
         }
         sortThreads()
         updateUnseenThreads()
