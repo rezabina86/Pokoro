@@ -57,9 +57,9 @@ class InboxViewController: UIViewController {
     }
     
     private func loadCache() {
-//        let savedThreads = ThreadsCacheManager.shared.threads.map({ ChatsDataModel.Thread(apiResponse: $0) })
-//        let newOrder = savedThreads.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
-//        threads = newOrder
+        let savedThreads = ThreadsCacheManager.shared.threads.map({ ChatThread<ChatMessage>(apiResponse: $0) })
+        let newOrder = savedThreads.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
+        threads = newOrder
     }
     
     private func setupPublisher() {

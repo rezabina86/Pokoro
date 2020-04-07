@@ -1,9 +1,7 @@
 PODS:
+  - LetterAvatarKit (1.2.2)
   - M13ProgressSuite (1.2.9)
-  - OneSignal (2.13.0)
-  - SDWebImage (5.6.1):
-    - SDWebImage/Core (= 5.6.1)
-  - SDWebImage/Core (5.6.1)
+  - OneSignal (2.13.1)
   - Socket.IO-Client-Swift (15.2.0):
     - Starscream (~> 3.1)
   - Starscream (3.1.1)
@@ -13,32 +11,32 @@ PODS:
   - SwiftOverlays (5.0.1)
 
 DEPENDENCIES:
+  - LetterAvatarKit
   - M13ProgressSuite
   - OneSignal
-  - SDWebImage
   - Socket.IO-Client-Swift
   - SwiftMessages
   - SwiftOverlays
 
 SPEC REPOS:
   trunk:
+    - LetterAvatarKit
     - M13ProgressSuite
     - OneSignal
-    - SDWebImage
     - Socket.IO-Client-Swift
     - Starscream
     - SwiftMessages
     - SwiftOverlays
 
 SPEC CHECKSUMS:
+  LetterAvatarKit: ad0fd9a9fe7c3721059cad56ed79fffc52e6a2fb
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
-  OneSignal: 09c9fe1e7a097af5fda94e00c1598c3c945552b9
-  SDWebImage: 7edb9c3ea661e77a66661f7f044de8c1b55d1120
+  OneSignal: fa98eaa90372bb367b6a4a1c1622ffb9832c7600
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
 
-PODFILE CHECKSUM: b9d8f912b87f694e4bc5df089f78e85dabb36d41
+PODFILE CHECKSUM: 84e2a21c0a585a3efa1ad74e26788ee1866914db
 
 COCOAPODS: 1.9.1
