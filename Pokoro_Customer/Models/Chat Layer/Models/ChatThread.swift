@@ -28,7 +28,7 @@ class ChatThread<M: Messages>: Threads {
         self.namespaceId = apiResponse.namespace.id
         self.namespaceName = apiResponse.namespace.name
         self.hasUnseenMessage = apiResponse.unread_messages_count != 0
-        self.nameSpaceOwner = apiResponse.namespace.creator.name
+        self.nameSpaceOwner = apiResponse.namespace.creator.id
         self.lastMessage = M(chat: apiResponse)
     }
     

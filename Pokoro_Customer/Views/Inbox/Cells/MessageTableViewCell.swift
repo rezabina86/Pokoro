@@ -72,7 +72,13 @@ class MessageTableViewCell: UITableViewCell {
             barcodeLabel.text = newValue?.namespaceName
             unseenLabel.isHidden = !(newValue?.hasUnseenMessage ?? false)
             dateLabel.text = newValue?.stringDate
-            let avatarImage = LetterAvatarMaker().setUsername(newValue?.userName ?? "").setLettersFont(UIFont.systemFont(ofSize: 24, weight: .semibold)).setBackgroundColors([UIColor.PKColors.green]).build()
+            
+            let avatarImage = LetterAvatarMaker()
+                .setUsername(newValue?.userName ?? "")
+                .setLettersFont(UIFont.systemFont(ofSize: 24, weight: .semibold))
+                .setBackgroundColors([UIColor.PKColors.green])
+                .build()
+            
             avatarImageView.image = avatarImage
             barcodeImage.isHidden = !(newValue?.isUserOwnerOfTheNamespace ?? false)
             barcodeLabel.isHidden = !(newValue?.isUserOwnerOfTheNamespace ?? false)
