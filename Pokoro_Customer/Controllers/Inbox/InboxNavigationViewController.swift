@@ -22,7 +22,9 @@ class InboxNavigationViewController: UINavigationController {
         inboxController.chatManager = chatManager
         viewControllers = [inboxController]
         interactivePopGestureRecognizer?.delegate = nil
-        isNavigationBarHidden = true
+        //isNavigationBarHidden = true
+        navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
         delegate = self
     }
 

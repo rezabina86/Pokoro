@@ -12,17 +12,6 @@ import SocketIO
 
 class InboxViewController: UIViewController {
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    private let navBar: PKNavBarView = {
-        let view = PKNavBarView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isBackButtonHidden = true
-        return view
-    }()
-    
     private let tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -31,8 +20,7 @@ class InboxViewController: UIViewController {
         view.tableFooterView = UIView(frame: CGRect.zero)
         return view
     }()
-    
-    //public var chatData: ChatsDataModel?
+
     private var threads: [ChatThread<ChatMessage>] = [] {
         didSet {
             if threads.count == 0 {
@@ -57,16 +45,12 @@ class InboxViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
-        
-        view.addSubview(navBar)
-        navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
+        navigationItem.title = "Messages"
         
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
@@ -93,11 +77,11 @@ class InboxViewController: UIViewController {
     private func handleSocketStatus(event: ManagerStatus) {
         switch event {
         case .connected:
-            navBar.title = ""
+            navigationItem.title = "Messages"
         case .disconnected:
-            navBar.title = "Connecting..."
+            navigationItem.title = "Connecting..."
         case .updatingThreadList:
-            navBar.title = "Updating..."
+            navigationItem.title = "Updating..."
         default:
             break
         }

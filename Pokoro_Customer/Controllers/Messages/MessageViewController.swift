@@ -16,10 +16,6 @@ protocol MessageViewControllerDelegate: class {
 
 class MessageViewController: UIViewController {
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     private let navBar: PKNavBarView = {
         let view = PKNavBarView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -49,12 +45,13 @@ class MessageViewController: UIViewController {
     private var fetchInProgress = false
     
     var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>! {
-        willSet { navBar.title = newValue.selectedThread?.userName }
+        willSet { navigationItem.title = newValue.selectedThread?.userName }
     }
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         setupViews()
         setupPublishers()
     }
@@ -62,11 +59,6 @@ class MessageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeNotification()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //getThread()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,16 +69,10 @@ class MessageViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
-        navBar.delegate = self
-        view.addSubview(navBar)
-        navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
-        
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
         
@@ -148,11 +134,11 @@ class MessageViewController: UIViewController {
     private func handleSocketStatus(event: ManagerStatus) {
         switch event {
         case .connected:
-            navBar.title = chatManager.selectedThread?.userName
+            navigationItem.title = chatManager.selectedThread?.userName
         case .disconnected:
-            navBar.title = "Connecting..."
+            navigationItem.title = "Connecting..."
         case .updatingThreadList:
-            navBar.title = "Updating..."
+            navigationItem.title = "Updating..."
         default:
             break
         }

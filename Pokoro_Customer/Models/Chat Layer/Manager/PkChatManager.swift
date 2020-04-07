@@ -343,10 +343,7 @@ extension PkChatManager: PKSocketManagerDelegate {
     }
     
     func pkSocketManagerDidAuthenticate(_ manager: PKSocketManager) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard let `self` = self else { return }
-            self.fetchThreads()
-        }
+        self.fetchThreads()
     }
     
 }

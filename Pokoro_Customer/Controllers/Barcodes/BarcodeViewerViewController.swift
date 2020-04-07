@@ -15,17 +15,6 @@ protocol BarcodeViewerViewControllerDelegate: class {
 
 class BarcodeViewerViewController: UIViewController {
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    private let navBar: PKNavBarView = {
-        let view = PKNavBarView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.title = "Hello"
-        return view
-    }()
-    
     private let pdfView: PDFView = {
         let view = PDFView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +37,7 @@ class BarcodeViewerViewController: UIViewController {
     }
     
     public var qrName: String? {
-        willSet { navBar.title = newValue }
+        willSet { navigationItem.title = newValue }
     }
 
     override func viewDidLoad() {
@@ -56,17 +45,15 @@ class BarcodeViewerViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
-        navBar.delegate = self
-        view.addSubview(navBar)
-        navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
-        
         view.addSubview(pdfView)
-        pdfView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        pdfView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
         pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         pdfView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         pdfView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true

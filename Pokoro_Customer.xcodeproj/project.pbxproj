@@ -55,7 +55,6 @@
 		B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882F23A7E0920056FD38 /* LoginViewController.swift */; };
 		B656EB8D23C652D20069AFD0 /* PKEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB8C23C652D20069AFD0 /* PKEmptyStateView.swift */; };
 		B656EB8F23C654780069AFD0 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */; };
-		B656EB9123C6591E0069AFD0 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B656EB9023C6591D0069AFD0 /* sample.pdf */; };
 		B656EB9323C65AAE0069AFD0 /* BarcodeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */; };
 		B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */; };
 		B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */; };
@@ -219,7 +218,6 @@
 		B655882F23A7E0920056FD38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B656EB8C23C652D20069AFD0 /* PKEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKEmptyStateView.swift; sourceTree = "<group>"; };
 		B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
-		B656EB9023C6591D0069AFD0 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewerViewController.swift; sourceTree = "<group>"; };
 		B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationViewController.swift; sourceTree = "<group>"; };
@@ -789,7 +787,6 @@
 		B68FA4C323A7D10200672E00 /* Pokoro_Customer */ = {
 			isa = PBXGroup;
 			children = (
-				B656EB9023C6591D0069AFD0 /* sample.pdf */,
 				B6E20BE123AE4E77003CD0E7 /* Pokoro.entitlements */,
 				B655881E23A7D6720056FD38 /* Coordinators */,
 				B655881F23A7D6840056FD38 /* Routers */,
@@ -1168,7 +1165,6 @@
 				B6CF14BD23ABD59300D330FD /* Localizable.strings in Resources */,
 				B6CF148F23ABD34300D330FD /* SF-Pro-Display-Light.otf in Resources */,
 				B6CF149123ABD34300D330FD /* SF-Pro-Display-Semibold.otf in Resources */,
-				B656EB9123C6591E0069AFD0 /* sample.pdf in Resources */,
 				B6CF149023ABD34300D330FD /* SF-Pro-Display-Regular.otf in Resources */,
 				B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */,
 			);
