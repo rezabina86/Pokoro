@@ -100,6 +100,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     private func syncMessageWithAPI() {
         guard let lastMessage = selectedThread?.lastMessage else { return }
         if messages.count == 0 {
+            messageStore.insert(lastMessage as! M)
             messages.append(lastMessage as! M)
             fetchMessagesBackward()
         } else {
@@ -309,6 +310,13 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     //Feel free to call this method wherever you want.
     private func sortThreads() {
         threads = threads.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
+    }
+    
+    public func deleteMessages() {
+        messageStore.fetchAll().forEach { [weak self] (msg) in
+            guard let `self` = self else { return }
+            self.messageStore.delete(msg)
+        }
     }
     
 }

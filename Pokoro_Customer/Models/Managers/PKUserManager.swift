@@ -47,6 +47,7 @@ class PKUserManager: NSObject, ObservableObject {
         ThreadsCacheManager.shared.clear()
         chatDataModel?.disconnect()
         chatManager?.disconnect()
+        chatManager?.deleteMessages()
     }
     
     @Published var isAppInForeground: Bool = true
