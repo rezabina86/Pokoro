@@ -76,8 +76,6 @@
 		B66DE2BB23C38D7900BF6639 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */; };
 		B66DE2C023C38ED000BF6639 /* ProfileActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */; };
 		B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */; };
-		B67CB0FE23C4D83900EA1858 /* DemoMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */; };
-		B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */; };
 		B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C423A7D10200672E00 /* AppDelegate.swift */; };
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
 		B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CD23A7D10400672E00 /* Assets.xcassets */; };
@@ -123,6 +121,7 @@
 		B6DCE31A242FAA9600928E8F /* ChatsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DCE319242FAA9600928E8F /* ChatsDataModel.swift */; };
 		B6DCE31C242FD79800928E8F /* ThreadBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */; };
 		B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E20BE323AE56F2003CD0E7 /* KeychainItem.swift */; };
+		B6E49E30243DBF100062A579 /* CIImage+combined.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E49E2F243DBF100062A579 /* CIImage+combined.swift */; };
 		B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EAC3C423B242BC0073D55F /* MainTabBarViewController.swift */; };
 		B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EAC3CB23B250430073D55F /* DarkTheme.swift */; };
 		B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */; };
@@ -239,8 +238,6 @@
 		B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileActionTableViewCell.swift; sourceTree = "<group>"; };
 		B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMessageManager.swift; sourceTree = "<group>"; };
-		B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMessagesBusinessModel.swift; sourceTree = "<group>"; };
 		B68FA4C123A7D10200672E00 /* Pokoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68FA4C423A7D10200672E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C823A7D10200672E00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +288,7 @@
 		B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadBusinessModel.swift; sourceTree = "<group>"; };
 		B6E20BE123AE4E77003CD0E7 /* Pokoro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pokoro.entitlements; sourceTree = "<group>"; };
 		B6E20BE323AE56F2003CD0E7 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		B6E49E2F243DBF100062A579 /* CIImage+combined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+combined.swift"; sourceTree = "<group>"; };
 		B6EAC3C423B242BC0073D55F /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		B6EAC3CB23B250430073D55F /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
@@ -569,6 +567,7 @@
 				B626B7FA2430CF77007307FF /* Array+difference.swift */,
 				B600A0692434B3F700B6008A /* Date+Components.swift */,
 				B6678E042434CC8100617D08 /* UIViewController+waiting.swift */,
+				B6E49E2F243DBF100062A579 /* CIImage+combined.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -689,15 +688,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		B67CB0FC23C4D7E400EA1858 /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */,
-				B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,7 +695,6 @@
 				B633FD5A24387A8000E62772 /* Chat Layer */,
 				B6DCE318242FAA7900928E8F /* Chats */,
 				B644EB40242CA58900D7CF61 /* Socket Layer */,
-				B67CB0FC23C4D7E400EA1858 /* Demo */,
 				B6E20BE223AE56E7003CD0E7 /* KeyChain */,
 				B6CF149523ABD59300D330FD /* Network Layer */,
 				B6CF14A623ABD59300D330FD /* Rest Models */,
@@ -1006,6 +995,7 @@
 		B6DCE315242F9DED00928E8F /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */,
 				B6DCE316242F9E3400928E8F /* ChatsBusinessModel.swift */,
 			);
 			path = Chats;
@@ -1015,7 +1005,6 @@
 			isa = PBXGroup;
 			children = (
 				B6DCE319242FAA9600928E8F /* ChatsDataModel.swift */,
-				B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -1332,7 +1321,6 @@
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B6CF14B623ABD59300D330FD /* HTTPTask.swift in Sources */,
 				B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */,
-				B67CB0FE23C4D83900EA1858 /* DemoMessageManager.swift in Sources */,
 				B6AC7A42243B53E6008CEF56 /* ChatMessageModel+CoreDataProperties.swift in Sources */,
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
 				B633FD6324387E4F00E62772 /* PkChatManager.swift in Sources */,
@@ -1346,12 +1334,12 @@
 				B6CF14AF23ABD59300D330FD /* ParameterEncoding.swift in Sources */,
 				B6500BC023AE220000D20BAB /* H1.swift in Sources */,
 				B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */,
-				B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */,
 				B6CF14B723ABD59300D330FD /* HTTPMethod.swift in Sources */,
 				B6CF14B823ABD59300D330FD /* Router.swift in Sources */,
 				B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */,
 				B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */,
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
+				B6E49E30243DBF100062A579 /* CIImage+combined.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
 				B600A06A2434B3F700B6008A /* Date+Components.swift in Sources */,
 				B633FD6124387D2B00E62772 /* Messages.swift in Sources */,
@@ -1579,7 +1567,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1587,7 +1575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1605,7 +1593,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1613,7 +1601,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
 				SWIFT_VERSION = 5.0;
@@ -1627,7 +1615,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1636,7 +1624,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1651,7 +1639,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1660,7 +1648,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

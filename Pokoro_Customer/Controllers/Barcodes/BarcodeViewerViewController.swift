@@ -32,12 +32,11 @@ class BarcodeViewerViewController: UIViewController {
     
     weak var delegate: BarcodeViewerViewControllerDelegate?
     
-    public var document: PDFDocument? {
-        willSet { pdfView.document = newValue }
-    }
-    
-    public var qrName: String? {
-        willSet { navigationItem.title = newValue }
+    public var document: NameSpacesBusinessModel.NameSpaceQR? {
+        willSet {
+            pdfView.document = newValue?.document
+            navigationItem.title = newValue?.name
+        }
     }
 
     override func viewDidLoad() {
@@ -68,9 +67,26 @@ class BarcodeViewerViewController: UIViewController {
     
     @objc
     private func exportButtonDidTapped(_ sender: PKButton) {
-        guard let data = self.document?.dataRepresentation() else { return }
-        let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-        self.present(activityController, animated: true, completion: nil)
+        showAlert()
+    }
+    
+    private func showAlert() {
+        let exportAction = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let pdfAction = UIAlertAction(title: "Pdf", style: .default) { _ in
+            guard let data = self.document?.document?.dataRepresentation() else { return }
+            let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            self.present(activityController, animated: true, completion: nil)
+        }
+        let imageAction = UIAlertAction(title: "Image", style: .default) { _ in
+            guard let qr = self.document?.qr, let data = UIImage(ciImage: qr).jpegData(compressionQuality: 1.0) else { return }
+            let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            self.present(activityController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        exportAction.addAction(pdfAction)
+        exportAction.addAction(imageAction)
+        exportAction.addAction(cancelAction)
+        present(exportAction, animated: true)
     }
 
 }

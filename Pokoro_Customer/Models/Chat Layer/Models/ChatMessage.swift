@@ -48,7 +48,7 @@ class ChatMessage: Messages, Hashable {
         self.message = apiResponse.message
         self.timestamp = apiResponse.timestamp
         self.chatId = thread.id
-        self.isSeen = false
+        self.isSeen = apiResponse.is_seen
     }
     
     required init(chat: ChatsBusinessModel.Chat) {
