@@ -4,7 +4,7 @@
 target 'Pokoro_Customer' do
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
-  pod 'SDWebImage'
+  pod 'LetterAvatarKit'
   pod 'SwiftMessages'
   pod 'SwiftOverlays'
   pod 'M13ProgressSuite'

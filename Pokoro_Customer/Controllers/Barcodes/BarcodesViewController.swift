@@ -14,17 +14,6 @@ protocol BarcodesViewControllerDelegate: class {
 }
 
 class BarcodesViewController: UIViewController {
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    private let navBar: PKNavBarView = {
-        let view = PKNavBarView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.title = "myBarcodes".localized
-        return view
-    }()
     
     private let tableView: UITableView = {
         let view = UITableView()
@@ -59,18 +48,13 @@ class BarcodesViewController: UIViewController {
     }
     
     private func setupViews() {
+        navigationItem.title = "myBarcodes".localized
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
-        
-        navBar.delegate = self
-        view.addSubview(navBar)
-        navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
         
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
@@ -123,8 +107,7 @@ extension BarcodesViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let controller = BarcodeViewerViewController()
         controller.delegate = self
-        controller.document = namespaces?.results[indexPath.row].document
-        controller.qrName = namespaces?.results[indexPath.row].name
+        controller.document = namespaces?.results[indexPath.row]
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -151,9 +134,7 @@ extension BarcodesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BarcodeTableViewCell()
         cell.name = namespaces?.results[indexPath.row].name
-        if let qr = namespaces?.results[indexPath.row].smallQr {
-            cell.qr = UIImage(ciImage: qr)
-        }
+        cell.qr = UIImage(named: "barcodes")
         return cell
     }
     

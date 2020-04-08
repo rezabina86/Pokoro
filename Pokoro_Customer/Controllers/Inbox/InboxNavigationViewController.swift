@@ -10,7 +10,7 @@ import UIKit
 
 class InboxNavigationViewController: UINavigationController {
     
-    public var chatData: ChatsDataModel?
+    public var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -19,10 +19,12 @@ class InboxNavigationViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let inboxController = InboxViewController()
-        inboxController.chatData = chatData
+        inboxController.chatManager = chatManager
         viewControllers = [inboxController]
         interactivePopGestureRecognizer?.delegate = nil
-        isNavigationBarHidden = true
+        //isNavigationBarHidden = true
+        navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
         delegate = self
     }
 
@@ -32,7 +34,7 @@ extension InboxNavigationViewController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController.isKind(of: InboxViewController.self) {
-            chatData?.select(thread: nil)
+            chatManager?.selectThread(nil)
         }
     }
     

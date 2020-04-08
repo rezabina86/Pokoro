@@ -15,17 +15,6 @@ protocol BarcodeViewerViewControllerDelegate: class {
 
 class BarcodeViewerViewController: UIViewController {
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    private let navBar: PKNavBarView = {
-        let view = PKNavBarView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.title = "Hello"
-        return view
-    }()
-    
     private let pdfView: PDFView = {
         let view = PDFView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,12 +32,11 @@ class BarcodeViewerViewController: UIViewController {
     
     weak var delegate: BarcodeViewerViewControllerDelegate?
     
-    public var document: PDFDocument? {
-        willSet { pdfView.document = newValue }
-    }
-    
-    public var qrName: String? {
-        willSet { navBar.title = newValue }
+    public var document: NameSpacesBusinessModel.NameSpaceQR? {
+        willSet {
+            pdfView.document = newValue?.document
+            navigationItem.title = newValue?.name
+        }
     }
 
     override func viewDidLoad() {
@@ -56,17 +44,15 @@ class BarcodeViewerViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
-        navBar.delegate = self
-        view.addSubview(navBar)
-        navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
-        
         view.addSubview(pdfView)
-        pdfView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        pdfView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
         pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         pdfView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         pdfView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
@@ -81,9 +67,26 @@ class BarcodeViewerViewController: UIViewController {
     
     @objc
     private func exportButtonDidTapped(_ sender: PKButton) {
-        guard let data = self.document?.dataRepresentation() else { return }
-        let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-        self.present(activityController, animated: true, completion: nil)
+        showAlert()
+    }
+    
+    private func showAlert() {
+        let exportAction = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let pdfAction = UIAlertAction(title: "Pdf", style: .default) { _ in
+            guard let data = self.document?.document?.dataRepresentation() else { return }
+            let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            self.present(activityController, animated: true, completion: nil)
+        }
+        let imageAction = UIAlertAction(title: "Image", style: .default) { _ in
+            guard let qr = self.document?.qr, let data = UIImage(ciImage: qr).jpegData(compressionQuality: 1.0) else { return }
+            let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            self.present(activityController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        exportAction.addAction(pdfAction)
+        exportAction.addAction(imageAction)
+        exportAction.addAction(cancelAction)
+        present(exportAction, animated: true)
     }
 
 }

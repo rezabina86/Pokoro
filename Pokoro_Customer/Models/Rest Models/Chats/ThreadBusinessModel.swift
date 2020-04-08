@@ -46,6 +46,7 @@ struct ThreadBusinessModel {
         let namespace_id: String
         let message: String
         let timestamp: Int64
+        let is_seen: Bool
     }
     
     struct OtherUser: Codable {

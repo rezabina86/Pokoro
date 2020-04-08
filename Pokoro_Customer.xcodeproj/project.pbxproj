@@ -13,15 +13,17 @@
 		B60C94DF242E0CC20015DABF /* BarcodeMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */; };
 		B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E0242E24060015DABF /* UIImage+overlay.swift */; };
 		B60C94E4242E2F9F0015DABF /* PKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C94E3242E2F9F0015DABF /* PKButton.swift */; };
-		B61701BB24364D3A0039B5F8 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B61701B524364D380039B5F8 /* ExceptionHandler.m */; };
-		B61701BC24364D3A0039B5F8 /* DelegateTransporter.m in Sources */ = {isa = PBXBuildFile; fileRef = B61701B624364D380039B5F8 /* DelegateTransporter.m */; };
-		B61701BD24364D3A0039B5F8 /* ReverseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701B824364D380039B5F8 /* ReverseExtension.swift */; };
-		B61701BE24364D3A0039B5F8 /* KeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701B924364D390039B5F8 /* KeyValueObserver.swift */; };
-		B61701BF24364D3A0039B5F8 /* UITableViewDelegateTransporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */; };
+		B615F77E243A1D160051D8A9 /* ManagerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B615F77D243A1D160051D8A9 /* ManagerStatus.swift */; };
 		B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */; };
 		B61EA9B423BA1E48001516D7 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B323BA1E48001516D7 /* InboxViewController.swift */; };
 		B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */; };
 		B626B7FB2430CF77007307FF /* Array+difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B626B7FA2430CF77007307FF /* Array+difference.swift */; };
+		B633FD5F24387B4600E62772 /* Threads.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD5E24387B4600E62772 /* Threads.swift */; };
+		B633FD6124387D2B00E62772 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD6024387D2B00E62772 /* Messages.swift */; };
+		B633FD6324387E4F00E62772 /* PkChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD6224387E4F00E62772 /* PkChatManager.swift */; };
+		B633FD6B243888CD00E62772 /* PokoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD6A243888CD00E62772 /* PokoroTests.swift */; };
+		B633FD732438920600E62772 /* ChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD722438920600E62772 /* ChatThread.swift */; };
+		B633FD752438923700E62772 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633FD742438923700E62772 /* ChatMessage.swift */; };
 		B6353512242E61AF006A641D /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6353511242E61AF006A641D /* UIViewController+showAlert.swift */; };
 		B635351B242E62E7006A641D /* RKAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635351A242E62E6006A641D /* RKAlertView.swift */; };
 		B6353520242E6402006A641D /* CALayer+sketchShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635351F242E6402006A641D /* CALayer+sketchShadow.swift */; };
@@ -53,7 +55,6 @@
 		B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655882F23A7E0920056FD38 /* LoginViewController.swift */; };
 		B656EB8D23C652D20069AFD0 /* PKEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB8C23C652D20069AFD0 /* PKEmptyStateView.swift */; };
 		B656EB8F23C654780069AFD0 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */; };
-		B656EB9123C6591E0069AFD0 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B656EB9023C6591D0069AFD0 /* sample.pdf */; };
 		B656EB9323C65AAE0069AFD0 /* BarcodeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */; };
 		B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */; };
 		B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */; };
@@ -75,8 +76,6 @@
 		B66DE2BB23C38D7900BF6639 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */; };
 		B66DE2C023C38ED000BF6639 /* ProfileActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */; };
 		B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */; };
-		B67CB0FE23C4D83900EA1858 /* DemoMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */; };
-		B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */; };
 		B68FA4C523A7D10200672E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C423A7D10200672E00 /* AppDelegate.swift */; };
 		B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FA4C823A7D10200672E00 /* ViewController.swift */; };
 		B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68FA4CD23A7D10400672E00 /* Assets.xcassets */; };
@@ -84,6 +83,13 @@
 		B6A1DE6A24338DFB003A9470 /* RegisterBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1DE6924338DFB003A9470 /* RegisterBusinessModel.swift */; };
 		B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */; };
 		B6A44FF22435EEB500B255A4 /* ThreadsCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A44FF12435EEB500B255A4 /* ThreadsCacheManager.swift */; };
+		B6AC7A38243B4C70008CEF56 /* ObjectConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7A37243B4C70008CEF56 /* ObjectConvertible.swift */; };
+		B6AC7A3A243B4C91008CEF56 /* ManagedObjectConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7A39243B4C91008CEF56 /* ManagedObjectConvertible.swift */; };
+		B6AC7A3C243B4CF1008CEF56 /* MessageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7A3B243B4CF1008CEF56 /* MessageStore.swift */; };
+		B6AC7A3F243B512E008CEF56 /* PokoroDBModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7A3D243B512E008CEF56 /* PokoroDBModel.xcdatamodeld */; };
+		B6AC7A42243B53E6008CEF56 /* ChatMessageModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7A40243B53E5008CEF56 /* ChatMessageModel+CoreDataProperties.swift */; };
+		B6AC7A43243B53E6008CEF56 /* ChatMessageModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7A41243B53E5008CEF56 /* ChatMessageModel+CoreDataClass.swift */; };
+		B6AC7A45243B553A008CEF56 /* Sorted.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7A44243B553A008CEF56 /* Sorted.swift */; };
 		B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */; };
 		B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9321023C5245E006863E0 /* BarcodesViewController.swift */; };
 		B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9321423C52677006863E0 /* BarcodeTableViewCell.swift */; };
@@ -115,6 +121,7 @@
 		B6DCE31A242FAA9600928E8F /* ChatsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DCE319242FAA9600928E8F /* ChatsDataModel.swift */; };
 		B6DCE31C242FD79800928E8F /* ThreadBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */; };
 		B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E20BE323AE56F2003CD0E7 /* KeychainItem.swift */; };
+		B6E49E30243DBF100062A579 /* CIImage+combined.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E49E2F243DBF100062A579 /* CIImage+combined.swift */; };
 		B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EAC3C423B242BC0073D55F /* MainTabBarViewController.swift */; };
 		B6EAC3CC23B250430073D55F /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EAC3CB23B250430073D55F /* DarkTheme.swift */; };
 		B6F68BD023AE26E7002C2A81 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */; };
@@ -122,6 +129,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B633FD6D243888CD00E62772 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B68FA4B923A7D10200672E00 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B68FA4C023A7D10200672E00;
+			remoteInfo = Pokoro_Customer;
+		};
 		B6CF180124322FC90023F92A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B68FA4B923A7D10200672E00 /* Project object */;
@@ -159,18 +173,19 @@
 		B60C94DE242E0CC20015DABF /* BarcodeMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeMaker.swift; sourceTree = "<group>"; };
 		B60C94E0242E24060015DABF /* UIImage+overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+overlay.swift"; sourceTree = "<group>"; };
 		B60C94E3242E2F9F0015DABF /* PKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKButton.swift; sourceTree = "<group>"; };
-		B61701B324364D360039B5F8 /* Pokoro_Customer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pokoro_Customer-Bridging-Header.h"; sourceTree = "<group>"; };
-		B61701B424364D380039B5F8 /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionHandler.h; sourceTree = "<group>"; };
-		B61701B524364D380039B5F8 /* ExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionHandler.m; sourceTree = "<group>"; };
-		B61701B624364D380039B5F8 /* DelegateTransporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateTransporter.m; sourceTree = "<group>"; };
-		B61701B724364D380039B5F8 /* DelegateTransporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateTransporter.h; sourceTree = "<group>"; };
-		B61701B824364D380039B5F8 /* ReverseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseExtension.swift; sourceTree = "<group>"; };
-		B61701B924364D390039B5F8 /* KeyValueObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueObserver.swift; sourceTree = "<group>"; };
-		B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewDelegateTransporter.swift; sourceTree = "<group>"; };
+		B615F77D243A1D160051D8A9 /* ManagerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerStatus.swift; sourceTree = "<group>"; };
 		B61EA9B023BA1A6D001516D7 /* PKNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKNavBarView.swift; sourceTree = "<group>"; };
 		B61EA9B323BA1E48001516D7 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		B626B7FA2430CF77007307FF /* Array+difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+difference.swift"; sourceTree = "<group>"; };
+		B633FD5E24387B4600E62772 /* Threads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Threads.swift; sourceTree = "<group>"; };
+		B633FD6024387D2B00E62772 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		B633FD6224387E4F00E62772 /* PkChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PkChatManager.swift; sourceTree = "<group>"; };
+		B633FD68243888CD00E62772 /* PokoroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokoroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B633FD6A243888CD00E62772 /* PokoroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokoroTests.swift; sourceTree = "<group>"; };
+		B633FD6C243888CD00E62772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B633FD722438920600E62772 /* ChatThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatThread.swift; sourceTree = "<group>"; };
+		B633FD742438923700E62772 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		B6353511242E61AF006A641D /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
 		B635351A242E62E6006A641D /* RKAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKAlertView.swift; sourceTree = "<group>"; };
 		B635351F242E6402006A641D /* CALayer+sketchShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+sketchShadow.swift"; sourceTree = "<group>"; };
@@ -202,7 +217,6 @@
 		B655882F23A7E0920056FD38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B656EB8C23C652D20069AFD0 /* PKEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKEmptyStateView.swift; sourceTree = "<group>"; };
 		B656EB8E23C654780069AFD0 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
-		B656EB9023C6591D0069AFD0 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		B656EB9223C65AAE0069AFD0 /* BarcodeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewerViewController.swift; sourceTree = "<group>"; };
 		B6659E0C23BF93CA006E66E5 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		B6659E0E23BF9517006E66E5 /* InboxNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationViewController.swift; sourceTree = "<group>"; };
@@ -224,8 +238,6 @@
 		B66DE2BA23C38D7900BF6639 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B66DE2BE23C38ED000BF6639 /* ProfileActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileActionTableViewCell.swift; sourceTree = "<group>"; };
 		B66DE2BF23C38ED000BF6639 /* ProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMessageManager.swift; sourceTree = "<group>"; };
-		B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMessagesBusinessModel.swift; sourceTree = "<group>"; };
 		B68FA4C123A7D10200672E00 /* Pokoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68FA4C423A7D10200672E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68FA4C823A7D10200672E00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +247,13 @@
 		B6A1DE6924338DFB003A9470 /* RegisterBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBusinessModel.swift; sourceTree = "<group>"; };
 		B6A445F123C34C7600E64029 /* PKChatTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKChatTextFieldView.swift; sourceTree = "<group>"; };
 		B6A44FF12435EEB500B255A4 /* ThreadsCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsCacheManager.swift; sourceTree = "<group>"; };
+		B6AC7A37243B4C70008CEF56 /* ObjectConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectConvertible.swift; sourceTree = "<group>"; };
+		B6AC7A39243B4C91008CEF56 /* ManagedObjectConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectConvertible.swift; sourceTree = "<group>"; };
+		B6AC7A3B243B4CF1008CEF56 /* MessageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStore.swift; sourceTree = "<group>"; };
+		B6AC7A3E243B512E008CEF56 /* PokoroDBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokoroDBModel.xcdatamodel; sourceTree = "<group>"; };
+		B6AC7A40243B53E5008CEF56 /* ChatMessageModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatMessageModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B6AC7A41243B53E5008CEF56 /* ChatMessageModel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatMessageModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B6AC7A44243B553A008CEF56 /* Sorted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorted.swift; sourceTree = "<group>"; };
 		B6C9320D23C52412006863E0 /* ProfileNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationViewController.swift; sourceTree = "<group>"; };
 		B6C9321023C5245E006863E0 /* BarcodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodesViewController.swift; sourceTree = "<group>"; };
 		B6C9321423C52677006863E0 /* BarcodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeTableViewCell.swift; sourceTree = "<group>"; };
@@ -269,12 +288,20 @@
 		B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadBusinessModel.swift; sourceTree = "<group>"; };
 		B6E20BE123AE4E77003CD0E7 /* Pokoro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pokoro.entitlements; sourceTree = "<group>"; };
 		B6E20BE323AE56F2003CD0E7 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		B6E49E2F243DBF100062A579 /* CIImage+combined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+combined.swift"; sourceTree = "<group>"; };
 		B6EAC3C423B242BC0073D55F /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		B6EAC3CB23B250430073D55F /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		B6F68BCF23AE26E7002C2A81 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B633FD65243888CD00E62772 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B68FA4BE23A7D10200672E00 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,21 +360,6 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		B61701AE24364BA10039B5F8 /* Reverse TableView */ = {
-			isa = PBXGroup;
-			children = (
-				B61701B724364D380039B5F8 /* DelegateTransporter.h */,
-				B61701B624364D380039B5F8 /* DelegateTransporter.m */,
-				B61701B424364D380039B5F8 /* ExceptionHandler.h */,
-				B61701B524364D380039B5F8 /* ExceptionHandler.m */,
-				B61701B924364D390039B5F8 /* KeyValueObserver.swift */,
-				B61701B824364D380039B5F8 /* ReverseExtension.swift */,
-				B61701BA24364D390039B5F8 /* UITableViewDelegateTransporter.swift */,
-				B61701B324364D360039B5F8 /* Pokoro_Customer-Bridging-Header.h */,
-			);
-			path = "Reverse TableView";
-			sourceTree = "<group>";
-		};
 		B61EA9AF23BA1A3B001516D7 /* NavBars */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +391,52 @@
 				B61EA9B723BA227F001516D7 /* MessageTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B633FD5A24387A8000E62772 /* Chat Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD5D24387A9300E62772 /* Manager */,
+				B633FD5C24387A8C00E62772 /* Protocols */,
+				B633FD5B24387A8700E62772 /* Models */,
+			);
+			path = "Chat Layer";
+			sourceTree = "<group>";
+		};
+		B633FD5B24387A8700E62772 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD722438920600E62772 /* ChatThread.swift */,
+				B633FD742438923700E62772 /* ChatMessage.swift */,
+				B615F77D243A1D160051D8A9 /* ManagerStatus.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B633FD5C24387A8C00E62772 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD5E24387B4600E62772 /* Threads.swift */,
+				B633FD6024387D2B00E62772 /* Messages.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B633FD5D24387A9300E62772 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD6224387E4F00E62772 /* PkChatManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		B633FD69243888CD00E62772 /* PokoroTests */ = {
+			isa = PBXGroup;
+			children = (
+				B633FD6A243888CD00E62772 /* PokoroTests.swift */,
+				B633FD6C243888CD00E62772 /* Info.plist */,
+			);
+			path = PokoroTests;
 			sourceTree = "<group>";
 		};
 		B635351C242E62EB006A641D /* Alerts */ = {
@@ -509,6 +567,7 @@
 				B626B7FA2430CF77007307FF /* Array+difference.swift */,
 				B600A0692434B3F700B6008A /* Date+Components.swift */,
 				B6678E042434CC8100617D08 /* UIViewController+waiting.swift */,
+				B6E49E2F243DBF100062A579 /* CIImage+combined.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -629,22 +688,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		B67CB0FC23C4D7E400EA1858 /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				B67CB0FD23C4D83900EA1858 /* DemoMessageManager.swift */,
-				B67CB10123C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
 		B68E592823A7D470000C04DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B61701AE24364BA10039B5F8 /* Reverse TableView */,
+				B6AC7A33243B4BF9008CEF56 /* DB Layer */,
+				B633FD5A24387A8000E62772 /* Chat Layer */,
 				B6DCE318242FAA7900928E8F /* Chats */,
 				B644EB40242CA58900D7CF61 /* Socket Layer */,
-				B67CB0FC23C4D7E400EA1858 /* Demo */,
 				B6E20BE223AE56E7003CD0E7 /* KeyChain */,
 				B6CF149523ABD59300D330FD /* Network Layer */,
 				B6CF14A623ABD59300D330FD /* Rest Models */,
@@ -706,6 +756,7 @@
 			children = (
 				B68FA4C323A7D10200672E00 /* Pokoro_Customer */,
 				B6CF17FD24322FC90023F92A /* OneSignalNotificationServiceExtension */,
+				B633FD69243888CD00E62772 /* PokoroTests */,
 				B68FA4C223A7D10200672E00 /* Products */,
 				59DB6879B68E50C43A636E90 /* Pods */,
 				D28EF1079F83EEAFD99C5AE2 /* Frameworks */,
@@ -717,6 +768,7 @@
 			children = (
 				B68FA4C123A7D10200672E00 /* Pokoro.app */,
 				B6CF17FC24322FC90023F92A /* OneSignalNotificationServiceExtension.appex */,
+				B633FD68243888CD00E62772 /* PokoroTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -724,7 +776,6 @@
 		B68FA4C323A7D10200672E00 /* Pokoro_Customer */ = {
 			isa = PBXGroup;
 			children = (
-				B656EB9023C6591D0069AFD0 /* sample.pdf */,
 				B6E20BE123AE4E77003CD0E7 /* Pokoro.entitlements */,
 				B655881E23A7D6720056FD38 /* Coordinators */,
 				B655881F23A7D6840056FD38 /* Routers */,
@@ -760,6 +811,44 @@
 				B66DE2B423C37C5D00BF6639 /* PKChatBubble.swift */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		B6AC7A33243B4BF9008CEF56 /* DB Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B6AC7A36243B4C47008CEF56 /* Service */,
+				B6AC7A35243B4C2E008CEF56 /* Stores */,
+				B6AC7A34243B4C27008CEF56 /* Model Layer */,
+			);
+			path = "DB Layer";
+			sourceTree = "<group>";
+		};
+		B6AC7A34243B4C27008CEF56 /* Model Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B6AC7A40243B53E5008CEF56 /* ChatMessageModel+CoreDataProperties.swift */,
+				B6AC7A41243B53E5008CEF56 /* ChatMessageModel+CoreDataClass.swift */,
+				B6AC7A3D243B512E008CEF56 /* PokoroDBModel.xcdatamodeld */,
+			);
+			path = "Model Layer";
+			sourceTree = "<group>";
+		};
+		B6AC7A35243B4C2E008CEF56 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				B6AC7A3B243B4CF1008CEF56 /* MessageStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		B6AC7A36243B4C47008CEF56 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B6AC7A37243B4C70008CEF56 /* ObjectConvertible.swift */,
+				B6AC7A39243B4C91008CEF56 /* ManagedObjectConvertible.swift */,
+				B6AC7A44243B553A008CEF56 /* Sorted.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		B6C9320F23C52448006863E0 /* Barcodes */ = {
@@ -906,6 +995,7 @@
 		B6DCE315242F9DED00928E8F /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */,
 				B6DCE316242F9E3400928E8F /* ChatsBusinessModel.swift */,
 			);
 			path = Chats;
@@ -915,7 +1005,6 @@
 			isa = PBXGroup;
 			children = (
 				B6DCE319242FAA9600928E8F /* ChatsDataModel.swift */,
-				B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -948,6 +1037,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B633FD67243888CD00E62772 /* PokoroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B633FD6F243888CD00E62772 /* Build configuration list for PBXNativeTarget "PokoroTests" */;
+			buildPhases = (
+				B633FD64243888CD00E62772 /* Sources */,
+				B633FD65243888CD00E62772 /* Frameworks */,
+				B633FD66243888CD00E62772 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B633FD6E243888CD00E62772 /* PBXTargetDependency */,
+			);
+			name = PokoroTests;
+			productName = PokoroTests;
+			productReference = B633FD68243888CD00E62772 /* PokoroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B68FA4C023A7D10200672E00 /* Pokoro_Customer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B68FA4D523A7D10400672E00 /* Build configuration list for PBXNativeTarget "Pokoro_Customer" */;
@@ -997,6 +1104,10 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Reza Bina";
 				TargetAttributes = {
+					B633FD67243888CD00E62772 = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = B68FA4C023A7D10200672E00;
+					};
 					B68FA4C023A7D10200672E00 = {
 						CreatedOnToolsVersion = 11.3;
 						LastSwiftMigration = 1140;
@@ -1022,11 +1133,19 @@
 			targets = (
 				B68FA4C023A7D10200672E00 /* Pokoro_Customer */,
 				B6CF17FB24322FC90023F92A /* OneSignalNotificationServiceExtension */,
+				B633FD67243888CD00E62772 /* PokoroTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B633FD66243888CD00E62772 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B68FA4BF23A7D10200672E00 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1035,7 +1154,6 @@
 				B6CF14BD23ABD59300D330FD /* Localizable.strings in Resources */,
 				B6CF148F23ABD34300D330FD /* SF-Pro-Display-Light.otf in Resources */,
 				B6CF149123ABD34300D330FD /* SF-Pro-Display-Semibold.otf in Resources */,
-				B656EB9123C6591E0069AFD0 /* sample.pdf in Resources */,
 				B6CF149023ABD34300D330FD /* SF-Pro-Display-Regular.otf in Resources */,
 				B68FA4CE23A7D10400672E00 /* Assets.xcassets in Resources */,
 			);
@@ -1115,15 +1233,25 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B633FD64243888CD00E62772 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B633FD6B243888CD00E62772 /* PokoroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B68FA4BD23A7D10200672E00 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B6CF14B323ABD59300D330FD /* NetworkManager.swift in Sources */,
+				B6AC7A43243B53E6008CEF56 /* ChatMessageModel+CoreDataClass.swift in Sources */,
 				B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */,
-				B61701BF24364D3A0039B5F8 /* UITableViewDelegateTransporter.swift in Sources */,
 				B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */,
+				B6AC7A45243B553A008CEF56 /* Sorted.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
+				B633FD752438923700E62772 /* ChatMessage.swift in Sources */,
 				B6353525242E6EA2006A641D /* CheckNamespaceBusinessModel.swift in Sources */,
 				B6C9321123C5245E006863E0 /* BarcodesViewController.swift in Sources */,
 				B60C94E4242E2F9F0015DABF /* PKButton.swift in Sources */,
@@ -1131,13 +1259,13 @@
 				B66DE2B523C37C5D00BF6639 /* PKChatBubble.swift in Sources */,
 				B66A3CF923AA982300916C95 /* LogEvent.swift in Sources */,
 				B6659E0F23BF9517006E66E5 /* InboxNavigationViewController.swift in Sources */,
+				B633FD5F24387B4600E62772 /* Threads.swift in Sources */,
 				B66A3D0023AA9B1A00916C95 /* ThemeManager.swift in Sources */,
 				B66DE2C123C38ED000BF6639 /* ProfileHeaderTableViewCell.swift in Sources */,
 				B6353523242E6687006A641D /* NamespacesCacheManager.swift in Sources */,
 				B60C94DC242E08B00015DABF /* NameSpacesBusinessModel.swift in Sources */,
 				B6353520242E6402006A641D /* CALayer+sketchShadow.swift in Sources */,
 				B6CF14B023ABD59300D330FD /* URLParametersEncoder.swift in Sources */,
-				B61701BC24364D3A0039B5F8 /* DelegateTransporter.m in Sources */,
 				B6CF14B123ABD59300D330FD /* JSONParameterEncoder.swift in Sources */,
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
 				B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */,
@@ -1150,6 +1278,7 @@
 				B6500BC323AE220000D20BAB /* LargeLight.swift in Sources */,
 				B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */,
 				B6CF14B523ABD59300D330FD /* NetworkRouter.swift in Sources */,
+				B615F77E243A1D160051D8A9 /* ManagerStatus.swift in Sources */,
 				B644EB4C242CB74C00D7CF61 /* SocketEvent.swift in Sources */,
 				B656EB9323C65AAE0069AFD0 /* BarcodeViewerViewController.swift in Sources */,
 				B66A3CF823AA982300916C95 /* Logger.swift in Sources */,
@@ -1176,11 +1305,15 @@
 				B66A3D0223AA9E1900916C95 /* Colors.swift in Sources */,
 				B655882523A7DA680056FD38 /* Coordinator.swift in Sources */,
 				B655882323A7D7230056FD38 /* Routers.swift in Sources */,
+				B6AC7A3A243B4C91008CEF56 /* ManagedObjectConvertible.swift in Sources */,
 				B6659E0D23BF93CA006E66E5 /* MessageViewController.swift in Sources */,
 				B6CF14C223ACCDC800D330FD /* String+Regex.swift in Sources */,
 				B655882123A7D6A00056FD38 /* SceneDelegateRouter.swift in Sources */,
+				B6AC7A38243B4C70008CEF56 /* ObjectConvertible.swift in Sources */,
+				B633FD732438920600E62772 /* ChatThread.swift in Sources */,
 				B644EB53242CBECB00D7CF61 /* SeenMessageBusinessModel.swift in Sources */,
 				B6DCE31A242FAA9600928E8F /* ChatsDataModel.swift in Sources */,
+				B6AC7A3C243B4CF1008CEF56 /* MessageStore.swift in Sources */,
 				B60C94E1242E24060015DABF /* UIImage+overlay.swift in Sources */,
 				B6500BC523AE220000D20BAB /* LargeSB.swift in Sources */,
 				B66DE2B323C37B5400BF6639 /* IncomingMessageTableViewCell.swift in Sources */,
@@ -1188,8 +1321,10 @@
 				B655882A23A7DF650056FD38 /* AuthenticationCoordinator.swift in Sources */,
 				B6CF14B623ABD59300D330FD /* HTTPTask.swift in Sources */,
 				B61EA9B823BA227F001516D7 /* MessageTableViewCell.swift in Sources */,
-				B67CB0FE23C4D83900EA1858 /* DemoMessageManager.swift in Sources */,
+				B6AC7A42243B53E6008CEF56 /* ChatMessageModel+CoreDataProperties.swift in Sources */,
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
+				B633FD6324387E4F00E62772 /* PkChatManager.swift in Sources */,
+				B6AC7A3F243B512E008CEF56 /* PokoroDBModel.xcdatamodeld in Sources */,
 				B66DE2B023C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift in Sources */,
 				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
 				B66DE2BB23C38D7900BF6639 /* ProfileViewController.swift in Sources */,
@@ -1197,18 +1332,17 @@
 				B6CF14BB23ABD59300D330FD /* ErrorBusinessModel.swift in Sources */,
 				B6A445F223C34C7600E64029 /* PKChatTextFieldView.swift in Sources */,
 				B6CF14AF23ABD59300D330FD /* ParameterEncoding.swift in Sources */,
-				B61701BB24364D3A0039B5F8 /* ExceptionHandler.m in Sources */,
 				B6500BC023AE220000D20BAB /* H1.swift in Sources */,
 				B66A3CFB23AA987A00916C95 /* Date+toString.swift in Sources */,
-				B67CB10223C4D8CA00EA1858 /* DemoMessagesBusinessModel.swift in Sources */,
 				B6CF14B723ABD59300D330FD /* HTTPMethod.swift in Sources */,
 				B6CF14B823ABD59300D330FD /* Router.swift in Sources */,
 				B6500BBC23AE220000D20BAB /* LargeRegular.swift in Sources */,
 				B6500BBE23AE220000D20BAB /* MediumRegular.swift in Sources */,
-				B61701BD24364D3A0039B5F8 /* ReverseExtension.swift in Sources */,
 				B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */,
+				B6E49E30243DBF100062A579 /* CIImage+combined.swift in Sources */,
 				B655883023A7E0920056FD38 /* LoginViewController.swift in Sources */,
 				B600A06A2434B3F700B6008A /* Date+Components.swift in Sources */,
+				B633FD6124387D2B00E62772 /* Messages.swift in Sources */,
 				B6C9320E23C52412006863E0 /* ProfileNavigationViewController.swift in Sources */,
 				B6A1DE6A24338DFB003A9470 /* RegisterBusinessModel.swift in Sources */,
 				B61EA9B123BA1A6D001516D7 /* PKNavBarView.swift in Sources */,
@@ -1219,7 +1353,6 @@
 				B644EB51242CBCF200D7CF61 /* SendMessageBusinessModel.swift in Sources */,
 				B66A3CFE23AA9ACA00916C95 /* Theme.swift in Sources */,
 				B644EB48242CACAB00D7CF61 /* SocketEndPointType.swift in Sources */,
-				B61701BE24364D3A0039B5F8 /* KeyValueObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,6 +1367,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B633FD6E243888CD00E62772 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B68FA4C023A7D10200672E00 /* Pokoro_Customer */;
+			targetProxy = B633FD6D243888CD00E62772 /* PBXContainerItemProxy */;
+		};
 		B6CF180224322FC90023F92A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B6CF17FB24322FC90023F92A /* OneSignalNotificationServiceExtension */;
@@ -1262,6 +1400,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B633FD70243888CD00E62772 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
+				INFOPLIST_FILE = PokoroTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronaker.pinger.com.PokoroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokoro.app/Pokoro";
+			};
+			name = Debug;
+		};
+		B633FD71243888CD00E62772 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
+				INFOPLIST_FILE = PokoroTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronaker.pinger.com.PokoroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokoro.app/Pokoro";
+			};
+			name = Release;
+		};
 		B68FA4D323A7D10400672E00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1387,7 +1567,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1395,10 +1575,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
-				SWIFT_OBJC_BRIDGING_HEADER = "Pokoro_Customer/Models/Reverse TableView/Pokoro_Customer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1414,7 +1593,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pokoro_Customer/Pokoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = "Pokoro_Customer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1422,10 +1601,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app;
 				PRODUCT_NAME = Pokoro;
-				SWIFT_OBJC_BRIDGING_HEADER = "Pokoro_Customer/Models/Reverse TableView/Pokoro_Customer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1437,7 +1615,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1446,7 +1624,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1461,7 +1639,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z55ZH6XK8Y;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1470,7 +1648,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokoro.app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1482,6 +1660,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B633FD6F243888CD00E62772 /* Build configuration list for PBXNativeTarget "PokoroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B633FD70243888CD00E62772 /* Debug */,
+				B633FD71243888CD00E62772 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B68FA4BC23A7D10200672E00 /* Build configuration list for PBXProject "Pokoro_Customer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1510,6 +1697,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B6AC7A3D243B512E008CEF56 /* PokoroDBModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B6AC7A3E243B512E008CEF56 /* PokoroDBModel.xcdatamodel */,
+			);
+			currentVersion = B6AC7A3E243B512E008CEF56 /* PokoroDBModel.xcdatamodel */;
+			path = PokoroDBModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B68FA4B923A7D10200672E00 /* Project object */;
 }

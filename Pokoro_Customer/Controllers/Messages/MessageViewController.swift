@@ -16,10 +16,6 @@ protocol MessageViewControllerDelegate: class {
 
 class MessageViewController: UIViewController {
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     private let navBar: PKNavBarView = {
         let view = PKNavBarView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +29,7 @@ class MessageViewController: UIViewController {
         view.separatorStyle = .none
         view.tableFooterView = UIView(frame: CGRect.zero)
         view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)
+        view.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: view.bounds.size.width - 8.0)
         return view
     }()
     
@@ -45,16 +42,17 @@ class MessageViewController: UIViewController {
     weak var delegate: MessageViewControllerDelegate?
     private var bottomConst: NSLayoutConstraint!
     
-    private var messages: [ChatsDataModel.Message] = []
+    private var messages: [ChatMessage] = []
     private var fetchInProgress = false
     
-    var chatData: ChatsDataModel! {
-        willSet { navBar.title = newValue.selectedThread?.userName }
+    var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>! {
+        willSet { navigationItem.title = newValue.selectedThread?.userName }
     }
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         setupViews()
         setupPublishers()
     }
@@ -62,11 +60,6 @@ class MessageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeNotification()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        getThread()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,16 +70,10 @@ class MessageViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
-        navBar.delegate = self
-        view.addSubview(navBar)
-        navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
-        
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
         
@@ -125,13 +112,8 @@ class MessageViewController: UIViewController {
         }
     }
     
-    private func getThread() {
-        fetchInProgress = true
-        chatData.fetchThreadFromAPI(completion: { self.fetchInProgress = false })
-    }
-    
     private func setupPublishers() {
-        chatData.$messages.sink { [weak self] msg in
+        chatManager.$messages.sink { [weak self] msg in
             guard let `self` = self else { return }
             let dif = self.messages.difference(from: msg)
             self.messages = msg
@@ -144,24 +126,20 @@ class MessageViewController: UIViewController {
             }
         }.store(in: &cancellables)
         
-        chatData?.$socketStatus.sink(receiveValue: { [weak self] (event) in
+        chatManager?.$managerStatus.sink(receiveValue: { [weak self] (event) in
             guard let `self` = self else { return }
             self.handleSocketStatus(event: event)
         }).store(in: &cancellables)
     }
     
-    private func handleSocketStatus(event: SocketClientEvent) {
+    private func handleSocketStatus(event: ManagerStatus) {
         switch event {
-        case .connect:
-            navBar.title = chatData.selectedThread?.userName
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-                guard let `self` = self else { return }
-                //self.getThreads()
-            }
-        case .disconnect:
-            if PKUserManager.shared.isAppInForeground { chatData?.connect() }
-        case .reconnect:
-            navBar.title = "Connecting..."
+        case .connected:
+            navigationItem.title = chatManager.selectedThread?.userName
+        case .disconnected:
+            navigationItem.title = "Connecting..."
+        case .updatingThreadList:
+            navigationItem.title = "Updating..."
         default:
             break
         }
@@ -178,7 +156,7 @@ extension MessageViewController: PKNavBarViewDelegate {
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String, completion: @escaping () -> Void) {
-        chatData.sendMessage(text) { [weak self] (success) in
+        chatManager.sendMessage(text) { [weak self] (success) in
             guard let `self` = self else { return }
             guard success else { return }
             if self.messages.count > 0 {
@@ -219,9 +197,8 @@ extension MessageViewController: UITableViewDataSource {
         let message = messages[indexPath.row]
         DispatchQueue(label: "com.pokoro.fetch").async { [weak self] in
             guard let `self` = self else { return }
-            if indexPath.row == self.messages.count - 1, !self.fetchInProgress {
-                self.fetchInProgress = true
-                self.chatData.fetchThreadFromAPI(completion: { self.fetchInProgress = false })
+            if indexPath.row == self.messages.count - 1 {
+                self.chatManager.fetchThreadMessages()
             }
         }
         if message.isIncomeMessage {
@@ -241,7 +218,7 @@ extension MessageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let message = messages[indexPath.row]
-        chatData.seenMessage(message)
+        chatManager.seenMessage(message)
     }
     
 }

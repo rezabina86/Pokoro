@@ -12,17 +12,6 @@ import SocketIO
 
 class InboxViewController: UIViewController {
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    private let navBar: PKNavBarView = {
-        let view = PKNavBarView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isBackButtonHidden = true
-        return view
-    }()
-    
     private let tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -31,9 +20,8 @@ class InboxViewController: UIViewController {
         view.tableFooterView = UIView(frame: CGRect.zero)
         return view
     }()
-    
-    public var chatData: ChatsDataModel?
-    private var threads: [ChatsDataModel.Thread] = [] {
+
+    private var threads: [ChatThread<ChatMessage>] = [] {
         didSet {
             if threads.count == 0 {
                 self.tableView.showEmptyView(title: "No Messages", subtitle: "Scan Barcode to start a conversation", image: UIImage(named: "talk"))
@@ -45,86 +33,57 @@ class InboxViewController: UIViewController {
     }
     private var cancellables = Set<AnyCancellable>()
     
+    var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCache()
         setupViews()
         setupPublisher()
+        PKUserManager.shared.chatManager = chatManager
     }
     
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
-        
-        view.addSubview(navBar)
-        navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        navBar.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
+        navigationItem.title = "Messages"
         
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
     }
     
     private func loadCache() {
-        let savedThreads = ThreadsCacheManager.shared.threads.map({ ChatsDataModel.Thread(apiResponse: $0) })
+        let savedThreads = ThreadsCacheManager.shared.threads.map({ ChatThread<ChatMessage>(apiResponse: $0) })
         let newOrder = savedThreads.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
         threads = newOrder
     }
     
     private func setupPublisher() {
-        chatData?.$socketStatus.sink(receiveValue: { [weak self] (event) in
+        chatManager.$threads.sink { [weak self] (thrds) in
             guard let `self` = self else { return }
-            self.handleSocketStatus(event: event)
-        }).store(in: &cancellables)
-        
-        //*****
-        chatData?.$threads.sink(receiveValue: { [weak self] (threads) in
-            guard let `self` = self else { return }
-            if threads.count > 0 { self.threads = threads }
-        }).store(in: &cancellables)
-        
-        //*****
-        PKUserManager.shared.$isAppInForeground.sink { [weak self] (value) in
-            guard let `self` = self else { return }
-            value ? self.chatData?.connect() : self.chatData?.disconnect()
+            if thrds.count > 0 { self.threads = thrds }
         }.store(in: &cancellables)
         
-        //*****
-        
+        chatManager.$managerStatus.sink { [weak self] (status) in
+            guard let `self` = self else { return }
+            self.handleSocketStatus(event: status)
+        }.store(in: &cancellables)
     }
     
-    private func handleSocketStatus(event: SocketClientEvent) {
+    private func handleSocketStatus(event: ManagerStatus) {
         switch event {
-        case .connect:
-            navBar.title = "Updating..."
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-                guard let `self` = self else { return }
-                self.getThreads()
-            }
-        case .disconnect:
-            if PKUserManager.shared.isAppInForeground, PKUserManager.shared.isUserLoggedIn { chatData?.connect() }
-        case .reconnect:
-            navBar.title = "Connecting..."
+        case .connected:
+            navigationItem.title = "Messages"
+        case .disconnected:
+            navigationItem.title = "Connecting..."
+        case .updatingThreadList:
+            navigationItem.title = "Updating..."
         default:
             break
-        }
-    }
-    
-    private func getThreads() {
-        NetworkManager().getChats { [weak self] (chats, error) in
-            guard let `self` = self else { return }
-            self.navBar.title = ""
-            if let error = error {
-                Logger.log(message: error, event: .error)
-            } else if let chats = chats {
-                self.chatData?.setup(apiResponse: chats)
-                ThreadsCacheManager.shared.threads = chats.results
-                PKUserManager.shared.chatManager = self.chatData
-            }
         }
     }
     
@@ -138,10 +97,10 @@ extension InboxViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        chatData?.select(thread: threads[indexPath.row])
+        chatManager?.selectThread(threads[indexPath.row])
         let messageController = MessageViewController()
         messageController.delegate = self
-        messageController.chatData = chatData
+        messageController.chatManager = chatManager
         messageController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(messageController, animated: true)
     }
@@ -166,7 +125,7 @@ extension InboxViewController: MessageViewControllerDelegate {
     
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
         controller.navigationController?.popViewController(animated: true)
-        chatData?.select(thread: nil)
+        chatManager?.selectThread(nil)
     }
     
 }

@@ -31,6 +31,8 @@
 	<string>Your location will be used when you send a message to other users.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location will be used when you send a message to other users.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need to access to your library in case of save QR codes in your library</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

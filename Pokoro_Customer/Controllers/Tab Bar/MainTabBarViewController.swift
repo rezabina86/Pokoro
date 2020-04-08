@@ -12,32 +12,32 @@ import AVFoundation
 
 class MainTabBarViewController: UITabBarController {
     
-    public var chatData: ChatsDataModel?
+    public var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>?
     private var cancellables = Set<AnyCancellable>()
     private var pageLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        chatData = ChatsDataModel()
+        chatManager = PkChatManager()
         setupTabBar()
         setupListener()
     }
     
     private func setupListener() {
-        chatData?.$unseenThreads.sink(receiveValue: { [weak self] (unseen) in
+        chatManager?.$unseenThreads.sink(receiveValue: { [weak self] (unseen) in
             guard let `self` = self else { return }
             guard let items = self.tabBar.items else { return }
             items[0].badgeValue = unseen == 0 ? nil : "\(unseen)"
             items[0].badgeColor = .systemRed
             UIApplication.shared.applicationIconBadgeNumber = unseen
         }).store(in: &cancellables)
-        
-        chatData?.$newMessageRecieved.sink(receiveValue: { [weak self] (_) in
-            guard let `self` = self else { return }
-            if self.pageLoaded { AudioServicesPlayAlertSound(SystemSoundID(1312)) }
-            self.pageLoaded = true
-        }).store(in: &cancellables)
-        
+//
+//        chatData?.$newMessageRecieved.sink(receiveValue: { [weak self] (_) in
+//            guard let `self` = self else { return }
+//            if self.pageLoaded { AudioServicesPlayAlertSound(SystemSoundID(1312)) }
+//            self.pageLoaded = true
+//        }).store(in: &cancellables)
+//
         PKUserManager.shared.$pushNotificationChatId.sink { [weak self] (id) in
             guard let `self` = self, let id = id else { return }
             self.handlePushNotification(id: id)
@@ -47,7 +47,7 @@ class MainTabBarViewController: UITabBarController {
     private func setupTabBar() {
         
         let tab1 = InboxNavigationViewController()
-        tab1.chatData = chatData
+        tab1.chatManager = chatManager
         let tab2 = ScannerViewController()
         let tab3 = ProfileNavigationViewController()
         
@@ -71,17 +71,17 @@ class MainTabBarViewController: UITabBarController {
             guard let `self` = self else { return }
             if let threads = threads {
                 guard let selectedThread = threads.results.first(where: { $0.id == id }) else { return }
-                let thread = ChatsDataModel.Thread(apiResponse: selectedThread)
+                let thread = ChatThread<ChatMessage>(apiResponse: selectedThread)
                 self.showPushThread(thread: thread)
             }
         }
     }
     
-    private func showPushThread(thread: ChatsDataModel.Thread) {
-        chatData?.select(thread: thread)
+    private func showPushThread(thread: ChatThread<ChatMessage>) {
+        chatManager?.selectThread(thread)
         let messageController = MessageViewController()
         messageController.delegate = self
-        messageController.chatData = chatData
+        messageController.chatManager = chatManager
         messageController.hidesBottomBarWhenPushed = true
         if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
             selectedNavigationController.popToRootViewController(animated: true)
@@ -109,9 +109,9 @@ class MainTabBarViewController: UITabBarController {
 //    }
     
     private func showChat(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
-        chatData?.startThread(with: namespace)
+        chatManager?.startThread(with: namespace)
         let messageController = MessageViewController()
-        messageController.chatData = chatData
+        messageController.chatManager = chatManager
         messageController.delegate = self
         messageController.hidesBottomBarWhenPushed = true
         if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
@@ -170,9 +170,8 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
 extension MainTabBarViewController: MessageViewControllerDelegate {
     
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
-        chatData?.select(thread: nil)
+        chatManager?.selectThread(nil)
         controller.navigationController?.popViewController(animated: true)
-        //controller.dismiss(animated: true)
     }
     
 }

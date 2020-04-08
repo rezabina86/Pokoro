@@ -315,14 +315,6 @@ class ChatsDataModel: ObservableObject {
             return Date(timeIntervalSince1970: TimeInterval(self.timestamp / 1000)).stringFormat
         }
         
-        func stringDate(completion: @escaping (_ date: String?) -> Void) {
-            DispatchQueue(label: "com.pokoro.stringDate").async { [weak self] in
-                guard let `self` = self else { return }
-                let stringDate = Date(timeIntervalSince1970: TimeInterval(self.timestamp / 1000)).stringFormat
-                completion(stringDate)
-            }
-        }
-        
         static func == (lhs: ChatsDataModel.Message, rhs: ChatsDataModel.Message) -> Bool {
             return lhs.id == rhs.id
         }

@@ -69,7 +69,7 @@ struct NameSpacesBusinessModel {
             let qrImage = UIImage(ciImage: qr)
             guard let finalImage = UIImage(named: "qrHolder")?.overlayWith(image: qrImage, posX: 30, posY: 30) else { return nil }
             let document = PDFDocument()
-            let imagePDF = PDFPage(image: finalImage)
+            let imagePDF = PDFPage(image: qrImage)
             document.insert(imagePDF!, at: 0)
             return document
         }
