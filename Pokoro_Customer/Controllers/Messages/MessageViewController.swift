@@ -42,17 +42,13 @@ class MessageViewController: UIViewController {
     weak var delegate: MessageViewControllerDelegate?
     private var bottomConst: NSLayoutConstraint!
     
-    public var thread: ChatThread<ChatMessage>? {
-        willSet {
-            DispatchQueue.main.async { [weak self] in
-                guard let `self` = self else { return }
-                self.navigationItem.title = newValue?.userName
-            }
-        }
-    }
     private var messages: [ChatMessage] = []
     
-    var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>!
+    var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>! {
+        willSet {
+            navigationItem.title = newValue.selectedThread?.userName
+        }
+    }
     
     private var cancellables = Set<AnyCancellable>()
 
@@ -66,7 +62,6 @@ class MessageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeNotification()
-        chatManager.selectThread(thread)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -131,6 +126,9 @@ class MessageViewController: UIViewController {
                 } else { self.tableView.reloadData() }
             } else {
                 self.tableView.reloadData()
+            }
+            if let lastMsg = msg.first {
+                self.chatManager.seenMessage(lastMsg)
             }
         }.store(in: &cancellables)
         
@@ -226,7 +224,7 @@ extension MessageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let message = messages[indexPath.row]
-        chatManager.seenMessage(message)
+        
     }
     
 }

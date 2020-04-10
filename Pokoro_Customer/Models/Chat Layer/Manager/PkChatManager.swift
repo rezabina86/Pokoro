@@ -87,7 +87,8 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
         messages.removeAll()
         messagesPaginationEnded = false
         fetchMessagesFromDB(for: thread)
-        seenAllMessageInSelectedThread()
+        //seenAllMessageInSelectedThread()
+        refreshThread()
         updateUnseenThreads()
     }
     
@@ -287,24 +288,25 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     }
     
     public func seenMessage(_ message: M) {
-        guard !message.isSeen, let selectedThread = selectedThread else { return }
+        guard let selectedThread = selectedThread else { return }
         socketManager.seenMessage(model: SeenMessageBusinessModel(chat_id: selectedThread.id, message_id: message.id))
         var seenMessage = message
         seenMessage.isSeen = true
         messageStore.update(seenMessage)
-        seenAllMessageInSelectedThread()
+        refreshThread()
     }
     
-    private func seenAllMessageInSelectedThread() {
+    private func refreshThread() {
         guard let selectedThread = selectedThread, let seenThread = threads.enumerated().first(where: { $0.element == selectedThread }) else { return }
         var updatedThread = seenThread.element
-        updatedThread.hasUnseenMessage = false
+        updatedThread.numberOfUnreadMessages = 0
         threads.remove(at: seenThread.offset)
         threads.insert(contentsOf: [updatedThread], at: seenThread.offset)
+        sortThreads()
     }
     
     private func updateUnseenThreads() {
-        unseenThreads = threads.filter({ $0.hasUnseenMessage }).count
+        unseenThreads = threads.filter({ $0.numberOfUnreadMessages != 0 }).count
     }
     
     //Everytime this method is called, it'll sort the threads by date

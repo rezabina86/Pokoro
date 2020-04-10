@@ -56,11 +56,12 @@ class MessageTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let unseenLabel: MediumLight = {
-        let view = MediumLight()
+    private let unseenLabel: MediumSB = {
+        let view = MediumSB()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.PKColors.green
-        view.layer.cornerRadius = 5
+        view.textAlignment = .center
+        view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view
     }()
@@ -70,7 +71,8 @@ class MessageTableViewCell: UITableViewCell {
             nameLabel.text = newValue?.userName
             bodyLabel.text = newValue?.lastMessage?.message
             barcodeLabel.text = newValue?.namespaceName
-            unseenLabel.isHidden = !(newValue?.hasUnseenMessage ?? false)
+            unseenLabel.isHidden = newValue?.numberOfUnreadMessages == 0
+            unseenLabel.text = "\(newValue?.numberOfUnreadMessages ?? 0)"
             dateLabel.text = newValue?.stringDate
             
             let avatarImage = LetterAvatarMaker()
@@ -133,8 +135,8 @@ class MessageTableViewCell: UITableViewCell {
         unseenLabel.centerYAnchor.constraint(equalTo: bodyLabel.centerYAnchor, constant: 0).isActive = true
         unseenLabel.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -12).isActive = true
         unseenLabel.leadingAnchor.constraint(equalTo: bodyLabel.trailingAnchor, constant: 4).isActive = true
-        unseenLabel.heightAnchor.constraint(equalToConstant: 10).isActive = true
-        unseenLabel.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        unseenLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        unseenLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 24).isActive = true
     }
 
 }

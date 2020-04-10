@@ -16,7 +16,7 @@ class ChatThread<M: Messages>: Threads {
     var timeStamp: Int64
     var namespaceId: String?
     var namespaceName: String?
-    var hasUnseenMessage: Bool = false
+    var numberOfUnreadMessages: Int = 0
     var nameSpaceOwner: String?
     var lastMessage: M?
     
@@ -27,7 +27,7 @@ class ChatThread<M: Messages>: Threads {
         self.timeStamp = apiResponse.last_message.timestamp
         self.namespaceId = apiResponse.namespace.id
         self.namespaceName = apiResponse.namespace.name
-        self.hasUnseenMessage = apiResponse.unread_messages_count != 0
+        self.numberOfUnreadMessages = apiResponse.unread_messages_count
         self.nameSpaceOwner = apiResponse.namespace.creator.id
         self.lastMessage = M(chat: apiResponse)
     }
@@ -39,7 +39,7 @@ class ChatThread<M: Messages>: Threads {
         self.timeStamp = incomeMessage.timestamp
         self.userName = nil
         self.namespaceId = incomeMessage.namespace_id
-        self.hasUnseenMessage = true
+        self.numberOfUnreadMessages += 1
     }
     
     required init(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
@@ -53,14 +53,14 @@ class ChatThread<M: Messages>: Threads {
     
     func update(with detail: ThreadBusinessModel.Fetch.Response) {
         self.userName = detail.other_user.name
-        self.hasUnseenMessage = true
+        self.numberOfUnreadMessages = detail.messages.filter({ !$0.is_seen }).count
         self.nameSpaceOwner = detail.namespace.creator.id
         self.namespaceName = detail.namespace.name
         self.namespaceId = detail.namespace.id
     }
     
     func update(with incomeMessage: IncomeMessageBusinessModel) {
-        hasUnseenMessage = true
+        self.numberOfUnreadMessages += 1
         lastMessage = M(socketMessage: incomeMessage)
         id = incomeMessage.chat_id
         timeStamp = incomeMessage.timestamp

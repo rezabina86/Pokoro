@@ -11,13 +11,14 @@ import Foundation
 protocol Threads: Equatable {
     
     associatedtype M: Messages
+    
     var id: String { get set }
     var userId: String? { get set }
     var userName: String? { get set }
     var timeStamp: Int64 { get set }
     var namespaceId: String? { get set }
     var namespaceName: String? { get set }
-    var hasUnseenMessage: Bool { get set }
+    var numberOfUnreadMessages: Int { get set }
     var nameSpaceOwner: String? { get set }
     var lastMessage: M? { get set }
     
