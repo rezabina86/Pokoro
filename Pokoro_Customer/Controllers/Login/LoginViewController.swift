@@ -58,9 +58,11 @@ class LoginViewController: UIViewController {
         continueButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
         view.addSubview(continueButton)
         continueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        continueButton.widthAnchor.constraint(equalToConstant: 260).isActive = true
         continueButton.bottomAnchor.constraint(equalTo: noticeLabel.topAnchor, constant: -8).isActive = true
-        continueButton.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 24).isActive = true
-        continueButton.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -24).isActive = true
+        continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        //continueButton.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 24).isActive = true
+        //continueButton.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -24).isActive = true
         
         view.addSubview(logoImageView)
         logoImageView.centerYAnchor.constraint(equalTo: view.safeCenterYAnchor, constant: -24).isActive = true
