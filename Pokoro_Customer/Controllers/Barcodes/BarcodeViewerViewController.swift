@@ -23,13 +23,6 @@ class BarcodeViewerViewController: UIViewController {
         return view
     }()
     
-    private let exportButton: PKButton = {
-        let btn = PKButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("export".localized, for: .normal)
-        return btn
-    }()
-    
     weak var delegate: BarcodeViewerViewControllerDelegate?
     
     public var document: NameSpacesBusinessModel.NameSpaceQR? {
@@ -50,29 +43,23 @@ class BarcodeViewerViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(exportButtonDidTapped(_:)))
         
         view.addSubview(pdfView)
         pdfView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
         pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         pdfView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         pdfView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
-        
-        exportButton.addTarget(self, action: #selector(exportButtonDidTapped(_:)), for: .touchUpInside)
-        view.addSubview(exportButton)
-        exportButton.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -16).isActive = true
-        exportButton.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 24).isActive = true
-        exportButton.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -24).isActive = true
-        exportButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
     
     @objc
-    private func exportButtonDidTapped(_ sender: PKButton) {
+    private func exportButtonDidTapped(_ sender: UIBarButtonItem) {
         showAlert()
     }
     
     private func showAlert() {
         let exportAction = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let pdfAction = UIAlertAction(title: "Pdf", style: .default) { _ in
+        let pdfAction = UIAlertAction(title: "PDF", style: .default) { _ in
             guard let data = self.document?.document?.dataRepresentation() else { return }
             let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
             self.present(activityController, animated: true, completion: nil)

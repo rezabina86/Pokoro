@@ -27,7 +27,14 @@ class BarcodesViewController: UIViewController {
     weak var delegate: BarcodesViewControllerDelegate?
     
     private var namespaces: NameSpacesBusinessModel.Fetch.ViewModel? {
-        didSet { tableView.reloadData() }
+        didSet {
+            if namespaces?.results.count == 0 {
+                self.tableView.showEmptyView(title: "No QR Code", subtitle: "You can create your first QR by tap the + button at the top right corner.", image: UIImage(named: "barcodes"))
+            } else {
+                self.tableView.hideEmptyView()
+            }
+            tableView.reloadData()
+        }
     }
     
     private var namespacesLoaded = false
@@ -50,6 +57,7 @@ class BarcodesViewController: UIViewController {
     private func setupViews() {
         navigationItem.title = "myBarcodes".localized
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidTapped(_:)))
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -82,6 +90,26 @@ class BarcodesViewController: UIViewController {
         getNameSpaces()
         namespacesLoaded = true
     }
+    
+    @objc
+    private func addButtonDidTapped(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "addQRTitle".localized, message: "addQRMessage".localized, preferredStyle: UIAlertController.Style.alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "enterName".localized
+        }
+        let saveAction = UIAlertAction(title: "save".localized, style: UIAlertAction.Style.default, handler: { [weak self] alert -> Void in
+            guard let `self` = self else { return }
+            let textField = alertController.textFields![0] as UITextField
+            self.createNameSpace(textField.text)
+        })
+        let cancelAction = UIAlertAction(title: "cancel".localized, style: UIAlertAction.Style.cancel, handler: {
+            (action : UIAlertAction!) -> Void in })
+
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
 
 }
 
@@ -112,17 +140,6 @@ extension BarcodesViewController: UITableViewDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = FooterButton()
-        view.delegate = self
-        view.title = "+ New QR"
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 64
-    }
-    
 }
 
 extension BarcodesViewController: UITableViewDataSource {
@@ -151,22 +168,7 @@ extension BarcodesViewController: BarcodeViewerViewControllerDelegate {
 extension BarcodesViewController: FooterButtonDelegate {
     
     func footerButtonDidTapped(_ footer: FooterButton, button: PKButton) {
-        let alertController = UIAlertController(title: "addQRTitle".localized, message: "addQRMessage".localized, preferredStyle: UIAlertController.Style.alert)
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "enterName".localized
-        }
-        let saveAction = UIAlertAction(title: "save".localized, style: UIAlertAction.Style.default, handler: { [weak self] alert -> Void in
-            guard let `self` = self else { return }
-            let textField = alertController.textFields![0] as UITextField
-            self.createNameSpace(textField.text)
-        })
-        let cancelAction = UIAlertAction(title: "cancel".localized, style: UIAlertAction.Style.default, handler: {
-            (action : UIAlertAction!) -> Void in })
-
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-
-        self.present(alertController, animated: true, completion: nil)
+        
     }
     
 }

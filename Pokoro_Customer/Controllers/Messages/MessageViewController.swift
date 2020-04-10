@@ -42,12 +42,18 @@ class MessageViewController: UIViewController {
     weak var delegate: MessageViewControllerDelegate?
     private var bottomConst: NSLayoutConstraint!
     
-    private var messages: [ChatMessage] = []
-    private var fetchInProgress = false
-    
-    var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>! {
-        willSet { navigationItem.title = newValue.selectedThread?.userName }
+    public var thread: ChatThread<ChatMessage>? {
+        willSet {
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                self.navigationItem.title = newValue?.userName
+            }
+        }
     }
+    private var messages: [ChatMessage] = []
+    
+    var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>!
+    
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -60,11 +66,13 @@ class MessageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeNotification()
+        chatManager.selectThread(thread)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         deinitializeNotification()
+        chatManager.selectThread(nil)
     }
     
     private func setupViews() {

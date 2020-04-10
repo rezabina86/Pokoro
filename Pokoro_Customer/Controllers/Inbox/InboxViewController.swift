@@ -97,9 +97,9 @@ extension InboxViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        chatManager?.selectThread(threads[indexPath.row])
         let messageController = MessageViewController()
         messageController.delegate = self
+        messageController.thread = threads[indexPath.row]
         messageController.chatManager = chatManager
         messageController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(messageController, animated: true)
