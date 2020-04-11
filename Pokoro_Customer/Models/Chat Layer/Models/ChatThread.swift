@@ -66,6 +66,10 @@ class ChatThread<M: Messages>: Threads {
         timeStamp = incomeMessage.timestamp
     }
     
+    func resetCounter() {
+        numberOfUnreadMessages = 0
+    }
+    
     static func == (lhs: ChatThread<M>, rhs: ChatThread<M>) -> Bool {
         return lhs.id == rhs.id
     }

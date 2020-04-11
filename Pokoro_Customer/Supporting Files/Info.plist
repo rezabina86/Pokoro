@@ -33,6 +33,12 @@
 	<string>Your location will be used when you send a message to other users.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>We need to access to your library in case of save QR codes in your library</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Metropolis-Light.otf</string>
+		<string>Metropolis-Regular.otf</string>
+		<string>Metropolis-SemiBold.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -46,12 +52,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Metropolis-Light.otf</string>
-		<string>Metropolis-Regular.otf</string>
-		<string>Metropolis-SemiBold.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

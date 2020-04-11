@@ -37,6 +37,7 @@ class PKChatTextFieldView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.clear
         view.isScrollEnabled = false
+        view.font = UIFont.systemFont(ofSize: 16)
         view.text = "textMessage".localized
         view.textColor = UIColor.lightGray
         return view
@@ -76,15 +77,14 @@ class PKChatTextFieldView: UIView {
         
         textField.delegate = self
         holder.addSubview(textField)
-        textField.topAnchor.constraint(equalTo: holder.safeTopAnchor, constant: 3).isActive = true
-        textField.bottomAnchor.constraint(equalTo: holder.safeBottomAnchor, constant: -3).isActive = true
-        textField.leadingAnchor.constraint(equalTo: holder.safeLeadingAnchor, constant: 16).isActive = true
-        textField.trailingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: -16).isActive = true
+        textField.topAnchor.constraint(equalTo: holder.safeTopAnchor, constant: 1).isActive = true
+        textField.bottomAnchor.constraint(equalTo: holder.safeBottomAnchor, constant: -1).isActive = true
+        textField.leadingAnchor.constraint(equalTo: holder.safeLeadingAnchor, constant: 12).isActive = true
+        textField.trailingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: -12).isActive = true
         
         sendButton.addTarget(self, action: #selector(sendButtonDidTapped(_:)), for: .touchUpInside)
         addSubview(sendButton)
         sendButton.bottomAnchor.constraint(equalTo: holder.bottomAnchor, constant: 0).isActive = true
-        //sendButton.centerYAnchor.constraint(equalTo: holder.safeCenterYAnchor).isActive = true
         sendButton.leadingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: 4).isActive = true
         sendButton.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -16).isActive = true
         sendButton.heightAnchor.constraint(equalToConstant: 32).isActive = true

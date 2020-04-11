@@ -85,6 +85,9 @@ extension ProfileViewController: UITableViewDelegate {
                 barcodesController.delegate = self
                 navigationController?.pushViewController(barcodesController, animated: true)
             case 1:
+                let controller = FeedbackViewController()
+                present(controller, animated: true)
+            case 2:
                 askToLogout()
             default:
                 break
@@ -109,7 +112,7 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 { return 2 }
+        if section == 2 { return 3 }
         return 1
     }
     
@@ -130,6 +133,9 @@ extension ProfileViewController: UITableViewDataSource {
                 cell.actionImage = UIImage(named: "barcodes")
                 cell.title = "myBarcodes".localized
             case 1:
+                cell.actionImage = UIImage(named: "feedback")
+                cell.title = "feedback".localized
+            case 2:
                 cell.actionImage = UIImage(named: "logOut")
                 cell.title = "logout".localized
             default:

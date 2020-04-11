@@ -254,6 +254,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
             } else if let result = result {
                 let newThread = T(incomeMessage: message)
                 newThread.update(with: result)
+                newThread.resetCounter()
                 if self.selectedThread?.isThreadTemp ?? false { self.selectedThread = newThread }
                 self.threads.append(newThread)
                 self.sortThreads()

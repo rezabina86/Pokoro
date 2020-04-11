@@ -28,6 +28,7 @@ protocol Threads: Equatable {
     
     func update(with detail: ThreadBusinessModel.Fetch.Response)
     func update(with incomeMessage: IncomeMessageBusinessModel)
+    func resetCounter()
 }
 
 extension Threads {

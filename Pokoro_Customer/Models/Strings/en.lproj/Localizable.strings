@@ -38,7 +38,8 @@
 
 //Profile
 "logout" = "Sign Out";
-"myBarcodes" = "My QRs";
+"myBarcodes" = "My QR Codes";
+"feedback" = "Share your thoughts";
 
 //Barcodes
 "export" = "Export";
@@ -60,3 +61,8 @@
 
 "chatListTitle" = "Messages";
 "chatListBody" = "See your messages even when you're offline";
+
+
+//Feedback
+"feedbackTitle" = "We'd love to hear from you";
+"feedbackBody" = "The app that you're using is in public beta test. We're working on Pokoro constantly to keep it stable and make it better. But we'd like to hear from you.\nPlease send us your thoughts, your ideas or your wish list.";
