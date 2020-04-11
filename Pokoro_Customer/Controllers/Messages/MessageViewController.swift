@@ -29,6 +29,7 @@ class MessageViewController: UIViewController {
         view.separatorStyle = .none
         view.tableFooterView = UIView(frame: CGRect.zero)
         view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)
+        view.keyboardDismissMode = .onDrag
         view.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: view.bounds.size.width - 8.0)
         return view
     }()
@@ -67,6 +68,10 @@ class MessageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         deinitializeNotification()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         chatManager.selectThread(nil)
     }
     
@@ -144,8 +149,6 @@ class MessageViewController: UIViewController {
             navigationItem.title = chatManager.selectedThread?.userName
         case .disconnected:
             navigationItem.title = "Connecting..."
-        case .updatingThreadList:
-            navigationItem.title = "Updating..."
         default:
             break
         }
@@ -184,13 +187,6 @@ extension MessageViewController: UITableViewDelegate {
         return 50
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        Logger.log(message: velocity.y, event: .debug)
-        if velocity.y > 0.1 {
-            self.chatBoxView.textField.resignFirstResponder()
-        }
-    }
-    
 }
 
 extension MessageViewController: UITableViewDataSource {
@@ -222,10 +218,4 @@ extension MessageViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let message = messages[indexPath.row]
-        
-    }
-    
 }
-

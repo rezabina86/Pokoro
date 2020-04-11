@@ -52,8 +52,7 @@ class ProfileActionTableViewCell: UITableViewCell {
     private func setupViews() {
         addSubview(actionImageView)
         actionImageView.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 24).isActive = true
-        actionImageView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 16).isActive = true
-        actionImageView.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -16).isActive = true
+        actionImageView.centerYAnchor.constraint(equalTo: safeCenterYAnchor, constant: 0).isActive = true
         actionImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
         actionImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         

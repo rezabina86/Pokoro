@@ -28,6 +28,13 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         label.text = PKUserManager.shared.name
         return label
     }()
+    
+    private let emailLabel: SmallSB = {
+        let label = SmallSB()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = PKUserManager.shared.email
+        return label
+    }()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -43,17 +50,21 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         addSubview(avatarView)
-        avatarView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 24).isActive = true
-        avatarView.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -24).isActive = true
+        avatarView.centerYAnchor.constraint(equalTo: safeCenterYAnchor, constant: 0).isActive = true
         avatarView.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 24).isActive = true
         avatarView.widthAnchor.constraint(equalToConstant: 72).isActive = true
         avatarView.heightAnchor.constraint(equalToConstant: 72).isActive = true
         
         addSubview(nameLabel)
-        nameLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 24).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -24).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 36).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 16).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -24).isActive = true
+        
+        addSubview(emailLabel)
+        emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4).isActive = true
+        emailLabel.bottomAnchor.constraint(lessThanOrEqualTo: safeBottomAnchor, constant: -12).isActive = true
+        emailLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 16).isActive = true
+        emailLabel.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -24).isActive = true
     }
 
 }

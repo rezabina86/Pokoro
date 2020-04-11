@@ -9,16 +9,29 @@
 import UIKit
 
 class ProfileVersionTableViewCell: UITableViewCell {
+    
+    private let versionLabel: MediumSB = {
+        let label = MediumSB()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "POKORO version \(PKUserManager.shared.appVersion)(\(PKUserManager.shared.buildVersion))"
+        return label
+    }()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupViews()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+    
+    private func setupViews() {
+        addSubview(versionLabel)
+        versionLabel.topAnchor.constraint(equalTo: safeTopAnchor, constant: 12).isActive = true
+        versionLabel.centerXAnchor.constraint(equalTo: safeCenterXAnchor, constant: 0).isActive = true
+        versionLabel.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: 0).isActive = true
     }
 
 }

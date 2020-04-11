@@ -10,7 +10,7 @@ import UIKit
 
 class IncomingMessageTableViewCell: UITableViewCell {
     
-    private let chatBubble: PKChatBubble = {
+    public let chatBubble: PKChatBubble = {
         let view = PKChatBubble()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.bubbleColor = UIColor.systemGray3
@@ -24,6 +24,8 @@ class IncomingMessageTableViewCell: UITableViewCell {
     public var date: String? {
         willSet { chatBubble.date = newValue }
     }
+    
+    private var interaction: UIContextMenuInteraction!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -36,6 +38,8 @@ class IncomingMessageTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
+        interaction = UIContextMenuInteraction(delegate: self)
+        chatBubble.addInteraction(interaction)
         selectionStyle = .none
         backgroundColor = UIColor.clear
         
@@ -45,6 +49,21 @@ class IncomingMessageTableViewCell: UITableViewCell {
         chatBubble.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 16).isActive = true
         chatBubble.trailingAnchor.constraint(lessThanOrEqualTo: safeTrailingAnchor, constant: -72).isActive = true
         chatBubble.widthAnchor.constraint(greaterThanOrEqualToConstant: 45).isActive = true
+    }
+
+}
+
+extension IncomingMessageTableViewCell: UIContextMenuInteractionDelegate {
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (actions) -> UIMenu? in
+            let action = UIAction(title: "Copy") { [weak self] _ in
+                guard let `self` = self else { return }
+                UIPasteboard.general.string = self.message
+            }
+            return UIMenu(title: "", children: [action])
+        }
+        return configuration
     }
 
 }

@@ -32,12 +32,13 @@ class PKChatTextFieldView: UIView {
         return view
     }()
     
-    public let textField: UITextField = {
-        let view = UITextField()
+    public let textField: UITextView = {
+        let view = UITextView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.clear
-        view.placeholder = "textMessage".localized
-        view.borderStyle = .none
+        view.isScrollEnabled = false
+        view.text = "textMessage".localized
+        view.textColor = UIColor.lightGray
         return view
     }()
     
@@ -71,8 +72,9 @@ class PKChatTextFieldView: UIView {
         holder.topAnchor.constraint(equalTo: safeTopAnchor, constant: 12).isActive = true
         holder.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -12).isActive = true
         holder.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 16).isActive = true
-        holder.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        holder.heightAnchor.constraint(greaterThanOrEqualToConstant: 32).isActive = true
         
+        textField.delegate = self
         holder.addSubview(textField)
         textField.topAnchor.constraint(equalTo: holder.safeTopAnchor, constant: 3).isActive = true
         textField.bottomAnchor.constraint(equalTo: holder.safeBottomAnchor, constant: -3).isActive = true
@@ -81,7 +83,8 @@ class PKChatTextFieldView: UIView {
         
         sendButton.addTarget(self, action: #selector(sendButtonDidTapped(_:)), for: .touchUpInside)
         addSubview(sendButton)
-        sendButton.centerYAnchor.constraint(equalTo: holder.safeCenterYAnchor).isActive = true
+        sendButton.bottomAnchor.constraint(equalTo: holder.bottomAnchor, constant: 0).isActive = true
+        //sendButton.centerYAnchor.constraint(equalTo: holder.safeCenterYAnchor).isActive = true
         sendButton.leadingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: 4).isActive = true
         sendButton.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -16).isActive = true
         sendButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
@@ -94,7 +97,31 @@ class PKChatTextFieldView: UIView {
         delegate?.pkChatTextFieldViewSendButtonDidTapped(self, with: text, completion: { [weak self] in
             guard let `self` = self else { return }
             self.textField.text = nil
+            self.textField.sizeToFit()
         })
     }
 
+}
+
+extension PKChatTextFieldView: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        textView.sizeToFit()
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "textMessage".localized
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = ThemeManager.shared.theme?.textColor
+        }
+    }
+    
 }

@@ -37,13 +37,26 @@
 "textMessage" = "Text Message";
 
 //Profile
-"logout" = "Log Out";
-"myBarcodes" = "My Barcodes";
+"logout" = "Sign Out";
+"myBarcodes" = "My QRs";
 
 //Barcodes
-"myBarcodes" = "My Barcodes";
 "export" = "Export";
 "enterName" = "Enter Name";
 "addQRTitle" = "Add New QR Code";
 "addQRMessage" = "Please enter a name for the new QR code";
 "createBarcodeError" = "You should choice a valid name";
+
+
+//Walkthrough
+"WelcomePokoro" = "Welcome to Pokoro";
+"welcomeBody" = "A simple, fast and Anonymous instant messaging service that helps you send and receive text messages with a simple QR code.";
+
+"businessCardTitle" = "QR codes";
+"businessCardBody" = "Create QR codes as much as you want and put them on your business card, or your car, ...";
+
+"scanQRTitle" = "Scan";
+"scanQRBody" = "Everybody could scan your QR code and send a message to you without knowing your phone number or ...";
+
+"chatListTitle" = "Messages";
+"chatListBody" = "See your messages even when you're offline";

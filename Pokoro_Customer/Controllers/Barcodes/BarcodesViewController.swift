@@ -29,7 +29,7 @@ class BarcodesViewController: UIViewController {
     private var namespaces: NameSpacesBusinessModel.Fetch.ViewModel? {
         didSet {
             if namespaces?.results.count == 0 {
-                self.tableView.showEmptyView(title: "No QR Code", subtitle: "You can create your first QR by tap the + button at the top right corner.", image: UIImage(named: "barcodes"))
+                self.tableView.showEmptyView(title: "No QR Code", subtitle: "You can create your first QR by tap the + button at the top right corner.", image: UIImage(named: "qrEmpty"))
             } else {
                 self.tableView.hideEmptyView()
             }

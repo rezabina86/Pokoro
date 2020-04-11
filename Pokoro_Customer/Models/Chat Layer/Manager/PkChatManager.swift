@@ -87,7 +87,6 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
         messages.removeAll()
         messagesPaginationEnded = false
         fetchMessagesFromDB(for: thread)
-        //seenAllMessageInSelectedThread()
         refreshThread()
         updateUnseenThreads()
     }
@@ -290,9 +289,11 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     public func seenMessage(_ message: M) {
         guard let selectedThread = selectedThread else { return }
         socketManager.seenMessage(model: SeenMessageBusinessModel(chat_id: selectedThread.id, message_id: message.id))
-        var seenMessage = message
-        seenMessage.isSeen = true
-        messageStore.update(seenMessage)
+        messages.filter({ $0.isSeen == false }).forEach { (msg) in
+            var updatedMessage = msg
+            updatedMessage.isSeen = true
+            messageStore.update(updatedMessage)
+        }
         refreshThread()
     }
     

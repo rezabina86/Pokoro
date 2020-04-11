@@ -23,7 +23,7 @@ class PKChatBubble: UIView {
 //        let label = UITextView()
 //        label.font = UIFont.PKFonts.MediumRegular
 //        label.backgroundColor = .clear
-//        label.dataDetectorTypes = .all
+//        label.dataDetectorTypes = [.link, .phoneNumber]
 //        label.isEditable = false
 //        label.isScrollEnabled = false
 //        label.translatesAutoresizingMaskIntoConstraints = false

@@ -24,7 +24,7 @@ class InboxViewController: UIViewController {
     private var threads: [ChatThread<ChatMessage>] = [] {
         didSet {
             if threads.count == 0 {
-                self.tableView.showEmptyView(title: "No Messages", subtitle: "Scan Barcode to start a conversation", image: UIImage(named: "talk"))
+                self.tableView.showEmptyView(title: "No Messages", subtitle: "Scan someone's QR to start a conversation", image: UIImage(named: "talk"))
             } else {
                 self.tableView.hideEmptyView()
             }
@@ -41,6 +41,12 @@ class InboxViewController: UIViewController {
         setupViews()
         setupPublisher()
         PKUserManager.shared.chatManager = chatManager
+        
+        if !PKUserManager.shared.isWalkthroughShown {
+            present(WalkthroughPageViewController(), animated: true)
+            PKUserManager.shared.isWalkthroughShown = true
+        }
+        
     }
     
     private func setupViews() {
@@ -80,8 +86,6 @@ class InboxViewController: UIViewController {
             navigationItem.title = "Messages"
         case .disconnected:
             navigationItem.title = "Connecting..."
-        case .updatingThreadList:
-            navigationItem.title = "Updating..."
         default:
             break
         }

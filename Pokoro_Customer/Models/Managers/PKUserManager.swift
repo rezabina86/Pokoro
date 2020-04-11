@@ -34,6 +34,26 @@ class PKUserManager: NSObject, ObservableObject {
         get { return UserDefaults.standard.value(forKey: "name") as? String }
     }
     
+    public var email: String? {
+        set { UserDefaults.standard.set(newValue, forKey: "email") }
+        get { return UserDefaults.standard.value(forKey: "email") as? String }
+    }
+    
+    var buildVersion: String {
+        guard let version = Bundle.main.buildVersionNumber else { return "" }
+        return version
+    }
+    
+    var appVersion: String {
+        guard let version = Bundle.main.releaseVersionNumber else { return "" }
+        return version
+    }
+    
+    public var isWalkthroughShown: Bool {
+        set { UserDefaults.standard.set(newValue, forKey: "walkthrough") }
+        get { return UserDefaults.standard.value(forKey: "walkthrough") as? Bool ?? false }
+    }
+    
     public var isUserLoggedIn: Bool {
         get { return token != nil }
     }
@@ -48,6 +68,7 @@ class PKUserManager: NSObject, ObservableObject {
         chatDataModel?.disconnect()
         chatManager?.disconnect()
         chatManager?.deleteMessages()
+        pushNotificationChatId = nil
     }
     
     @Published var isAppInForeground: Bool = true
@@ -73,6 +94,14 @@ class PKUserManager: NSObject, ObservableObject {
         }
     }
     
+    private func registerOneSignal() {
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            if let user_id = PKUserManager.shared.userId {
+                OneSignal.sendTag("user_id", value: user_id)
+            }
+        })
+    }
+    
 }
 
 extension PKUserManager {
@@ -86,8 +115,10 @@ extension PKUserManager {
                 self.userId = result.id
                 self.token = result.token
                 self.name = result.name
+                self.email = result.email.address
                 OneSignal.sendTag("user_id", value: result.id)
                 completion(true, nil)
+                self.registerOneSignal()
             }
         }
     }
@@ -100,8 +131,10 @@ extension PKUserManager {
                 self.userId = result.id
                 self.token = result.token
                 self.name = result.name
+                self.email = result.email.address
                 OneSignal.sendTag("user_id", value: result.id)
                 completion(true, nil)
+                self.registerOneSignal()
             }
         }
     }

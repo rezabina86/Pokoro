@@ -95,11 +95,9 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        if indexPath.section == 1 { return 120 }
+        if indexPath.section == 3 { return 80 }
+        return 52
     }
     
 }
@@ -107,7 +105,7 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,6 +135,10 @@ extension ProfileViewController: UITableViewDataSource {
             default:
                 break
             }
+            return cell
+        case 3:
+            let cell = ProfileVersionTableViewCell()
+            cell.separatorInset = UIEdgeInsets(top: .infinity, left: .infinity, bottom: .infinity, right: .infinity)
             return cell
         default:
             fatalError()

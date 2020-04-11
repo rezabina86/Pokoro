@@ -37,24 +37,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         OneSignal.inFocusDisplayType = .none
         
-        OneSignal.promptForPushNotifications(userResponse: { accepted in
-            print("User accepted notifications: \(accepted)")
-            if let user_id = PKUserManager.shared.userId {
-                OneSignal.sendTag("user_id", value: user_id)
-            }
-        })
-        
         if let user_id = PKUserManager.shared.userId {
             OneSignal.sendTag("user_id", value: user_id)
         }
         //END OneSignal initializataion code
         
-//        let msgStore = MessageStore<ChatMessage>()
-//        msgStore.insert(ChatMessage(id: "12345", chatId: "234", userId: nil, message: nil, lastMessageId: nil, timestamp: 2345678, isSeen: true, messageDate: nil))
-//        let a = msgStore.fetchAll()
-//        Logger.log(message: a.map({ $0.chatId }), event: .warning)
         return true
     }
+    
+    
+    
+    
+    
+    
+    
+//    -(NSUInteger)calculate{
+//
+//        //Check where you are making the sqlite
+//        NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"yourPersistentStoreName"];
+//        NSUInteger sizeOfData = [[NSData dataWithContentsOfURL:url] length];
+//        NSLog(@"sizeOfDAta in bytes %lu",(unsigned long)sizeOfData);
+//
+//        return sizeOfData;
+//    }
     
     private func makeAuthenticationCoordinator() {
         router = SceneDelegateRouter(window: window!)

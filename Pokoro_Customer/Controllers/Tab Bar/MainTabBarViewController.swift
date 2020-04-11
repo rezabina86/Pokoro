@@ -21,6 +21,9 @@ class MainTabBarViewController: UITabBarController {
         chatManager = PkChatManager()
         setupTabBar()
         setupListener()
+        
+        
+            
     }
     
     private func setupListener() {
