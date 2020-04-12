@@ -21,19 +21,19 @@ extension UIViewController {
         view.message = message
         switch type {
         case .error:
-            view.title = "error".localized
+            view.title = "Error".localized
             view.typeImage = UIImage(named: "error")
         case .warning:
-            view.title = "warning".localized
+            view.title = "Warning".localized
             view.typeImage = UIImage(named: "warning")
         case .success:
-            view.title = "success".localized
+            view.title = "Success".localized
             view.typeImage = UIImage(named: "success")
         }
         
         var config = SwiftMessages.Config()
         config.presentationStyle = .top
-        config.presentationContext = .automatic
+        config.presentationContext = .window(windowLevel: .statusBar)
         config.dimMode = .gray(interactive: true)
         config.interactiveHide = true
         config.duration = .seconds(seconds: .infinity)

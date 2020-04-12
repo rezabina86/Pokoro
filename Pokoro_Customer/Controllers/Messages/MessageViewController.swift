@@ -167,7 +167,10 @@ extension MessageViewController: PKChatTextFieldViewDelegate {
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String, completion: @escaping () -> Void) {
         chatManager.sendMessage(text) { [weak self] (success) in
             guard let `self` = self else { return }
-            guard success else { return }
+            guard success else {
+                self.showAlert(message: "nonetworkSend".localized, type: .warning)
+                return
+            }
             if self.messages.count > 0 {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
