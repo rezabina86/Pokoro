@@ -54,7 +54,7 @@ struct NameSpacesBusinessModel {
         let smallQr: CIImage?
         
         public var qr: CIImage? {
-            return qrMaker(id, scale: CGAffineTransform(scaleX: 5.94, y: 5.94))
+            return qrMaker(id, scale: CGAffineTransform(scaleX: 10, y: 10))
         }
         
         init(namespace: Namespace) {

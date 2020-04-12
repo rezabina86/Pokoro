@@ -13,7 +13,7 @@ class ProfileVersionTableViewCell: UITableViewCell {
     private let versionLabel: MediumSB = {
         let label = MediumSB()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "POKORO version \(PKUserManager.shared.appVersion)(\(PKUserManager.shared.buildVersion))"
+        label.text = "POKORO version \(PKUserManager.shared.appVersion) (\(PKUserManager.shared.buildVersion))"
         return label
     }()
 

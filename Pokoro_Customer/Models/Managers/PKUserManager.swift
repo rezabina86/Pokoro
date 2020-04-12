@@ -15,8 +15,10 @@ class PKUserManager: NSObject, ObservableObject {
     
     typealias credentialHandler = (_ success: Bool, _ error: String?) -> Void
     
+    @Published var isAppInForeground: Bool = true
+    @Published var pushNotificationChatId: String?
+    
     static let shared = PKUserManager()
-    public var chatDataModel: ChatsDataModel?
     public var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>?
     
     public var token: String? {
@@ -62,17 +64,15 @@ class PKUserManager: NSObject, ObservableObject {
         token = nil
         userId = nil
         name = nil
+        email = nil
         OneSignal.deleteTag("user_id")
         NamespacesCacheManager.shared.clear()
         ThreadsCacheManager.shared.clear()
-        chatDataModel?.disconnect()
         chatManager?.disconnect()
         chatManager?.deleteMessages()
         pushNotificationChatId = nil
+        isWalkthroughShown = false
     }
-    
-    @Published var isAppInForeground: Bool = true
-    @Published var pushNotificationChatId: String?
     
     func checkCredential(_ credential: ASAuthorizationAppleIDCredential, completion: @escaping credentialHandler) {
         let userIdentifier = credential.user

@@ -97,14 +97,17 @@ class FeedbackViewController: UIViewController {
     }
     
     func sendEmail() {
+        let emailAddress = "info@pokoro.app"
+        let subject = "Feedback about Pokoro app"
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["info@pokoro.app"])
+            mail.setToRecipients([emailAddress])
+            mail.setSubject(subject)
 
             present(mail, animated: true)
-        } else {
-            // show failure alert
+        } else if let mailURL = createEmailUrl(to: emailAddress, subject: subject, body: "") {
+            UIApplication.shared.open(mailURL, options: [:])
         }
     }
 
@@ -114,6 +117,36 @@ extension FeedbackViewController: MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
+        if result == .sent {
+            dismiss(animated: true)
+        }
+    }
+    
+}
+
+extension FeedbackViewController {
+    
+    private func createEmailUrl(to: String, subject: String, body: String) -> URL? {
+        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let gmailUrl = URL(string: "googlegmail://co?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let outlookUrl = URL(string: "ms-outlook://compose?to=\(to)&subject=\(subjectEncoded)")
+        let yahooMail = URL(string: "ymail://mail/compose?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let sparkUrl = URL(string: "readdle-spark://compose?recipient=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let defaultUrl = URL(string: "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)")
+
+        if let gmailUrl = gmailUrl, UIApplication.shared.canOpenURL(gmailUrl) {
+            return gmailUrl
+        } else if let outlookUrl = outlookUrl, UIApplication.shared.canOpenURL(outlookUrl) {
+            return outlookUrl
+        } else if let yahooMail = yahooMail, UIApplication.shared.canOpenURL(yahooMail) {
+            return yahooMail
+        } else if let sparkUrl = sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
+            return sparkUrl
+        }
+
+        return defaultUrl
     }
     
 }
