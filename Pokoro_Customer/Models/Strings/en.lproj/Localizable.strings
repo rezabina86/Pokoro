@@ -15,6 +15,7 @@
 "locationServiceError" = "Unfortunately, an error prevented Ronaker from getting your location.\nPlease try again.";
 "invalidBarcode" = "Please scan a valid barcode.";
 "barcodeError" = "You couldn't send message to yourself. Please scan a valid barcode.";
+"nonetworkSend" = "Please check your internet connection and try again";
 
 
 //General

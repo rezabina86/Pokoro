@@ -18,7 +18,7 @@ class BarcodeViewerViewController: UIViewController {
     private let pdfView: PDFView = {
         let view = PDFView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.scaleFactor = 0.8
+        view.autoScales = true
         view.backgroundColor = .lightGray
         return view
     }()

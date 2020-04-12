@@ -13,6 +13,7 @@ extension UIColor {
     struct PKColors {
         static var navy : UIColor { return UIColor(red: 21/255, green: 38/255, blue: 73/255, alpha: 1) }
         static var green : UIColor { return UIColor(red: 60/255, green: 227/255, blue: 95/255, alpha: 1) }
+        static var lightGreen : UIColor { return UIColor(red: 250/255, green: 255/255, blue: 236/255, alpha: 1) }
         
         //Greys
         static var lightGrey : UIColor { return UIColor(red: 240/255, green: 241/255, blue: 242/255, alpha: 1) }
