@@ -108,7 +108,10 @@ class MessageViewController: UIViewController {
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.bottomConst.constant = -keyboardSize.height
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: nil)
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
+                guard let `self` = self else { return }
+                self.view.layoutIfNeeded()
+            }, completion: nil)
         }
     }
     
@@ -116,7 +119,10 @@ class MessageViewController: UIViewController {
     func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.bottomConst.constant = 0
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { self.view.layoutIfNeeded() }, completion: nil)
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
+                guard let `self` = self else { return }
+                self.view.layoutIfNeeded()
+            }, completion: nil)
         }
     }
     
@@ -165,6 +171,7 @@ extension MessageViewController: PKNavBarViewDelegate {
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String, completion: @escaping () -> Void) {
+        guard text != "Text Message" else { return }
         chatManager.sendMessage(text) { [weak self] (success) in
             guard let `self` = self else { return }
             guard success else {

@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //PKUserManager.shared.token = "rKPqF7gnP9WYqGaDrnbK3s"
+        //PKUserManager.shared.userId = "5e9359a4cf06be1d37f56694"
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         setTheme()
         makeAuthenticationCoordinator()
