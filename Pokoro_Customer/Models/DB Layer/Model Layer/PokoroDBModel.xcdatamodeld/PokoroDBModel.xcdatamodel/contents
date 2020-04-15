@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ChatMessageModel" representedClassName="ChatMessageModel" syncable="YES">
         <attribute name="chatId" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -10,7 +10,20 @@
         <attribute name="timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="userId" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="ChatThreadModel" representedClassName="ChatThreadModel" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="namespaceId" optional="YES" attributeType="String"/>
+        <attribute name="namespaceName" optional="YES" attributeType="String"/>
+        <attribute name="nameSpaceOwner" optional="YES" attributeType="String"/>
+        <attribute name="numberOfUnreadMessages" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="threadDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <relationship name="lastMessage" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ChatMessageModel"/>
+    </entity>
     <elements>
         <element name="ChatMessageModel" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="ChatThreadModel" positionX="-63" positionY="45" width="128" height="193"/>
     </elements>
 </model>

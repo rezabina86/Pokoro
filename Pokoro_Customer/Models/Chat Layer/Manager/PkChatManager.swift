@@ -34,6 +34,8 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     ///Store manager that uses CoreData to save messages
     private var messageStore: MessageStore<M>!
     
+    private var threadStore: ThreadStore<T>!
+    
     //This property will be false when the last message in a thread is fetched
     private var messagesPaginationEnded: Bool = false
     
@@ -52,6 +54,7 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
     //Once the chatManager initialized it tries to connect to the socket and if connection is successful it will get all threads from the server
     init() {
         messageStore = MessageStore()
+        threadStore = ThreadStore()
         socketManager.delegate = self
         setupListeners()
     }
