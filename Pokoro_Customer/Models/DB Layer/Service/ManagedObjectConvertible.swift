@@ -137,4 +137,5 @@ extension ManagedObjectConvertible where T: ObjectConvertible, Self: NSManagedOb
             return nil
         }
     }
+    
 }

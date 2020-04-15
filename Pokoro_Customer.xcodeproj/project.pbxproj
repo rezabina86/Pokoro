@@ -122,6 +122,9 @@
 		B6CF14C323ACCDC800D330FD /* Formatter+ios8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF14C023ACCDC800D330FD /* Formatter+ios8601.swift */; };
 		B6CF17FF24322FC90023F92A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CF17FE24322FC90023F92A /* NotificationService.swift */; };
 		B6CF180324322FC90023F92A /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B6CF17FC24322FC90023F92A /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B6D451EE244702ED00441489 /* ChatThreadModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D451EC244702ED00441489 /* ChatThreadModel+CoreDataClass.swift */; };
+		B6D451EF244702ED00441489 /* ChatThreadModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D451ED244702ED00441489 /* ChatThreadModel+CoreDataProperties.swift */; };
+		B6D451F12447092B00441489 /* ThreadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D451F02447092B00441489 /* ThreadStore.swift */; };
 		B6DCE317242F9E3400928E8F /* ChatsBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DCE316242F9E3400928E8F /* ChatsBusinessModel.swift */; };
 		B6DCE31C242FD79800928E8F /* ThreadBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */; };
 		B6E20BE423AE56F2003CD0E7 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E20BE323AE56F2003CD0E7 /* KeychainItem.swift */; };
@@ -292,6 +295,9 @@
 		B6CF17FC24322FC90023F92A /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CF17FE24322FC90023F92A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B6CF180024322FC90023F92A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6D451EC244702ED00441489 /* ChatThreadModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatThreadModel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B6D451ED244702ED00441489 /* ChatThreadModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatThreadModel+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B6D451F02447092B00441489 /* ThreadStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadStore.swift; sourceTree = "<group>"; };
 		B6DCE316242F9E3400928E8F /* ChatsBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsBusinessModel.swift; sourceTree = "<group>"; };
 		B6DCE31B242FD79800928E8F /* ThreadBusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadBusinessModel.swift; sourceTree = "<group>"; };
 		B6E20BE123AE4E77003CD0E7 /* Pokoro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pokoro.entitlements; sourceTree = "<group>"; };
@@ -523,6 +529,15 @@
 				B644EB56242CD44500D7CF61 /* AuthenticateBusinessModel.swift */,
 			);
 			path = Messages;
+			sourceTree = "<group>";
+		};
+		B646F01E2446F67000AA34DA /* Chat Message */ = {
+			isa = PBXGroup;
+			children = (
+				B6AC7A40243B53E5008CEF56 /* ChatMessageModel+CoreDataProperties.swift */,
+				B6AC7A41243B53E5008CEF56 /* ChatMessageModel+CoreDataClass.swift */,
+			);
+			path = "Chat Message";
 			sourceTree = "<group>";
 		};
 		B6500BB123AE220000D20BAB /* Labels */ = {
@@ -862,8 +877,8 @@
 		B6AC7A34243B4C27008CEF56 /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
-				B6AC7A40243B53E5008CEF56 /* ChatMessageModel+CoreDataProperties.swift */,
-				B6AC7A41243B53E5008CEF56 /* ChatMessageModel+CoreDataClass.swift */,
+				B6D451E7244701C800441489 /* Thread */,
+				B646F01E2446F67000AA34DA /* Chat Message */,
 				B6AC7A3D243B512E008CEF56 /* PokoroDBModel.xcdatamodeld */,
 			);
 			path = "Model Layer";
@@ -873,6 +888,7 @@
 			isa = PBXGroup;
 			children = (
 				B6AC7A3B243B4CF1008CEF56 /* MessageStore.swift */,
+				B6D451F02447092B00441489 /* ThreadStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -1026,6 +1042,15 @@
 				B6CF180024322FC90023F92A /* Info.plist */,
 			);
 			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
+		B6D451E7244701C800441489 /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				B6D451EC244702ED00441489 /* ChatThreadModel+CoreDataClass.swift */,
+				B6D451ED244702ED00441489 /* ChatThreadModel+CoreDataProperties.swift */,
+			);
+			path = Thread;
 			sourceTree = "<group>";
 		};
 		B6DCE315242F9DED00928E8F /* Chats */ = {
@@ -1278,6 +1303,7 @@
 				B6500BC423AE220000D20BAB /* MediumLight.swift in Sources */,
 				B6C9321523C52677006863E0 /* BarcodeTableViewCell.swift in Sources */,
 				B6AC7A45243B553A008CEF56 /* Sorted.swift in Sources */,
+				B6D451EF244702ED00441489 /* ChatThreadModel+CoreDataProperties.swift in Sources */,
 				B68FA4C923A7D10200672E00 /* ViewController.swift in Sources */,
 				B633FD752438923700E62772 /* ChatMessage.swift in Sources */,
 				B6353525242E6EA2006A641D /* CheckNamespaceBusinessModel.swift in Sources */,
@@ -1298,6 +1324,7 @@
 				B6500BC123AE220000D20BAB /* SmallRegular.swift in Sources */,
 				B6EAC3C523B242BC0073D55F /* MainTabBarViewController.swift in Sources */,
 				B6678E052434CC8100617D08 /* UIViewController+waiting.swift in Sources */,
+				B6D451EE244702ED00441489 /* ChatThreadModel+CoreDataClass.swift in Sources */,
 				B6C902402441E19000AFAA1A /* Bundle+VersionNumber.swift in Sources */,
 				B6CF14B923ABD59300D330FD /* NetworkLogger.swift in Sources */,
 				B6C9023E2441E0A700AFAA1A /* ProfileVersionTableViewCell.swift in Sources */,
@@ -1355,6 +1382,7 @@
 				B6CF14B423ABD59300D330FD /* RKEndPoint.swift in Sources */,
 				B633FD6324387E4F00E62772 /* PkChatManager.swift in Sources */,
 				B6AC7A3F243B512E008CEF56 /* PokoroDBModel.xcdatamodeld in Sources */,
+				B6D451F12447092B00441489 /* ThreadStore.swift in Sources */,
 				B66DE2B023C37B3A00BF6639 /* OutgoingMessageTableViewCell.swift in Sources */,
 				B6500BBF23AE220000D20BAB /* SmallSB.swift in Sources */,
 				B66DE2BB23C38D7900BF6639 /* ProfileViewController.swift in Sources */,

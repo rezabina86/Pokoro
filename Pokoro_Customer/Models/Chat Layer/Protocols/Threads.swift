@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Threads: Equatable {
+protocol Threads: Equatable, ObjectConvertible {
     
     associatedtype M: Messages
     

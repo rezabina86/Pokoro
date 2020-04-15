@@ -10,6 +10,7 @@ import UIKit
 
 class ChatThread<M: Messages>: Threads {
     
+    private (set) var identifier: String?
     var id: String
     var userId: String?
     var userName: String?
@@ -19,6 +20,18 @@ class ChatThread<M: Messages>: Threads {
     var numberOfUnreadMessages: Int = 0
     var nameSpaceOwner: String?
     var lastMessage: M?
+    
+    init(id: String, userId: String?, userName: String?, timeStamp: Int64, namespaceId: String?, namespaceName: String?, numberOfUnreadMessages: Int = 0, nameSpaceOwner: String?, lastMessage: M?) {
+        self.id = id
+        self.userId = userId
+        self.userName = userName
+        self.timeStamp = timeStamp
+        self.namespaceId = namespaceId
+        self.namespaceName = namespaceName
+        self.numberOfUnreadMessages = numberOfUnreadMessages
+        self.nameSpaceOwner = nameSpaceOwner
+        self.lastMessage = lastMessage
+    }
     
     required init(apiResponse: ChatsBusinessModel.Chat) {
         self.id = apiResponse.id
