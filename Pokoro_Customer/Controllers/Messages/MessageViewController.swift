@@ -22,7 +22,7 @@ class MessageViewController: UIViewController {
         view.separatorStyle = .none
         view.tableFooterView = UIView(frame: CGRect.zero)
         view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)
-        view.keyboardDismissMode = .interactive
+        view.keyboardDismissMode = .onDrag
         view.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: view.bounds.size.width - 8.0)
         return view
     }()
@@ -110,7 +110,7 @@ class MessageViewController: UIViewController {
     func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.bottomConst.constant = 0
-            UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
                 guard let `self` = self else { return }
                 self.view.layoutIfNeeded()
             }, completion: nil)
