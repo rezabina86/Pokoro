@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitleColor(.black, for: .normal)
         btn.setTitle("Already have an account? Sign in with your email", for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         return btn
     }()
     
@@ -94,7 +94,7 @@ class LoginViewController: UIViewController {
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         
         view.addSubview(logoImageView)
-        logoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -250).isActive = true
+        logoImageView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -270).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: view.safeCenterXAnchor, constant: 0).isActive = true
         
         view.addSubview(welcomeMessageLabel)

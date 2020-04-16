@@ -22,7 +22,7 @@ class MessageViewController: UIViewController {
         view.separatorStyle = .none
         view.tableFooterView = UIView(frame: CGRect.zero)
         view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)
-        view.keyboardDismissMode = .onDrag
+        view.keyboardDismissMode = .interactive
         view.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: view.bounds.size.width - 8.0)
         return view
     }()
@@ -39,9 +39,7 @@ class MessageViewController: UIViewController {
     private var messages: [ChatMessage] = []
     
     var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>! {
-        willSet {
-            navigationItem.title = newValue.selectedThread?.userName
-        }
+        willSet { navigationItem.title = newValue.selectedThread?.userName }
     }
     
     private var cancellables = Set<AnyCancellable>()
