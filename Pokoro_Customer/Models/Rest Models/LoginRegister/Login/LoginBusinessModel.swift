@@ -17,6 +17,11 @@ struct LoginBusinessModel {
             let password: String = "123456"
         }
         
+        struct RequestWithEmail: Codable {
+            let email: String
+            let password: String
+        }
+        
         struct Response: Codable {
             let id: String
             let name: String

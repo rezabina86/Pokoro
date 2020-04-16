@@ -46,8 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //END OneSignal initializataion code
         
         
-        let a = ThreadStore<ChatThread<ChatMessage>>().fetchAllSorted()
-        print(a)
+        //let a = ThreadStore<ChatThread<ChatMessage>>().fetchAllSorted()
+        //print(a)
         
         return true
     }

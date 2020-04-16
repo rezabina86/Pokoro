@@ -15,6 +15,8 @@ enum NetworkEnvironment {
 }
 
 enum RKApis {
+    case loginWithEmail(model: LoginBusinessModel.Fetch.RequestWithEmail)
+    case registerUserWithEmail(model: RegisterBusinessModel.Fetch.RequestWithEmail)
     case login(model: LoginBusinessModel.Fetch.Request)
     case registerUser(model: RegisterBusinessModel.Fetch.Request)
     case getNameSpaces(model: NameSpacesBusinessModel.Fetch.Request)
@@ -40,6 +42,8 @@ extension RKApis: EndPointType {
     
     var path: String {
         switch self {
+        case .loginWithEmail(_): return "/users/login/"
+        case .registerUserWithEmail(_) : return "/users/"
         case .login(_): return "/users/login/"
         case .registerUser(_) : return "/users/"
         case .getNameSpaces(_): return "/namespaces"
@@ -52,6 +56,8 @@ extension RKApis: EndPointType {
     
     var httpMethod: HTTPMethod {
         switch self {
+        case .loginWithEmail(_): return .post
+        case .registerUserWithEmail(_): return .post
         case .login(_): return .post
         case .registerUser(_): return .post
         case .getNameSpaces(_): return .get
@@ -64,6 +70,10 @@ extension RKApis: EndPointType {
     
     var task: HTTPTask {
         switch self {
+        case .loginWithEmail(let model):
+                return .requestParameters(bodyParameters: model, urlParameters: nil)
+        case .registerUserWithEmail(let model):
+                return .requestParameters(bodyParameters: model, urlParameters: nil)
         case .login(let model):
             return .requestParameters(bodyParameters: model, urlParameters: nil)
         case .registerUser(let model):

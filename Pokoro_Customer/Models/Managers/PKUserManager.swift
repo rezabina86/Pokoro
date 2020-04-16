@@ -139,4 +139,38 @@ extension PKUserManager {
         }
     }
     
+    public func loginUserEmail(email: String, password: String, completion: @escaping credentialHandler) {
+        NetworkManager().loginWithEmail(request: LoginBusinessModel.Fetch.RequestWithEmail(email: email, password: password)) { [weak self] (result, error) in
+            guard let `self` = self else { return }
+            if let error = error {
+                completion(false, error)
+            } else if let result = result {
+                self.userId = result.id
+                self.token = result.token
+                self.name = result.name
+                self.email = result.email.address
+                OneSignal.sendTag("user_id", value: result.id)
+                completion(true, nil)
+                self.registerOneSignal()
+            }
+        }
+    }
+    
+    public func registerUserEmail(email: String, name: String, password: String, completion: @escaping credentialHandler) {
+        NetworkManager().registerUserWithEmail(request: RegisterBusinessModel.Fetch.RequestWithEmail(email: email, name: name, password: password)) { [weak self] (result, error) in
+            guard let self = self else { return }
+            if let error = error {
+                completion(false, error)
+            } else if let result = result {
+                self.userId = result.id
+                self.token = result.token
+                self.name = result.name
+                self.email = result.email.address
+                OneSignal.sendTag("user_id", value: result.id)
+                completion(true, nil)
+                self.registerOneSignal()
+            }
+        }
+    }
+    
 }

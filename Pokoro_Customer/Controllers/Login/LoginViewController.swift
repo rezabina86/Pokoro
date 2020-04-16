@@ -11,19 +11,37 @@ import AuthenticationServices
 
 class LoginViewController: UIViewController {
     
-    private let noticeLabel: UITextView = {
-        let label = UITextView()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        label.isHidden = true
-        return label
-    }()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     
     private let continueButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton(type: .continue, style: .black)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.cornerRadius = 5
+        button.cornerRadius = 25
         return button
+    }()
+    
+    private let continueWithEmailButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.layer.cornerRadius = 25
+        btn.clipsToBounds = true
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.layer.borderWidth = 1.0
+        btn.setTitleColor(.black, for: .normal)
+        btn.setTitle("Sign up with email", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        return btn
+    }()
+    
+    private let loginWithEmailButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setTitleColor(.black, for: .normal)
+        btn.setTitle("Already have an account? Sign in with your email", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        return btn
     }()
     
     private let logoImageView: UIImageView = {
@@ -50,24 +68,29 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        noticeText()
-        performExistingAccountSetupFlows()
+        //performExistingAccountSetupFlows()
     }
     
     private func setupViews() {
         view.backgroundColor = UIColor.PKColors.lightGreen
         
-        view.addSubview(noticeLabel)
-        noticeLabel.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -12).isActive = true
-        noticeLabel.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 24).isActive = true
-        noticeLabel.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -24).isActive = true
-        noticeLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        loginWithEmailButton.addTarget(self, action: #selector(loginWithEmailButtonDidTap(_:)), for: .touchUpInside)
+        view.addSubview(loginWithEmailButton)
+        loginWithEmailButton.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -12).isActive = true
+        loginWithEmailButton.centerXAnchor.constraint(equalTo: view.safeCenterXAnchor, constant: 0).isActive = true
+        
+        continueWithEmailButton.addTarget(self, action: #selector(registerWithEmailButtonDidTap(_:)), for: .touchUpInside)
+        view.addSubview(continueWithEmailButton)
+        continueWithEmailButton.bottomAnchor.constraint(equalTo: loginWithEmailButton.topAnchor, constant: -12).isActive = true
+        continueWithEmailButton.centerXAnchor.constraint(equalTo: view.safeCenterXAnchor, constant: 0).isActive = true
+        continueWithEmailButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        continueWithEmailButton.widthAnchor.constraint(equalToConstant: 260).isActive = true
         
         continueButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
         view.addSubview(continueButton)
         continueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         continueButton.widthAnchor.constraint(equalToConstant: 260).isActive = true
-        continueButton.bottomAnchor.constraint(equalTo: noticeLabel.topAnchor, constant: -8).isActive = true
+        continueButton.bottomAnchor.constraint(equalTo: continueWithEmailButton.topAnchor, constant: -12).isActive = true
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         
         view.addSubview(logoImageView)
@@ -84,34 +107,6 @@ class LoginViewController: UIViewController {
         backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         backgroundImageView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 50).isActive = true
         backgroundImageView.heightAnchor.constraint(equalTo: backgroundImageView.widthAnchor, multiplier: 0.57).isActive = true
-    }
-    
-    private func noticeText() {
-        let font = UIFont.PKFonts.MediumRegular
-        let termsURL = URL(string: "http://www.google.com")!
-        let policyURL = URL(string: "http://www.google.com")!
-        
-        let plainAttributedString = NSMutableAttributedString(string: "noticeWelcome".localized, attributes: [NSAttributedString.Key.foregroundColor : (ThemeManager.shared.theme?.textColor)!, NSAttributedString.Key.font : font])
-    
-        let attributedLinkString = NSMutableAttributedString(string: "terms".localized, attributes:[NSAttributedString.Key.link: termsURL, NSAttributedString.Key.foregroundColor : UIColor.blue, NSAttributedString.Key.font : font])
-        
-        let plainAttributedString1 = NSMutableAttributedString(string: "and".localized, attributes: [NSAttributedString.Key.foregroundColor : (ThemeManager.shared.theme?.textColor)!, NSAttributedString.Key.font : font])
-        
-        let attributedLinkString1 = NSMutableAttributedString(string: "policy".localized, attributes:[NSAttributedString.Key.link: policyURL, NSAttributedString.Key.foregroundColor : UIColor.blue, NSAttributedString.Key.font : font])
-        
-        let style = NSMutableParagraphStyle()
-        style.alignment = NSTextAlignment.center
-        
-        let fullAttributedString = NSMutableAttributedString()
-        fullAttributedString.append(plainAttributedString)
-        fullAttributedString.append(attributedLinkString)
-        fullAttributedString.append(plainAttributedString1)
-        fullAttributedString.append(attributedLinkString1)
-        fullAttributedString.addAttributes([NSAttributedString.Key.paragraphStyle: style], range: NSMakeRange(0, fullAttributedString.length))
-        
-        noticeLabel.isUserInteractionEnabled = true
-        noticeLabel.isEditable = false
-        noticeLabel.attributedText = fullAttributedString
     }
     
     func performExistingAccountSetupFlows() {
@@ -136,6 +131,24 @@ class LoginViewController: UIViewController {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
+    }
+    
+    @objc
+    private func loginWithEmailButtonDidTap(_ sender: UIButton) {
+        let controller = PKLoginChatViewController()
+        controller.authenticationModel = AuthenticationModel(type: .login)
+        controller.delegate = self
+        controller.isModalInPresentation = true
+        present(controller, animated: true)
+    }
+    
+    @objc
+    private func registerWithEmailButtonDidTap(_ sender: UIButton) {
+        let controller = PKLoginChatViewController()
+        controller.authenticationModel = AuthenticationModel(type: .register)
+        controller.delegate = self
+        controller.isModalInPresentation = true
+        present(controller, animated: true)
     }
     
     private func checkLogin() {
@@ -169,4 +182,18 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
+}
+
+extension LoginViewController: PKLoginChatViewControllerDelegate {
+    
+    func pkLoginChatViewControllerUserIsAuthenticated(_ controller: PKLoginChatViewController) {
+        controller.dismiss(animated: true) {
+            self.checkLogin()
+        }
+    }
+    
+    func pkLoginChatViewControllerCloseButtonDidTap(_ controller: PKLoginChatViewController) {
+        controller.dismiss(animated: true)
+    }
+    
 }

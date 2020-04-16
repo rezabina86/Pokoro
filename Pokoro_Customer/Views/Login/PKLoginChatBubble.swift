@@ -1,15 +1,15 @@
 //
-//  PKChatBubble.swift
+//  PKLoginChatBubble.swift
 //  Pokoro_Customer
 //
-//  Created by Reza Bina on 2020-01-06.
+//  Created by Reza Bina on 2020-04-15.
 //  Copyright © 2020 Reza Bina. All rights reserved.
 //
 
 import UIKit
 
-class PKChatBubble: UIView {
-    
+class PKLoginChatBubble: UIView {
+
     private var holder: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -19,19 +19,12 @@ class PKChatBubble: UIView {
         return view
     }()
     
-    private let textLabel: MediumRegular = {
-        let label = MediumRegular()
+    private let textLabel: UILabel = {
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = ThemeManager.shared.theme?.textColor
-        return label
-    }()
-    
-    private let dateLabel: SmallSB = {
-        let label = SmallSB()
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textColor = ThemeManager.shared.theme?.textColor
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
@@ -41,14 +34,6 @@ class PKChatBubble: UIView {
     
     public var text: String? {
         willSet { self.textLabel.text = newValue }
-    }
-    
-    public var date: String? {
-        willSet { dateLabel.text = newValue }
-    }
-    
-    public var dateColor: UIColor? {
-        willSet { dateLabel.textColor = newValue }
     }
     
     public var titleColor: UIColor? {
@@ -66,6 +51,7 @@ class PKChatBubble: UIView {
     }
     
     private func setupViews() {
+        
         addSubview(holder)
         holder.topAnchor.constraint(equalTo: safeTopAnchor, constant: 0).isActive = true
         holder.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 0).isActive = true
@@ -74,14 +60,9 @@ class PKChatBubble: UIView {
         
         holder.addSubview(self.textLabel)
         textLabel.topAnchor.constraint(equalTo: holder.safeTopAnchor, constant: 12).isActive = true
+        textLabel.bottomAnchor.constraint(equalTo: holder.safeBottomAnchor, constant: -12).isActive = true
         textLabel.leadingAnchor.constraint(equalTo: holder.safeLeadingAnchor, constant: 12).isActive = true
         textLabel.trailingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: -12).isActive = true
-        
-        holder.addSubview(dateLabel)
-        dateLabel.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 2).isActive = true
-        dateLabel.bottomAnchor.constraint(equalTo: holder.safeBottomAnchor, constant: -6).isActive = true
-        dateLabel.leadingAnchor.constraint(equalTo: holder.safeLeadingAnchor, constant: 12).isActive = true
-        dateLabel.trailingAnchor.constraint(equalTo: holder.safeTrailingAnchor, constant: -12).isActive = true
     }
 
 }

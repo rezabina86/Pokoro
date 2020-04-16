@@ -19,6 +19,12 @@ struct RegisterBusinessModel {
             let ios_user_identifier: String
         }
         
+        struct RequestWithEmail: Codable {
+            let email: String
+            let name: String
+            let password: String
+        }
+        
         struct Response: Codable {
             let id: String
             let name: String

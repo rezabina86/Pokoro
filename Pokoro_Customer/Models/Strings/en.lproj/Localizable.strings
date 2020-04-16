@@ -22,12 +22,24 @@
 "and" = " and ";
 "cancel" = "Cancel";
 "save" = "Save";
+"pleaseWait" = "Please Wait...";
 
 //Login
 "noticeWelcome" = "By continiung, you are indicating that you accept our ";
 "terms" = "Terms of Service";
 "policy" = "Privacy Policy";
 "loginWelcome" = "Welcome to Pokoro\n Simple, fast, and anonymous short message service";
+"loginWelcomeMessage" = "Welcome to Pokoro\nThis app lets you send and recieve messages through QR codes anonymously.";
+"emailLoginMessage" = "What is your email address?";
+"emailErrorMessage" = "Sorry, the email address isn't valid. Please enter a valid email address";
+"getNameMessage" = "Thank you\nWhat is your name?";
+"nameErrorMessage" = "Sorry, the name you've choosen is really short. Please enter a valid name.";
+"getPasswordRegisterMessage" = "Thank you\nJust one more step. Please enter a valid password. It should be at least 6 characters.";
+"waitMessage" = "Just a moment";
+"passwordErrorMessage" = "Password should be at least 6 characters. Please enter a valid password.";
+"getPasswordLoginMessage" = "What is your password?";
+"successLoginMessage" = "Thank you\nYou're now being logged in.";
+
 
 //Tab Bar
 "inbox" = "Inbox";

@@ -16,13 +16,6 @@ protocol MessageViewControllerDelegate: class {
 
 class MessageViewController: UIViewController {
     
-    private let navBar: PKNavBarView = {
-        let view = PKNavBarView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.title = "David"
-        return view
-    }()
-    
     private let tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
