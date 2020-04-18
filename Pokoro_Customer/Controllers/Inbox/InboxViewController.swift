@@ -103,7 +103,6 @@ extension InboxViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         chatManager.selectThread(threads[indexPath.row])
         let messageController = MessageViewController()
-        messageController.delegate = self
         messageController.chatManager = chatManager
         messageController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(messageController, animated: true)
@@ -121,15 +120,6 @@ extension InboxViewController: UITableViewDataSource {
         let cell = MessageTableViewCell()
         cell.thread = threads[indexPath.row]
         return cell
-    }
-    
-}
-
-extension InboxViewController: MessageViewControllerDelegate {
-    
-    func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
-        controller.navigationController?.popViewController(animated: true)
-        chatManager?.selectThread(nil)
     }
     
 }

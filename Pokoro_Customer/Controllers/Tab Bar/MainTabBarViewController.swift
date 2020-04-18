@@ -83,7 +83,6 @@ class MainTabBarViewController: UITabBarController {
     private func showPushThread(thread: ChatThread<ChatMessage>) {
         chatManager?.selectThread(thread)
         let messageController = MessageViewController()
-        messageController.delegate = self
         messageController.chatManager = chatManager
         messageController.hidesBottomBarWhenPushed = true
         if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
@@ -115,7 +114,6 @@ class MainTabBarViewController: UITabBarController {
         chatManager?.startThread(with: namespace)
         let messageController = MessageViewController()
         messageController.chatManager = chatManager
-        messageController.delegate = self
         messageController.hidesBottomBarWhenPushed = true
         if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
             selectedNavigationController.popToRootViewController(animated: true)
@@ -166,15 +164,6 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
     
     func scannerViewControllerBackButtonDidTapped(_ controller: ScannerViewController) {
         controller.dismiss(animated: true)
-    }
-    
-}
-
-extension MainTabBarViewController: MessageViewControllerDelegate {
-    
-    func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController) {
-        chatManager?.selectThread(nil)
-        controller.navigationController?.popViewController(animated: true)
     }
     
 }

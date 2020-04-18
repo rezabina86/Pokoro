@@ -9,32 +9,14 @@
 import UIKit
 import Combine
 import SocketIO
-import InputBarAccessoryView
 
-protocol MessageViewControllerDelegate: class {
-    func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController)
-}
-
-class MessageViewController: UIViewController {
-    
-    private let tableView: UITableView = {
-        let view = UITableView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.separatorStyle = .none
-        view.tableFooterView = UIView(frame: CGRect.zero)
-        view.keyboardDismissMode = .interactive
-        view.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
-        return view
-    }()
+class MessageViewController: UITableViewController {
     
     private let chatBoxView: PKChatTextFieldView = {
         let view = PKChatTextFieldView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    weak var delegate: MessageViewControllerDelegate?
-    private var bottomConst: NSLayoutConstraint!
     
     private var messages: [ChatMessage] = []
     
@@ -51,14 +33,16 @@ class MessageViewController: UIViewController {
     override var canBecomeFirstResponder: Bool {
         return true
     }
+    
+    override var canResignFirstResponder: Bool {
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         setupViews()
         setupPublishers()
-        chatBoxView.delegate = self
-        //becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,13 +67,14 @@ class MessageViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
-        tableView.re.delegate = self
+        tableView.delegate = self
         tableView.dataSource = self
-        view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.keyboardDismissMode = .interactive
+        //tableView.transform = CGAffineTransform(rotationAngle: .pi)
+        
+        chatBoxView.delegate = self
     }
     
     func initializeNotification() {
@@ -118,8 +103,16 @@ class MessageViewController: UIViewController {
         guard let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue else { return }
         guard let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else { return }
         UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(rawValue: UInt(curve << 16)), animations: {
-            self.tableView.contentInset.top = shown ? keyboardSize.height : 0
-            self.tableView.contentInset.bottom = shown ? keyboardSize.height : 0
+            //self.tableView.contentInset.bottom = 0
+            if shown && keyboardSize.height > 200 {
+                self.tableView.contentOffset.y += keyboardSize.height
+                //self.tableView.contentInset.top = keyboardSize.height - 56
+                
+            } else if !shown {
+                //self.tableView.contentInset.top = 0
+               
+            }
+            Logger.log(message: "\(self.tableView.contentInset)", event: .debug)
         }, completion: nil)
     }
     
@@ -159,12 +152,6 @@ class MessageViewController: UIViewController {
 
 }
 
-extension MessageViewController: PKNavBarViewDelegate {
-    func pkNavBarViewBackButtonDidTapped(_ navBar: PKNavBarView) {
-        delegate?.messageViewControllerBackButtonDidTapped(self)
-    }
-}
-
 extension MessageViewController: PKChatTextFieldViewDelegate {
     
     func pkChatTextFieldViewSendButtonDidTapped(_ view: PKChatTextFieldView, with text: String, completion: @escaping () -> Void) {
@@ -184,25 +171,25 @@ extension MessageViewController: PKChatTextFieldViewDelegate {
     
 }
 
-extension MessageViewController: UITableViewDelegate {
+extension MessageViewController {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
 }
 
-extension MessageViewController: UITableViewDataSource {
+extension MessageViewController {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
         DispatchQueue(label: "com.pokoro.fetch").async { [weak self] in
             guard let `self` = self else { return }
@@ -214,13 +201,13 @@ extension MessageViewController: UITableViewDataSource {
             let cell = IncomingMessageTableViewCell()
             cell.message = message.message
             cell.date = message.stringDate
-            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            //cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             return cell
         } else {
             let cell = OutgoingMessageTableViewCell()
             cell.message = message.message
             cell.date = message.stringDate
-            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            //cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             return cell
         }
     }
