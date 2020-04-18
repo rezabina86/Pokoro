@@ -10,6 +10,7 @@ target 'Pokoro_Customer' do
   pod 'M13ProgressSuite'
   pod 'Socket.IO-Client-Swift'
   pod 'OneSignal'
+  pod 'InputBarAccessoryView'
 
 end
 

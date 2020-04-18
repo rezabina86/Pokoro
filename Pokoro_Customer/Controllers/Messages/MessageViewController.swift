@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 import SocketIO
+import InputBarAccessoryView
 
 protocol MessageViewControllerDelegate: class {
     func messageViewControllerBackButtonDidTapped(_ controller: MessageViewController)
@@ -21,9 +22,8 @@ class MessageViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.separatorStyle = .none
         view.tableFooterView = UIView(frame: CGRect.zero)
-        view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)
-        view.keyboardDismissMode = .onDrag
-        view.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: view.bounds.size.width - 8.0)
+        view.keyboardDismissMode = .interactive
+        view.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
         return view
     }()
     
@@ -43,17 +43,31 @@ class MessageViewController: UIViewController {
     }
     
     private var cancellables = Set<AnyCancellable>()
+    
+    override var inputAccessoryView: UIView? {
+        return chatBoxView
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         setupViews()
         setupPublishers()
+        chatBoxView.delegate = self
+        //becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeNotification()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,20 +83,13 @@ class MessageViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
-        tableView.delegate = self
+        tableView.re.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
-        
-        chatBoxView.delegate = self
-        view.addSubview(chatBoxView)
-        chatBoxView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 0).isActive = true
-        bottomConst = chatBoxView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        bottomConst.isActive = true
-        chatBoxView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        chatBoxView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
     }
     
     func initializeNotification() {
@@ -97,24 +104,23 @@ class MessageViewController: UIViewController {
     
     @objc
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.bottomConst.constant = -keyboardSize.height
-            UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
-                guard let `self` = self else { return }
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-        }
+        handleKeyboard(shown: true, notification: notification)
     }
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        if ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            self.bottomConst.constant = 0
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
-                guard let `self` = self else { return }
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-        }
+        handleKeyboard(shown: false, notification: notification)
+    }
+    
+    private func handleKeyboard(shown: Bool, notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue else { return }
+        guard let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else { return }
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(rawValue: UInt(curve << 16)), animations: {
+            self.tableView.contentInset.top = shown ? keyboardSize.height : 0
+            self.tableView.contentInset.bottom = shown ? keyboardSize.height : 0
+        }, completion: nil)
     }
     
     private func setupPublishers() {

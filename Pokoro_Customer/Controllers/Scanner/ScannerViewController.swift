@@ -19,10 +19,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
     
-    private let navBar: PKNavBarView = {
-        let view = PKNavBarView()
+    private var navBar: UINavigationBar = {
+        let view = UINavigationBar()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.title = "Scan"
+        view.backgroundColor = .white
         view.layer.zPosition = 5
         return view
     }()
@@ -69,7 +69,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     private func setupViews() {
-        navBar.delegate = self
+        let navItem = UINavigationItem(title: "Scan")
+        let navBarButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissButtonDidTap(_:)))
+        navItem.leftBarButtonItem = navBarButton
+        navBar.items = [navItem]
         view.addSubview(navBar)
         navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         navBar.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
@@ -128,13 +131,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
-
-}
-
-extension ScannerViewController: PKNavBarViewDelegate {
     
-    func pkNavBarViewBackButtonDidTapped(_ navBar: PKNavBarView) {
+    @objc
+    private func dismissButtonDidTap(_ sender: UIBarButtonItem) {
         delegate?.scannerViewControllerBackButtonDidTapped(self)
     }
-    
+
 }

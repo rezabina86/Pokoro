@@ -51,6 +51,11 @@ class PKChatTextFieldView: UIView {
     }()
     
     weak var delegate: PKChatTextFieldViewDelegate?
+    
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize.init(width: size.width, height: 56)
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,6 +68,8 @@ class PKChatTextFieldView: UIView {
     }
     
     private func setupViews() {
+        backgroundColor = ThemeManager.shared.theme?.backgroundColor
+        
         addSubview(separator)
         separator.topAnchor.constraint(equalTo: safeTopAnchor, constant: 0).isActive = true
         separator.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 0).isActive = true

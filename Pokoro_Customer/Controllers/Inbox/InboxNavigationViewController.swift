@@ -11,10 +11,6 @@ import UIKit
 class InboxNavigationViewController: UINavigationController {
     
     public var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>?
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

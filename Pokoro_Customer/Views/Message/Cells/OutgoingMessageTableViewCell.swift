@@ -48,8 +48,8 @@ class OutgoingMessageTableViewCell: UITableViewCell {
         
         
         addSubview(chatBubble)
-        chatBubble.topAnchor.constraint(equalTo: safeTopAnchor, constant: 6).isActive = true
-        chatBubble.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -6).isActive = true
+        chatBubble.topAnchor.constraint(equalTo: safeTopAnchor, constant: 2).isActive = true
+        chatBubble.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -2).isActive = true
         chatBubble.leadingAnchor.constraint(greaterThanOrEqualTo: safeLeadingAnchor, constant: 72).isActive = true
         chatBubble.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -16).isActive = true
         chatBubble.widthAnchor.constraint(greaterThanOrEqualToConstant: 45).isActive = true
