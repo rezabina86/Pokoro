@@ -78,8 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setTheme() {
-        guard let style = window?.traitCollection.userInterfaceStyle else { return }
-        ThemeManager.shared.set(theme: style == .light ? LightTheme() : DarkTheme())
+        //guard let style = window?.traitCollection.userInterfaceStyle else { return }
+        //ThemeManager.shared.set(theme: style == .light ? LightTheme() : DarkTheme())
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {

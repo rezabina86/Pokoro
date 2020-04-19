@@ -53,6 +53,7 @@
 "logout" = "Sign Out";
 "myBarcodes" = "My QR Codes";
 "feedback" = "Share your thoughts";
+"logoutMessage" = "Are you sure that you want to sign out?";
 
 //Barcodes
 "export" = "Export";

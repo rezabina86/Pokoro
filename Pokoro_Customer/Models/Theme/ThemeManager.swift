@@ -10,14 +10,14 @@ import UIKit
 
 class ThemeManager {
     
-    var theme: Theme?
+    var theme: Theme? = DefaultTheme()
     
     static let shared = {
         return ThemeManager()
     }()
     
-    func set(theme: Theme) {
-        self.theme = theme
-    }
+//    func set(theme: Theme) {
+//        self.theme = theme
+//    }
     
 }

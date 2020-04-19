@@ -116,7 +116,7 @@ class MessageViewController: UIViewController {
         UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(rawValue: UInt(curve << 16)), animations: {
             if shown && keyboardSize.height > 200 {
                 self.tableView.contentOffset.y -= keyboardSize.height
-                self.tableView.contentInset.top = keyboardSize.height - 62
+                self.tableView.contentInset.top = keyboardSize.height - 62 - self.view.safeAreaInsets.bottom
             } else if !shown {
                 self.tableView.contentInset.top = 0
             }

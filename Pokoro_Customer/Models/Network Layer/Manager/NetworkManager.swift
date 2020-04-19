@@ -51,6 +51,13 @@ struct NetworkManager {
             guard let responseData = data else { return NetworkResponse.noData.rawValue }
             do {
                 let result = try JSONDecoder().decode(ErrorBusinessModel.self, from: responseData)
+                if result.error == "unauthorized" {
+                    PKUserManager.shared.clearDataOnLogout()
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+                    DispatchQueue.main.async {
+                        appDelegate.presentAuthenticationCoordinator()
+                    }
+                }
                 return result.message
             } catch { return NetworkResponse.unableToDecode.rawValue }
         case .failure(let error):
