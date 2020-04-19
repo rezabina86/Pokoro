@@ -180,7 +180,7 @@ extension PKLoginChatViewController: UITableViewDataSource {
         let msg = authenticationModel.messages[indexPath.row]
         if msg.isUserInput {
             let cell = PKLoginOutgoTableViewCell()
-            cell.message = msg.isSecure ? "****" : msg.message
+            cell.message = msg.isSecure ? "*******" : msg.message
             return cell
         } else {
             let cell = PKLoginIncomeTableViewCell()
