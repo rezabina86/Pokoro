@@ -15,6 +15,8 @@ class PKLoginChatBubble: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.zPosition = 3
         view.layer.cornerRadius = 16
+        view.layer.borderColor = UIColor.systemGray4.cgColor
+        view.layer.borderWidth = 1
         view.clipsToBounds = true
         return view
     }()
@@ -38,6 +40,10 @@ class PKLoginChatBubble: UIView {
     
     public var titleColor: UIColor? {
         willSet { textLabel.textColor = newValue }
+    }
+    
+    public var borderWidth: CGFloat? {
+        willSet { holder.layer.borderWidth = newValue ?? 1.0 }
     }
 
     override init(frame: CGRect) {

@@ -113,24 +113,28 @@ class PKChatTextFieldView: UIView {
 extension PKChatTextFieldView: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        textView.sizeToFit()
+        if textView.contentSize.height > 131 {
+            textView.isScrollEnabled = true
+            textView.bounds.size.height = 131
+        } else {
+            textView.isScrollEnabled = false
+            textView.sizeToFit()
+        }
         return true
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "textMessage".localized
             textView.textColor = UIColor.lightGray
         }
     }
-    
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = ThemeManager.shared.theme?.textColor
         }
     }
-    
-    
     
 }

@@ -17,6 +17,7 @@ class PKUserManager: NSObject, ObservableObject {
     
     @Published var isAppInForeground: Bool = true
     @Published var pushNotificationChatId: String?
+    @Published var userSelectedShortcutItem: Bool = false
     
     static let shared = PKUserManager()
     public var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>?

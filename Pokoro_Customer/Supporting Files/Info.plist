@@ -27,11 +27,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need to access to the camera in case of read the QR Codes</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -45,6 +40,17 @@
 		<string>Metropolis-Light.otf</string>
 		<string>Metropolis-Regular.otf</string>
 		<string>Metropolis-SemiBold.otf</string>
+	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>scan</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Scan</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Type01</string>
+		</dict>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

@@ -30,8 +30,8 @@ extension RKApis: EndPointType {
     
     var environmentBaseURL: String {
         switch NetworkManager.environment {
-        case .production: return "http://194.31.52.212:3000/api/v1"
-        case .dev: return "http://194.31.52.212:3000/api/v1"
+        case .production: return Server.apiURL.absoluteString
+        case .dev: return Server.apiURL.absoluteString
         }
     }
     

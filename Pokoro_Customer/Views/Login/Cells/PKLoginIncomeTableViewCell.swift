@@ -13,15 +13,13 @@ class PKLoginIncomeTableViewCell: UITableViewCell {
     public let chatBubble: PKLoginChatBubble = {
         let view = PKLoginChatBubble()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.bubbleColor = UIColor.systemGray3
+        view.bubbleColor = .clear//UIColor.systemGray3
         return view
     }()
     
     public var message: String? {
         willSet { chatBubble.text = newValue }
     }
-    
-    private var interaction: UIContextMenuInteraction!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

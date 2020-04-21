@@ -17,7 +17,7 @@ class PKLoginTextFieldView: UIView {
     private let separator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = UIColor.systemGray4
         return view
     }()
     
@@ -27,8 +27,7 @@ class PKLoginTextFieldView: UIView {
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
         view.layer.borderWidth = 1
-        view.backgroundColor = .white
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.systemGray3.cgColor
         return view
     }()
     
@@ -54,6 +53,11 @@ class PKLoginTextFieldView: UIView {
     }()
     
     weak var delegate: PKLoginTextFieldViewDelegate?
+    
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize.init(width: size.width, height: 56)
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,7 +70,7 @@ class PKLoginTextFieldView: UIView {
     }
     
     private func setupViews() {
-        backgroundColor = .white
+        backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
         addSubview(separator)
         separator.topAnchor.constraint(equalTo: safeTopAnchor, constant: 0).isActive = true

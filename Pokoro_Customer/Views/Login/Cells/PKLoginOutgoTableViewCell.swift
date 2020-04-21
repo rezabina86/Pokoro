@@ -15,6 +15,7 @@ class PKLoginOutgoTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.bubbleColor = UIColor.PKColors.green
         view.titleColor = UIColor.PKColors.navy
+        view.borderWidth = 0
         return view
     }()
     

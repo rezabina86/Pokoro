@@ -22,11 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //PKUserManager.shared.token = "rKPqF7gnP9WYqGaDrnbK3s"
-        //PKUserManager.shared.userId = "5e9359a4cf06be1d37f56694"
-        
         window = UIWindow(frame: UIScreen.main.bounds)
-        setTheme()
         makeAuthenticationCoordinator()
         presentAuthenticationCoordinator()
         
@@ -45,28 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         //END OneSignal initializataion code
         
-        
-        //let a = ThreadStore<ChatThread<ChatMessage>>().fetchAllSorted()
-        //print(a)
-        
         return true
     }
     
-    
-    
-    
-    
-    
-    
-//    -(NSUInteger)calculate{
-//
-//        //Check where you are making the sqlite
-//        NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"yourPersistentStoreName"];
-//        NSUInteger sizeOfData = [[NSData dataWithContentsOfURL:url] length];
-//        NSLog(@"sizeOfDAta in bytes %lu",(unsigned long)sizeOfData);
-//
-//        return sizeOfData;
-//    }
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if shortcutItem.type == "Type01" {
+            PKUserManager.shared.userSelectedShortcutItem = true
+            completionHandler(true)
+        }
+    }
     
     private func makeAuthenticationCoordinator() {
         router = SceneDelegateRouter(window: window!)
@@ -75,11 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public func presentAuthenticationCoordinator() {
         coordinator?.present(animated: true, onDismissed: nil)
-    }
-    
-    private func setTheme() {
-        //guard let style = window?.traitCollection.userInterfaceStyle else { return }
-        //ThemeManager.shared.set(theme: style == .light ? LightTheme() : DarkTheme())
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {

@@ -24,7 +24,7 @@ class PKSocketManager: NSObject {
     weak var delegate: PKSocketManagerDelegate?
     
     override init() {
-        manager = SocketManager(socketURL: URL(string: "http://194.31.52.212:3000")!, config: [.log(false)])
+        manager = SocketManager(socketURL: Server.socketURL, config: [.log(false)])
         socket = manager.defaultSocket
         super.init()
         setupListeners()

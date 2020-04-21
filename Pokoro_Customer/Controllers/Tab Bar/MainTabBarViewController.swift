@@ -21,9 +21,6 @@ class MainTabBarViewController: UITabBarController {
         chatManager = PkChatManager()
         setupTabBar()
         setupListener()
-        
-        
-            
     }
     
     private func setupListener() {
@@ -34,16 +31,15 @@ class MainTabBarViewController: UITabBarController {
             items[0].badgeColor = .systemRed
             UIApplication.shared.applicationIconBadgeNumber = unseen
         }).store(in: &cancellables)
-//
-//        chatData?.$newMessageRecieved.sink(receiveValue: { [weak self] (_) in
-//            guard let `self` = self else { return }
-//            if self.pageLoaded { AudioServicesPlayAlertSound(SystemSoundID(1312)) }
-//            self.pageLoaded = true
-//        }).store(in: &cancellables)
-//
+
         PKUserManager.shared.$pushNotificationChatId.sink { [weak self] (id) in
             guard let `self` = self, let id = id else { return }
             self.handlePushNotification(id: id)
+        }.store(in: &cancellables)
+        
+        PKUserManager.shared.$userSelectedShortcutItem.sink { [weak self] selected in
+            guard let `self` = self, selected else { return }
+            self.showScannerController()
         }.store(in: &cancellables)
     }
     
@@ -94,22 +90,6 @@ class MainTabBarViewController: UITabBarController {
         }
     }
     
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        let userInterfaceStyle = self.traitCollection.userInterfaceStyle
-//        Logger.log(message: PKUserManager.shared.theme, event: .warning)
-//        Logger.log(message: userInterfaceStyle.rawValue, event: .warning)
-//        if PKUserManager.shared.isThemeChanged(newTheme: (userInterfaceStyle == .dark) ? .dark : .light) {
-//            Logger.log(message: "Changed", event: .info)
-//            switch userInterfaceStyle {
-//            case .dark:
-//                ThemeManager.shared.set(theme: DarkTheme())
-//            default:
-//                ThemeManager.shared.set(theme: LightTheme())
-//            }
-//            setupTabBar()
-//        }
-//    }
-    
     private func showChat(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
         chatManager?.startThread(with: namespace)
         let messageController = MessageViewController()
@@ -123,6 +103,12 @@ class MainTabBarViewController: UITabBarController {
             selectedNavigationController.pushViewController(messageController, animated: true)
         }
     }
+    
+    private func showScannerController() {
+        let scannerController = ScannerViewController()
+        scannerController.delegate = self
+        present(scannerController, animated: true)
+    }
 
 }
 
@@ -130,9 +116,7 @@ extension MainTabBarViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController.isKind(of: ScannerViewController.self) {
-            let scannerController = ScannerViewController()
-            scannerController.delegate = self
-            present(scannerController, animated: true)
+            showScannerController()
             return false
         }
         return true

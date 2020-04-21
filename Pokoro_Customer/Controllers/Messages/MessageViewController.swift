@@ -113,7 +113,9 @@ class MessageViewController: UIViewController {
         guard let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         guard let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue else { return }
         guard let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else { return }
-        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(rawValue: UInt(curve << 16)), animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(rawValue: UInt(curve << 16)), animations: { [weak self] in
+            guard let self = self else { return }
+            self.tableView.contentInset.bottom = 0
             if shown && keyboardSize.height > 200 {
                 self.tableView.contentOffset.y -= keyboardSize.height
                 self.tableView.contentInset.top = keyboardSize.height - 62 - self.view.safeAreaInsets.bottom

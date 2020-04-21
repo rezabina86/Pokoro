@@ -30,8 +30,7 @@ class PKLoginChatViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.separatorStyle = .none
         view.tableFooterView = UIView(frame: CGRect.zero)
-        view.backgroundColor = .white
-        view.keyboardDismissMode = .onDrag
+        view.keyboardDismissMode = .interactive
         return view
     }()
     
@@ -45,9 +44,22 @@ class PKLoginChatViewController: UIViewController {
     private var bottomConst: NSLayoutConstraint!
     
     private var cancellables = Set<AnyCancellable>()
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override var canResignFirstResponder: Bool {
+        return true
+    }
+    
+    override var inputAccessoryView: UIView? {
+        return chatBoxView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        becomeFirstResponder()
         setupViews()
         setupListeners()
     }
@@ -59,17 +71,18 @@ class PKLoginChatViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        chatBoxView.textField.becomeFirstResponder()
+        //chatBoxView.textField.becomeFirstResponder()
         authenticationModel.start()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        chatBoxView.textField.resignFirstResponder()
         deinitializeNotification()
     }
     
     private func setupViews() {
-        view.backgroundColor = .white
+        view.backgroundColor = ThemeManager.shared.theme?.backgroundColor
         
         let navItem = UINavigationItem(title: "")
         let navBarButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonDidTap(_:)))
@@ -84,16 +97,11 @@ class PKLoginChatViewController: UIViewController {
         tableView.dataSource = self
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
         
         chatBoxView.delegate = self
-        view.addSubview(chatBoxView)
-        chatBoxView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 0).isActive = true
-        bottomConst = chatBoxView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        bottomConst.isActive = true
-        chatBoxView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        chatBoxView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0).isActive = true
     }
     
     func initializeNotification() {
@@ -108,27 +116,27 @@ class PKLoginChatViewController: UIViewController {
     
     @objc
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.bottomConst.constant = -keyboardSize.height
-            UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
-                guard let `self` = self else { return }
-                self.view.layoutIfNeeded()
-                if self.authenticationModel.messages.count > 0 {
-                    self.tableView.scrollToRow(at: IndexPath(row: self.authenticationModel.messages.count - 1, section: 0), at: .bottom, animated: true)
-                }
-            }, completion: nil)
-        }
+        handleKeyboard(shown: true, notification: notification)
     }
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        if ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            self.bottomConst.constant = 0
-            UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
-                guard let `self` = self else { return }
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-        }
+        handleKeyboard(shown: false, notification: notification)
+    }
+    
+    private func handleKeyboard(shown: Bool, notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue else { return }
+        guard let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else { return }
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(rawValue: UInt(curve << 16)), animations: {
+            if shown && keyboardSize.height > 200 {
+                self.tableView.contentOffset.y += keyboardSize.height
+                self.tableView.contentInset.bottom = keyboardSize.height //- 62 - self.view.safeAreaInsets.bottom
+            } else if !shown {
+                self.tableView.contentInset.bottom = 0
+            }
+        }, completion: nil)
     }
     
     private func setupListeners() {
