@@ -18,7 +18,11 @@ Anyone can send you a message without knowing your phone number or email address
   used in your JS.
 
 <p align="center">
-  <img src="./img/example.png" alt="Size Limit CLI" width="738">
+  <img src="readme_assets/dark.png" width="738">
+</p>
+
+<p align="center">
+  <img src="readme_assets/light.png" width="738">
 </p>
 
 With **[GitHub action]** Size Limit will post bundle size changes as a comment
