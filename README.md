@@ -1,7 +1,7 @@
 # Pokoro - Scan. Chat
 
 <p align="center">
-  <img src="readme_assets/logo_pokoro.png" width="738">
+  <img src="readme_assets/logo_pokoro.png" width="600">
 </p>
 
 Pokoro is a simple, fast and Anonymous instant messaging service that lets you send and receive text messages with a QR code. All you have to do is to create a QR and put it on your business card or in your car or...
