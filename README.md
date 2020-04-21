@@ -3,9 +3,8 @@
 <img src="readme_assets/logo_pokoro.png" align="center"
      alt="Size Limit logo by Anton Lovchikov">
 
-Size Limit is a performance budget tool for JavaScript. It checks every commit
-on CI, calculates the real cost of your JS for end-users and throws an error
-if the cost exceeds the limit.
+Pokoro is a simple, fast and Anonymous instant messaging service that lets you send and receive text messages with a QR code. All you have to do is to create a QR and put it on your business card or in your car or...
+Anyone can send you a message without knowing your phone number or email address.  
 
 * **ES modules** and **tree-shaking** support.
 * Add Size Limit to **Travis CI**, **Circle CI**, **GitHub Actions**
