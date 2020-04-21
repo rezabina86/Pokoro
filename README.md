@@ -41,6 +41,6 @@ Sign-in with Apple hasn't been implementd correctly. It needs some modification.
 
 ### Test flight
 
-You can use the link below to download the beta:
+You can use the link below to download the beta version:
 https://testflight.apple.com/join/nWnjj9v6
 
