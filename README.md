@@ -33,3 +33,8 @@ Pokoro is in beta test and any encryption method hasn't been implemented.
 
 Sign-in with Apple hasn't been implementd correctly. It needs some modification.
 
+### Test flight
+
+You can use the link below to download the beta:
+https://testflight.apple.com/join/nWnjj9v6
+
