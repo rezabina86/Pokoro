@@ -6,16 +6,15 @@
 Pokoro is a simple, fast and Anonymous instant messaging service that lets you send and receive text messages with a QR code. All you have to do is to create a QR and put it on your business card or in your car or...
 Anyone can send you a message without knowing your phone number or email address.  
 
-* **ES modules** and **tree-shaking** support.
-* Add Size Limit to **Travis CI**, **Circle CI**, **GitHub Actions**
-  or another CI system to know if a pull request adds a massive dependency.
-* **Modular** to fit different use cases: big JS applications
-  that use their own bundler or small npm libraries with many files.
-* Can calculate **the time** it would take a browser
-  to download and **execute** your JS. Time is a much more accurate
-  and understandable metric compared to the size in bytes.
-* Calculations include **all dependencies and polyfills**
-  used in your JS.
+* **Real-time connection**
+  It uses socket.io for real-time connection to the server and sync its own database with the server.
+* **Combine**
+  Chat models use combine framework to communicate to eachother.
+* **Database**
+  It uses coredata to save messages in sqlite DB.
+* **Dark-Mode**
+  Pokoro supports dark-mode and light-mode in iOS 13.0
+
 
 <p align="center">
   <img src="readme_assets/dark.png" width="738">
