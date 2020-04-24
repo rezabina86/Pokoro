@@ -4,7 +4,7 @@
 
 
 <p align="center">
-  <img src="readme_assets/logo_pokoro.png" width="600">
+  <img src="readme_assets/logo_pokoro.png" width="500">
 </p>
 
 
