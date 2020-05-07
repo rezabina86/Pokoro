@@ -14,7 +14,7 @@ struct LoginBusinessModel {
         
         struct Request: Codable {
             let ios_user_identifier: String
-            let password: String = "123456" //We should fix this in Release version
+            let password: String = PasswordGenerator.generate(with: 16)
         }
         
         struct RequestWithEmail: Codable {

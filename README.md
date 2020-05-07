@@ -1,14 +1,8 @@
 # Pokoro - Scan. Chat
 
-
-
-
 <p align="center">
   <img src="readme_assets/logo_pokoro.png" width="500">
 </p>
-
-
-
 
 Pokoro is a simple, fast and Anonymous instant messaging service that lets you send and receive text messages with a QR code. All you have to do is to create a QR and put it on your business card or in your car or...
 Anyone can send you a message without knowing your phone number or email address.  
@@ -31,16 +25,9 @@ Anyone can send you a message without knowing your phone number or email address
   <img src="readme_assets/light.png" width="738">
 </p>
 
-### Encrytion
 
-Pokoro is in beta test and any encryption method hasn't been implemented.
-
-### Sign-in with Apple
-
-Sign-in with Apple hasn't been implementd correctly. It needs some modification.
-
-### Test flight
+### App Store
 
 You can use the link below to download the beta version:
-https://testflight.apple.com/join/nWnjj9v6
+https://apps.apple.com/lt/app/pokoro-scan-chat/id1501165249
 

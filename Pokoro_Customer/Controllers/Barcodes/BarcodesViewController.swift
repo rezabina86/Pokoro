@@ -74,14 +74,14 @@ class BarcodesViewController: UIViewController {
             if let error = error {
                 self.showAlert(message: error.localized, type: .error)
             } else if let model = model {
-                NamespacesCacheManager.shared.namespaces = model.results
+                CacheStore.shared.namespaces = model.results
                 self.namespaces = NameSpacesBusinessModel.Fetch.ViewModel(namespaces: model.results)
             }
         }
     }
     
     private func loadNamespacesCache() {
-        guard let namespaces = NamespacesCacheManager.shared.namespaces else { return }
+        guard let namespaces = CacheStore.shared.namespaces else { return }
         self.namespaces = NameSpacesBusinessModel.Fetch.ViewModel(namespaces: namespaces)
     }
     
@@ -186,6 +186,7 @@ extension BarcodesViewController {
                 self.showAlert(message: error.localized, type: .error)
             } else if result != nil {
                 self.getNameSpaces()
+                Analytic.sendLog(.createQR)
             }
         }
     }

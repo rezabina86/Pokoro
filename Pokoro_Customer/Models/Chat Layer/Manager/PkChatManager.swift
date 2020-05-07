@@ -169,11 +169,13 @@ class PkChatManager<T: Threads, M: Messages>: ObservableObject {
                     self.fetchThreads()
                 }
             } else if let chats = result {
-                ThreadsCacheManager.shared.threads = chats.results
+                CacheStore.shared.threads = chats.results
                 self.threads = chats.results.map({ T(apiResponse: $0) })
-                if let selectedThread = self.selectedThread {
-                    self.selectedThread = self.threads.first(where: { $0 == selectedThread })
-                    self.syncMessageWithAPI()
+                if let selectedThread = self.selectedThread, !selectedThread.isThreadTemp {
+                    if let updatedThread = self.threads.first(where: { $0 == selectedThread }) {
+                        self.selectedThread = updatedThread
+                        self.syncMessageWithAPI()
+                    }
                 }
                 self.updateUnseenThreads()
                 self.sortThreads()

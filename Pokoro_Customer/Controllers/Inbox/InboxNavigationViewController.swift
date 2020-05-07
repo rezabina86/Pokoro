@@ -30,7 +30,7 @@ extension InboxNavigationViewController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController.isKind(of: InboxViewController.self) {
-            chatManager?.selectThread(nil)
+            //chatManager?.selectThread(nil)
         }
     }
     

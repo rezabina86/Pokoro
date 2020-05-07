@@ -10,6 +10,7 @@ import UIKit
 import SocketIO
 import OneSignal
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //START OneSignal initialization code
         
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-        OneSignal.initWithLaunchOptions(launchOptions, appId: "REPLACE_APP_ID", handleNotificationReceived: nil, handleNotificationAction: { (result) in
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "3bbd9b9a-ccaf-44b3-b55a-a921f41e8bf8", handleNotificationReceived: nil, handleNotificationAction: { (result) in
             guard let chatId = result?.notification.payload.additionalData["chat_id"] as? String else { return }
             PKUserManager.shared.pushNotificationChatId = chatId
         }, settings: onesignalInitSettings)
@@ -41,6 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         //END OneSignal initializataion code
         
+        FirebaseApp.configure()
+        
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        Logger.log(message: url, event: .info)
+        
         return true
     }
     
@@ -49,6 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             PKUserManager.shared.userSelectedShortcutItem = true
             completionHandler(true)
         }
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        guard let url = userActivity.webpageURL, let host = url.host, host == "pokoro.app", let code = url.pathComponents.last else { return false }
+        PKUserManager.shared.userSelectedNamespaceLink = code
+        return true
     }
     
     private func makeAuthenticationCoordinator() {

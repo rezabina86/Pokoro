@@ -11,6 +11,8 @@ target 'Pokoro_Customer' do
   pod 'Socket.IO-Client-Swift'
   pod 'OneSignal'
   pod 'MessageKit'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 
 end
 

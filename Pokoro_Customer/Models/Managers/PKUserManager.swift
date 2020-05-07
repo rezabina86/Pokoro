@@ -18,6 +18,7 @@ class PKUserManager: NSObject, ObservableObject {
     @Published var isAppInForeground: Bool = true
     @Published var pushNotificationChatId: String?
     @Published var userSelectedShortcutItem: Bool = false
+    @Published var userSelectedNamespaceLink: String?
     
     static let shared = PKUserManager()
     public var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>?
@@ -67,12 +68,14 @@ class PKUserManager: NSObject, ObservableObject {
         name = nil
         email = nil
         OneSignal.deleteTag("user_id")
-        NamespacesCacheManager.shared.clear()
-        ThreadsCacheManager.shared.clear()
+        CacheStore.shared.clear()
         chatManager?.disconnect()
         chatManager?.deleteMessages()
         pushNotificationChatId = nil
         isWalkthroughShown = false
+        userSelectedNamespaceLink = nil
+        userSelectedShortcutItem = false
+        Analytic.sendLog(.signout)
     }
     
     func checkCredential(_ credential: ASAuthorizationAppleIDCredential, completion: @escaping credentialHandler) {
@@ -120,6 +123,7 @@ extension PKUserManager {
                 OneSignal.sendTag("user_id", value: result.id)
                 completion(true, nil)
                 self.registerOneSignal()
+                Analytic.sendLog(.loginWithApple)
             }
         }
     }
@@ -136,6 +140,7 @@ extension PKUserManager {
                 OneSignal.sendTag("user_id", value: result.id)
                 completion(true, nil)
                 self.registerOneSignal()
+                Analytic.sendLog(.signupWithApple)
             }
         }
     }
@@ -153,6 +158,7 @@ extension PKUserManager {
                 OneSignal.sendTag("user_id", value: result.id)
                 completion(true, nil)
                 self.registerOneSignal()
+                Analytic.sendLog(.loginWithEmail)
             }
         }
     }
@@ -170,6 +176,7 @@ extension PKUserManager {
                 OneSignal.sendTag("user_id", value: result.id)
                 completion(true, nil)
                 self.registerOneSignal()
+                Analytic.sendLog(.signupWithEmail)
             }
         }
     }

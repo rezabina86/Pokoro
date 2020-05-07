@@ -5,9 +5,78 @@
   Created by Reza Bina on 2019-11-24.
   Copyright © 2019 Reza Bina. All rights reserved.
 */
+//Errors
+"noNetwork" = "Unfortunately, a connection error prevented your request from being sent.\nPlease try again.";
+"badRequest" = "Unfortunately, a server error prevented your request from being completed. Pokoro maybe undergoing maintenance or your connection may have timed out. Please try again.";
+"failed" = "Unfortunately, a server error prevented your request from being completed. Pokoro maybe undergoing maintenance or your connection may have timed out. Please try again.";
+"noData" = "Unfortunately, a server error prevented your request from being completed. Pokoro maybe undergoing maintenance or your connection may have timed out. Please try again.";
+"unableToDecode" = "Unfortunately, a server error prevented your request from being completed. Pokoro maybe undergoing maintenance or your connection may have timed out. Please try again.";
+"locationServicePermissionError" = "Unfortunately, Ronaker do not have permission to access your location.";
+"locationServiceError" = "Unfortunately, an error prevented Ronaker from getting your location.\nPlease try again.";
+"invalidBarcode" = "Please scan a valid barcode.";
+"barcodeError" = "You couldn't send message to yourself. Please scan a valid barcode.";
+"nonetworkSend" = "Please check your internet connection and try again";
 
+
+//General
+"and" = " and ";
+"cancel" = "Cancel";
+"save" = "Save";
+"pleaseWait" = "Please Wait...";
 
 //Login
+"noticeWelcome" = "By continiung, you are indicating that you accept our ";
+"terms" = "Terms of Service";
+"policy" = "Privacy Policy";
 "loginWelcome" = "Welcome to Pokoro\n Simple, fast, and anonymous short message service";
+"loginWelcomeMessage" = "Welcome to Pokoro\nThis app lets you send and recieve messages through QR codes anonymously.";
+"emailLoginMessage" = "What is your email address?";
+"emailErrorMessage" = "Sorry, the email address isn't valid. Please enter a valid email address";
+"getNameMessage" = "Thank you\nWhat is your name?";
+"nameErrorMessage" = "Sorry, the name you've choosen is really short. Please enter a valid name.";
+"getPasswordRegisterMessage" = "Thank you\nJust one more step. Please enter a valid password. It should be at least 6 characters.";
+"waitMessage" = "Just a moment";
+"passwordErrorMessage" = "Password should be at least 6 characters. Please enter a valid password.";
+"getPasswordLoginMessage" = "What is your password?";
+"successLoginMessage" = "Thank you\nYou're now being logged in.";
 
 
+//Tab Bar
+"inbox" = "Inbox";
+"scan" = "Scan";
+"profile" = "Profile";
+
+//Chat
+"textMessage" = "Text Message";
+
+//Profile
+"logout" = "Sign Out";
+"myBarcodes" = "My QR Codes";
+"feedback" = "Share your thoughts";
+"logoutMessage" = "Are you sure that you want to sign out?";
+
+//Barcodes
+"export" = "Export";
+"enterName" = "Enter Name";
+"addQRTitle" = "Add New QR Code";
+"addQRMessage" = "Please enter a name for the new QR code";
+"createBarcodeError" = "You should choice a valid name";
+
+
+//Walkthrough
+"WelcomePokoro" = "Welcome to Pokoro";
+"welcomeBody" = "A simple, fast and Anonymous instant messaging service that helps you send and receive text messages with a simple QR code.";
+
+"businessCardTitle" = "QR codes";
+"businessCardBody" = "Create QR codes as much as you want and put them on your business card, or your car, or your stuffs ...";
+
+"scanQRTitle" = "Scan";
+"scanQRBody" = "Everybody could scan your QR code and send a message to you without knowing your phone number or ...";
+
+"chatListTitle" = "Messages";
+"chatListBody" = "See your messages even when you're offline";
+
+
+//Feedback
+"feedbackTitle" = "We'd love to hear from you";
+"feedbackBody" = "The app that you're using is in public beta test. We're working on Pokoro constantly to keep it stable and make it better. But we'd like to hear from you.\nPlease send us your thoughts, your ideas or your wish list.";

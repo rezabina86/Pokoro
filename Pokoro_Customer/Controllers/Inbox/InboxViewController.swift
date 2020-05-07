@@ -63,7 +63,7 @@ class InboxViewController: UIViewController {
     }
     
     private func loadCache() {
-        let savedThreads = ThreadsCacheManager.shared.threads.map({ ChatThread<ChatMessage>(apiResponse: $0) })
+        let savedThreads = CacheStore.shared.threads.map({ ChatThread<ChatMessage>(apiResponse: $0) })
         let newOrder = savedThreads.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
         threads = newOrder
     }
@@ -74,7 +74,7 @@ class InboxViewController: UIViewController {
             if thrds.count > 0 { self.threads = thrds }
         }.store(in: &cancellables)
         
-        chatManager.$managerStatus.sink { [weak self] (status) in
+        chatManager.$managerStatus.throttle(for: 2.0, scheduler: RunLoop.main, latest: true).sink { [weak self] (status) in
             guard let `self` = self else { return }
             self.handleSocketStatus(event: status)
         }.store(in: &cancellables)

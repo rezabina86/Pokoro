@@ -15,7 +15,7 @@ class MainTabBarViewController: UITabBarController {
     public var chatManager: PkChatManager<ChatThread<ChatMessage>, ChatMessage>?
     private var cancellables = Set<AnyCancellable>()
     private var pageLoaded = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         chatManager = PkChatManager()
@@ -31,7 +31,7 @@ class MainTabBarViewController: UITabBarController {
             items[0].badgeColor = .systemRed
             UIApplication.shared.applicationIconBadgeNumber = unseen
         }).store(in: &cancellables)
-
+        
         PKUserManager.shared.$pushNotificationChatId.sink { [weak self] (id) in
             guard let `self` = self, let id = id else { return }
             self.handlePushNotification(id: id)
@@ -40,6 +40,14 @@ class MainTabBarViewController: UITabBarController {
         PKUserManager.shared.$userSelectedShortcutItem.sink { [weak self] selected in
             guard let `self` = self, selected else { return }
             self.showScannerController()
+        }.store(in: &cancellables)
+        
+        PKUserManager.shared.$userSelectedNamespaceLink.sink { [weak self] (code) in
+            guard let `self` = self, let code = code, let selectedViewController = self.selectedViewController as? UINavigationController else { return }
+            selectedViewController.popToRootViewController(animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.checkNamespace(code)
+            }
         }.store(in: &cancellables)
     }
     
@@ -67,41 +75,30 @@ class MainTabBarViewController: UITabBarController {
     
     private func handlePushNotification(id: String) {
         NetworkManager().getChats { [weak self] (threads, error) in
-            guard let `self` = self else { return }
-            if let threads = threads {
-                guard let selectedThread = threads.results.first(where: { $0.id == id }) else { return }
-                let thread = ChatThread<ChatMessage>(apiResponse: selectedThread)
-                self.showPushThread(thread: thread)
-            }
+            guard let `self` = self, let threads = threads else { return }
+            guard let selectedThread = threads.results.first(where: { $0.id == id }) else { return }
+            let thread = ChatThread<ChatMessage>(apiResponse: selectedThread)
+            self.showPushThread(thread: thread)
         }
     }
     
     private func showPushThread(thread: ChatThread<ChatMessage>) {
+        guard let selectedNavigationController = selectedViewController as? UINavigationController else { return }
+        selectedNavigationController.popToRootViewController(animated: true)
         chatManager?.selectThread(thread)
         let messageController = MessageViewController()
         messageController.chatManager = chatManager
         messageController.hidesBottomBarWhenPushed = true
-        if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
-            selectedNavigationController.popToRootViewController(animated: true)
-            selectedNavigationController.pushViewController(messageController, animated: true)
-        } else if let selectedNavigationController = selectedViewController as? ProfileNavigationViewController {
-            selectedNavigationController.popToRootViewController(animated: true)
-            selectedNavigationController.pushViewController(messageController, animated: true)
-        }
+        selectedNavigationController.pushViewController(messageController, animated: true)
     }
     
     private func showChat(namespace: CheckNamespaceBusinessModel.Fetch.Response) {
-        chatManager?.startThread(with: namespace)
+        guard let selectedNavigationController = selectedViewController as? UINavigationController else { return }
         let messageController = MessageViewController()
         messageController.chatManager = chatManager
+        chatManager?.startThread(with: namespace)
         messageController.hidesBottomBarWhenPushed = true
-        if let selectedNavigationController = selectedViewController as? InboxNavigationViewController {
-            selectedNavigationController.popToRootViewController(animated: true)
-            selectedNavigationController.pushViewController(messageController, animated: true)
-        } else if let selectedNavigationController = selectedViewController as? ProfileNavigationViewController {
-            selectedNavigationController.popToRootViewController(animated: true)
-            selectedNavigationController.pushViewController(messageController, animated: true)
-        }
+        selectedNavigationController.pushViewController(messageController, animated: true)
     }
     
     private func showScannerController() {
@@ -109,7 +106,7 @@ class MainTabBarViewController: UITabBarController {
         scannerController.delegate = self
         present(scannerController, animated: true)
     }
-
+    
 }
 
 extension MainTabBarViewController: UITabBarControllerDelegate {
@@ -126,13 +123,8 @@ extension MainTabBarViewController: UITabBarControllerDelegate {
 
 extension MainTabBarViewController: ScannerViewControllerDelegate {
     
-    func scannerViewController(_ controller: ScannerViewController, didScan code: String) {
-        controller.dismiss(animated: true)
-        guard let url = URL(string: code), let host = url.host, host == "pokoro.app", let code = url.pathComponents.last else {
-            showAlert(message: "invalidBarcode".localized, type: .error)
-            return
-        }
-        NetworkManager().checkNameSpaces(request: CheckNamespaceBusinessModel.Fetch.Request(id: code)) { [weak self] (result, error) in
+    private func checkNamespace(_ id: String) {
+        NetworkManager().checkNameSpaces(request: CheckNamespaceBusinessModel.Fetch.Request(id: id)) { [weak self] (result, error) in
             guard let `self` = self else { return }
             if error != nil {
                 self.showAlert(message: "invalidBarcode".localized, type: .error)
@@ -140,10 +132,19 @@ extension MainTabBarViewController: ScannerViewControllerDelegate {
                 let viewModel = CheckNamespaceBusinessModel.Fetch.ViewModel(response: result)
                 if viewModel.isValid {
                     self.showChat(namespace: result)
+                    Analytic.sendLog(.scanQR)
                 } else { self.showAlert(message: "barcodeError".localized, type: .error) }
             }
         }
-        
+    }
+    
+    func scannerViewController(_ controller: ScannerViewController, didScan code: String) {
+        controller.dismiss(animated: true)
+        guard let url = URL(string: code), let host = url.host, host == "pokoro.app", let code = url.pathComponents.last else {
+            showAlert(message: "invalidBarcode".localized, type: .error)
+            return
+        }
+        checkNamespace(code)
     }
     
     func scannerViewControllerBackButtonDidTapped(_ controller: ScannerViewController) {

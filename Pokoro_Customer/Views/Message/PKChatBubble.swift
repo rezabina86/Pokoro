@@ -19,8 +19,8 @@ class PKChatBubble: UIView {
         return view
     }()
     
-    private let textLabel: MediumRegular = {
-        let label = MediumRegular()
+    private let textLabel: LargeRegular = {
+        let label = LargeRegular()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = ThemeManager.shared.theme?.textColor
         return label

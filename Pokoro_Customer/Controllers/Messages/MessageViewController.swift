@@ -142,7 +142,7 @@ class MessageViewController: UIViewController {
             }
         }.store(in: &cancellables)
         
-        chatManager?.$managerStatus.sink(receiveValue: { [weak self] (event) in
+        chatManager?.$managerStatus.throttle(for: 2.0, scheduler: RunLoop.main, latest: true).sink(receiveValue: { [weak self] (event) in
             guard let `self` = self else { return }
             self.handleSocketStatus(event: event)
         }).store(in: &cancellables)

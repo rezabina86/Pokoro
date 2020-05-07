@@ -59,19 +59,26 @@ class BarcodeViewerViewController: UIViewController {
     
     private func showAlert() {
         let exportAction = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let pdfAction = UIAlertAction(title: "PDF", style: .default) { _ in
+        let pdfAction = UIAlertAction(title: "Export as pdf", style: .default) { _ in
             guard let data = self.document?.document?.dataRepresentation() else { return }
             let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-            self.present(activityController, animated: true, completion: nil)
+            self.present(activityController, animated: true)
         }
-        let imageAction = UIAlertAction(title: "Image", style: .default) { _ in
+        let imageAction = UIAlertAction(title: "Export as image", style: .default) { _ in
             guard let qr = self.document?.qr, let data = UIImage(ciImage: qr).jpegData(compressionQuality: 1.0) else { return }
             let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-            self.present(activityController, animated: true, completion: nil)
+            self.present(activityController, animated: true)
+        }
+        let codeAction = UIAlertAction(title: "Export as code", style: .default) { _ in
+            guard let code = self.document?.id else { return }
+            let stringCode = "http://pokoro.app/code/\(code)"
+            let activityController = UIActivityViewController(activityItems: [stringCode], applicationActivities: nil)
+            self.present(activityController, animated: true)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         exportAction.addAction(pdfAction)
         exportAction.addAction(imageAction)
+        exportAction.addAction(codeAction)
         exportAction.addAction(cancelAction)
         present(exportAction, animated: true)
     }

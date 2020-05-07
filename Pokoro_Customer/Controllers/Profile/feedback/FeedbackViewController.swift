@@ -88,16 +88,18 @@ class FeedbackViewController: UIViewController {
         skipButton.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -28).isActive = true
     }
     
-    @objc private func skipButtonDidTapped(_ sender: UIButton) {
+    @objc
+    private func skipButtonDidTapped(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
-    @objc private func shareButtonDidTapped(_ sender: UIButton) {
+    @objc
+    private func shareButtonDidTapped(_ sender: UIButton) {
         sendEmail()
     }
     
     func sendEmail() {
-        let emailAddress = "info@pokoro.app"
+        let emailAddress = "pokoro.app@gmail.com"
         let subject = "Feedback about Pokoro app"
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
