@@ -25,6 +25,10 @@ Anyone can send you a message without knowing your phone number or email address
   <img src="readme_assets/light.png" width="738">
 </p>
 
+<p align="center">
+  <img src="readme_assets/IMG_0006.png" width="200">
+</p>
+
 
 ### App Store
 
